@@ -19,6 +19,7 @@ module.exports = {
         "blue-dark": "#2354FF",
         "blue-light": "#70DDFF",
         "black-dark": "#1B1B1B",
+        "gray-light": "#999999",
       },
     },
     fontFamily: {

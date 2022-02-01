@@ -5,6 +5,7 @@ import React, {
   useCallback,
   ReactElement,
   useEffect,
+  createContext,
 } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 import {
@@ -20,9 +21,11 @@ interface SmoothScrollProps {
   children?: ReactElement;
 }
 
-const ScrollContainer = styled.div(() => [tw`fixed left-0 right-0`]);
+const ScrollContainer = styled.div(() => [tw`fixed left-0 right-0 z-20`]);
 
 const GhostContainer = styled.div(() => [tw`w-full`]);
+
+export const ScrollContext = createContext({ scrollRange: 0, viewportW: 0 });
 
 const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const scrollRef = useRef<any | undefined>(null);
@@ -53,11 +56,13 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     [0, 1],
     [0, -scrollRange + viewportW]
   );
-  const physics = { damping: 15, mass: 0.27, stiffness: 55 };
+  const physics = { damping: 14, mass: 0.25, stiffness: 30 };
   const spring = useSpring(transform, physics);
 
   return (
-    <>
+    <ScrollContext.Provider
+      value={{ scrollRange: scrollRange, viewportW: viewportW }}
+    >
       <ScrollContainer style={{ willChange: "transform" }}>
         <motion.section
           ref={scrollRef}
@@ -72,7 +77,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         style={{ height: scrollRange }}
         css={tw`bg-black-dark`}
       />
-    </>
+    </ScrollContext.Provider>
   );
 };
 
