@@ -1,7 +1,15 @@
 {
   "compilerOptions": {
+    "types": ["@emotion/react/types/css-prop"],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/blocks/*": ["components/block/*"],
+      "@/elements/*": ["components/elements/*"],
+      "@/svg/*": ["svg/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
