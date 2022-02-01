@@ -5,16 +5,9 @@ import {
   useTransform,
   useViewportScroll,
 } from "framer-motion";
-import {
-  forwardRef,
-  FunctionComponent,
-  Ref,
-  useContext,
-  useEffect,
-  useRef,
-} from "react";
+import { forwardRef, FunctionComponent, useContext } from "react";
 import tw from "twin.macro";
-import { GlobalContext } from "../layouts";
+
 import { ScrollContext } from "../layouts/smoothScroll";
 
 const SvgElement = styled(motion.svg)(() => [tw`fixed top-[50%] z-30`]);
@@ -100,4 +93,5 @@ const GradientLine: FunctionComponent<any> = forwardRef(
   }
 );
 
+GradientLine.displayName = "GradientLine";
 export default GradientLine;
