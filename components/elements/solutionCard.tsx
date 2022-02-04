@@ -4,7 +4,7 @@ import { FunctionComponent } from "react";
 import tw from "twin.macro";
 
 const CardContainer = styled(motion.div)(() => [
-  tw`flex items-center justify-center gap-x-16 text-white bg-[#333333] w-3/5 backdrop-blur-[30px] py-3 rounded-[2px] transition-all duration-300 ease-in cursor-default`,
+  tw`flex items-center justify-center gap-x-16 px-5 text-white bg-[#333333] w-3/5 backdrop-blur-[30px] py-3 rounded-[2px] transition-all duration-300 ease-in cursor-default`,
   tw`hover:(bg-white text-black)`,
 ]);
 
@@ -28,7 +28,7 @@ const SolutionCard: FunctionComponent<any> = (props: any) => {
       }}
     >
       <IconComponent />
-      <div css={tw`w-1/2`}>
+      <div css={tw`w-2/3`}>
         <Title>{title}</Title>
         <Description>{description}</Description>
       </div>

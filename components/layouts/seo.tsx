@@ -10,7 +10,7 @@ const Seo: FunctionComponent<SeoProps> = ({
 }) => {
   return (
     <Head>
-      <title>{`Numdaic | ${title}`}</title>
+      <title>{`Numadic | ${title}`}</title>
       <meta name="og:type" content="website" />
       <meta name="description" content={description} />
       <meta name="og:title" content={title} />

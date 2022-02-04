@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import tw from "twin.macro";
 
@@ -16,8 +16,6 @@ const StarBackgroundBlock = () => {
 
   const onResize = useCallback((entries) => {
     for (let entry of entries) {
-      console.log(entry.contentRect.height);
-      
       containerHeight.set(entry.contentRect.height);
     }
   }, []);
@@ -56,6 +54,7 @@ const StarBackgroundBlock = () => {
     },
     visible: (i: number) => {
       const delay = 1 + i * 0.5;
+
       return {
         x: "100vw",
         transition: {
