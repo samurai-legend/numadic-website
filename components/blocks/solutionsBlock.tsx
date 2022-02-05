@@ -68,7 +68,7 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-overline uppercase text-gray-light font-bold`}
+            css={tw`text-overline uppercase text-gray-light font-bold w-max`}
           >
             solutions
           </motion.p>

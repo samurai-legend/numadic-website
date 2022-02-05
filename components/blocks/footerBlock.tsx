@@ -3,6 +3,8 @@ import { ContentWrapper, SectionContainer } from "./common";
 import MapPattern from "@/svg/movement/map.svg";
 import { useRef } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { TextEntryVariant } from "animations";
 
 const FooterBlock: React.FC<any> = (props: any) => {
   const mapRef = useRef(null);
@@ -15,12 +17,22 @@ const FooterBlock: React.FC<any> = (props: any) => {
       </div>
       <ContentWrapper>
         <div css={tw`grid grid-cols-2 grid-flow-col`}>
-          <p
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={TextEntryVariant}
             css={tw`text-heading-2 font-normal text-white max-w-3xl leading-[3.75rem]`}
           >
             Locations
-          </p>
-          <div css={tw`grid grid-cols-2 grid-flow-col mt-10`}>
+          </motion.p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={TextEntryVariant}
+            css={tw`grid grid-cols-2 grid-flow-col mt-10`}
+          >
             <div>
               <span css={tw`text-overline uppercase text-gray-light font-bold`}>
                 India
@@ -37,15 +49,24 @@ const FooterBlock: React.FC<any> = (props: any) => {
                 10 John Street, London, United Kingdom WC1N 2EB
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
         <div css={tw`grid grid-cols-3 grid-flow-col mt-40`}>
-          <p
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={TextEntryVariant}
             css={tw`text-heading-2 font-normal text-white max-w-3xl leading-[3.75rem]`}
           >
             Other links
-          </p>
-          <div>
+          </motion.p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={TextEntryVariant}
+          >
             <span css={tw`text-overline uppercase text-gray-light font-bold`}>
               SOLUTIONS
             </span>
@@ -84,9 +105,15 @@ const FooterBlock: React.FC<any> = (props: any) => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </motion.div>
         </div>
-        <div css={tw`grid grid-cols-3 grid-flow-col mt-5`}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={TextEntryVariant}
+          css={tw`grid grid-cols-3 grid-flow-col mt-32`}
+        >
           <span
             css={tw`text-gray-light text-caption leading-[34px]
             `}
@@ -95,19 +122,18 @@ const FooterBlock: React.FC<any> = (props: any) => {
           </span>
 
           <span
-            css={tw`text-gray-light text-caption leading-[34px]
+            css={tw`text-gray-light text-caption leading-[34px] justify-self-center
             `}
           >
             Warm regards from Goa, India
           </span>
 
           <span
-            css={tw`text-gray-light text-caption leading-[34px]
-            `}
+            css={tw`text-gray-light text-caption leading-[34px] justify-self-end`}
           >
             Terms of service | Privacy policy | Cancellation policy
           </span>
-        </div>
+        </motion.div>
       </ContentWrapper>
     </SectionContainer>
   );
