@@ -43,7 +43,7 @@ const GradientLineUp: FunctionComponent<any> = (props: any) => {
               opacity: isAnimate ? 1 : 0,
             }}
             transition={{
-              duration: 0.5,
+              duration: 0.9,
               type: "twin",
               ease: "easeIn",
             }}

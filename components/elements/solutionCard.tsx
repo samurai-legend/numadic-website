@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { forwardRef, FunctionComponent } from "react";
+import { forwardRef } from "react";
 import tw from "twin.macro";
 
 const CardContainer = styled(motion.div)(() => [
@@ -18,35 +18,33 @@ const Description = styled.p(() => [
   tw`text-body-2 font-normal leading-[1.625rem]`,
 ]);
 
-const SolutionCard: FunctionComponent<any> = forwardRef(
-  (props: any, ref: any) => {
-    const { IconComponent, title, description, isAnimate } = props;
-    return (
-      <CardContainer
-        initial={{
-          scale: 1,
-          opacity: 0,
-        }}
-        animate={{
-          scale: isAnimate ? [0.4, 0.6, 0.4, 1] : [1, 0, 1],
-          opacity: isAnimate ? [1, 1, 1, 1] : [1, 0, 0],
-        }}
-        transition={{
-          duration: 1,
-          type: "spring",
-          damping: 5,
-          mass: 0.5,
-        }}
-        ref={ref}
-      >
-        <IconComponent />
-        <div>
-          <Title>{title}</Title>
-          <Description>{description}</Description>
-        </div>
-      </CardContainer>
-    );
-  }
-);
-
+const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
+  const { IconComponent, title, description, isAnimate } = props;
+  return (
+    <CardContainer
+      initial={{
+        scale: 1,
+        opacity: 0,
+      }}
+      animate={{
+        scale: isAnimate ? [0.4, 0.6, 0.4, 1] : [1, 0, 1],
+        opacity: isAnimate ? [1, 1, 1, 1] : [1, 0, 0],
+      }}
+      transition={{
+        duration: 1,
+        type: "spring",
+        damping: 5,
+        mass: 0.5,
+      }}
+      ref={ref}
+    >
+      <IconComponent />
+      <div>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+      </div>
+    </CardContainer>
+  );
+});
+SolutionCard.displayName = "SolutionCard";
 export default SolutionCard;

@@ -89,7 +89,10 @@ const GradientLine: FunctionComponent<any> = forwardRef(
           </g>
           <ArrowGroup
             style={{ x: spring }}
-            animate={{ rotate: toggleDriection ? 0 : 180 }}
+            animate={{
+              rotate: toggleDriection ? 0 : -180,
+              transition: { duration: 0.7 },
+            }}
           >
             <path
               id="arrow_fill"

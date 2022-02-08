@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { motion, useAnimation, useMotionValue } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import tw from "twin.macro";
 
@@ -10,7 +10,7 @@ const Star = styled(motion.span)(() => [
   tw`w-[100px] h-[4px] block absolute bg-gradient-to-r from-transparent to-[#ffffff13]`,
 ]);
 
-const StarBackgroundBlock = () => {
+const StarBackgroundBlock: React.FC<any> = () => {
   const containerRef = useRef<any | undefined>(null);
   const containerHeight = useMotionValue(0);
 
