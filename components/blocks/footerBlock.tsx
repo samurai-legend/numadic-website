@@ -7,13 +7,12 @@ import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
 
 const FooterBlock: React.FC<any> = (props: any) => {
-  const mapRef = useRef(null);
   return (
     <SectionContainer>
       <div
-        css={tw`absolute w-screen h-full flex justify-center items-center -top-10 z-0`}
+        css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
       >
-        <MapPattern ref={mapRef} />
+        <MapPattern />
       </div>
       <ContentWrapper>
         <div css={tw`grid grid-cols-2 grid-flow-col`}>

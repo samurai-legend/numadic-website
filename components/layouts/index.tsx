@@ -16,7 +16,7 @@ import SmoothScroll from "./smoothScroll";
 
 const ContainerWrapper = styled.div(() => [tw`w-max h-full relative flex`]);
 
-export const GlobalContext = createContext<any>({});
+export const GlobalLineContext = createContext<any>({});
 
 const Layout: FunctionComponent<LayoutProps> = ({ children, seo }) => {
   const lineGroupRef = useRef(null);
@@ -27,10 +27,10 @@ const Layout: FunctionComponent<LayoutProps> = ({ children, seo }) => {
       <Header />
       <StarBackgroundBlock />
       <SmoothScroll>
-        <GlobalContext.Provider value={{ lineGroupRef: lineGroupRef }}>
+        <GlobalLineContext.Provider value={{ lineGroupRef: lineGroupRef }}>
           <GradientLine ref={lineGroupRef} />
           <ContainerWrapper>{children}</ContainerWrapper>
-        </GlobalContext.Provider>
+        </GlobalLineContext.Provider>
       </SmoothScroll>
     </>
   );

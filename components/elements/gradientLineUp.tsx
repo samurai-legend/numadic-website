@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { motion, useCycle, useReducedMotion } from "framer-motion";
-import { FunctionComponent, useEffect } from "react";
-import tw from "twin.macro";
+import { motion } from "framer-motion";
+import { FunctionComponent } from "react";
 
 const LinePath = styled(motion.path)``;
 
@@ -44,8 +43,9 @@ const GradientLineUp: FunctionComponent<any> = (props: any) => {
               opacity: isAnimate ? 1 : 0,
             }}
             transition={{
-              duration: 0.75,
+              duration: 0.5,
               type: "twin",
+              ease: "easeIn",
             }}
           />
         </g>

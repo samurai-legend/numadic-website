@@ -5,12 +5,20 @@ import {
   useTransform,
   useViewportScroll,
 } from "framer-motion";
-import { forwardRef, FunctionComponent, useContext } from "react";
+import {
+  forwardRef,
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import tw from "twin.macro";
 
 import { ScrollContext } from "../layouts/smoothScroll";
 
-const SvgElement = styled(motion.svg)(() => [tw`fixed top-[50%] z-30`]);
+const SvgElement = styled(motion.svg)(() => [
+  tw`fixed top-[50%] z-30 -translate-y-1/2`,
+]);
 const ArrowGroup = styled(motion.g)(() => [tw`relative`]);
 const LineStroke = styled(motion.line)(() => [tw`relative`]);
 const LineGroup = styled.g(() => []);
@@ -27,6 +35,14 @@ const GradientLine: FunctionComponent<any> = forwardRef(
     );
     const physics = { damping: 14, mass: 0.25, stiffness: 30 };
     const spring = useSpring(transform, physics);
+
+    const [toggleDriection, setDirection] = useState(false);
+
+    useEffect(() => {
+      scrollYProgress.onChange(() => {
+        setDirection(scrollYProgress.getVelocity() > 0);
+      });
+    }, [scrollYProgress]);
 
     return (
       <SvgElement
@@ -48,7 +64,7 @@ const GradientLine: FunctionComponent<any> = forwardRef(
             <stop offset="0" stopColor="#ffc7a4" stopOpacity="1" />
             <stop offset="0.25" stopColor="#ff9dce" stopOpacity="1" />
             <stop offset="0.75" stopColor="#6febfc" stopOpacity="1" />
-            <stop offset="1" stopColor="#8eb1f4" stopOpacity="1" />
+            <stop offset="1" stopColor="#ffc7a4" stopOpacity="1" />
           </linearGradient>
           <linearGradient
             id="repeat"
@@ -71,7 +87,10 @@ const GradientLine: FunctionComponent<any> = forwardRef(
               }}
             />
           </g>
-          <ArrowGroup style={{ x: spring }}>
+          <ArrowGroup
+            style={{ x: spring }}
+            animate={{ rotate: toggleDriection ? 0 : 180 }}
+          >
             <path
               id="arrow_fill"
               d="M36.9,21.3c1.9,1.1,2.5,3.6,1.4,5.5c-0.3,0.6-0.8,1-1.4,1.4L12.4,42.8

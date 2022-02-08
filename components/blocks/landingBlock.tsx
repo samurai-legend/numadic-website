@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
 
 const LandingContainer = styled.div(() => [
-  tw`h-full text-center w-screen flex flex-col justify-center items-center gap-y-10`,
+  tw`h-full text-center w-screen flex flex-col justify-center items-center gap-y-10 relative -top-8`,
 ]);
 
 const LandingBlock: FunctionComponent<any> = () => {
