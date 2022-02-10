@@ -8,7 +8,8 @@
       "@/components/*": ["components/*"],
       "@/blocks/*": ["components/block/*"],
       "@/elements/*": ["components/elements/*"],
-      "@/svg/*": ["svg/*"]
+      "@/svg/*": ["svg/*"],
+      "@/styles/*": ["styles/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

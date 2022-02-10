@@ -4,14 +4,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  height: 100%;
+
   margin: 0;
 }
 body {
-  overscroll-behavior: none;
-  -ms-overflow-style: none;
-  overscroll-behavior: none;
-  -ms-overflow-style: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,4 +23,8 @@ a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+#__next {
+  position: relative;
 }

@@ -15,16 +15,11 @@ import VehicleIntegrationIcon from "@/svg/solutions/vehicle_integration.svg";
 import VehicleIdentificationIcon from "@/svg/solutions/vehicle_identification.svg";
 import { GlobalLineContext } from "../layouts";
 import { IsColliding } from "helpers/colliding";
-import {
-  motion,
-  useAnimationFrame,
-  useElementScroll,
-  useViewportScroll,
-} from "framer-motion";
+import { motion, useAnimationFrame, useViewportScroll } from "framer-motion";
 import { TextEntryVariant } from "animations";
 
 const LinesCurve = styled.div(({ direction, position }: any) => [
-  tw`w-40 absolute top-[50%] `,
+  tw`w-44 absolute top-[50%] `,
   direction === "up" && position === "left" && [tw`translate-y-[-84.5%]`],
   direction === "down" &&
     position === "left" && [tw`translate-y-[10.5%] -rotate-180 scale-x-[-1]`],
@@ -39,7 +34,7 @@ const LinesCurve = styled.div(({ direction, position }: any) => [
 const TopContainer = styled.div(() => [tw`w-full`]);
 
 const BottomContainer = styled.div(() => [
-  tw`w-full absolute flex items-center top-1/2 -translate-y-1/2 z-50`,
+  tw`w-full absolute flex items-center top-1/2 -translate-y-1/2`,
 ]);
 
 const SolutionsBlock: FunctionComponent<any> = (props: any) => {
@@ -84,8 +79,20 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
     }
   });
 
+  const { scrollY } = useViewportScroll();
+  const SectionRef = useRef<any>(null);
+
+  useEffect(() => {
+    scrollY.onChange((t) => {
+      const section = SectionRef.current.getBoundingClientRect();
+
+      section.left <= 0 && console.log("Section Left touched");
+      t > section.right && console.log("Section Crossed ");
+    });
+  }, [scrollY]);
+
   return (
-    <SectionContainer>
+    <SectionContainer ref={SectionRef}>
       <ContentWrapper css={tw`flex flex-col`}>
         <TopContainer>
           <motion.p
@@ -111,18 +118,9 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
       </ContentWrapper>
 
       <BottomContainer>
-        {/* <LinesCurve direction="up" position="left">
-            <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
-          </LinesCurve>
-          <LinesCurve direction="down" position="left">
-            <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
-          </LinesCurve> */}
-
-        <div
-          css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-50 container m-auto`}
-        >
+        <div css={tw`w-full z-0 relative container m-auto`}>
           <div
-            css={tw`absolute right-[-10%] z-20 top-1/2`}
+            css={tw`absolute right-0 z-20 top-1/2`}
             ref={animExitLinesRef}
           ></div>
           <LinesCurve direction="up" position="right">
@@ -137,6 +135,20 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
               isAnimate={animExitLines}
             />
           </LinesCurve>
+        </div>
+      </BottomContainer>
+
+      <BottomContainer css={tw`z-50`}>
+        {/* <LinesCurve direction="up" position="left">
+            <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
+          </LinesCurve>
+          <LinesCurve direction="down" position="left">
+            <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
+          </LinesCurve> */}
+
+        <div
+          css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-50 container m-auto`}
+        >
           <SolutionCard
             IconComponent={VehiclePaymentIcon}
             title={"Vehicle payments"}

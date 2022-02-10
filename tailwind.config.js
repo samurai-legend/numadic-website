@@ -20,6 +20,7 @@ module.exports = {
         "blue-light": "#70DDFF",
         "black-dark": "#1B1B1B",
         "gray-light": "#999999",
+        success: "#22CD9D",
       },
     },
     fontFamily: {

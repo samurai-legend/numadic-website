@@ -50,7 +50,7 @@ const FooterBlock: React.FC<any> = (props: any) => {
             </div>
           </motion.div>
         </div>
-        <div css={tw`grid grid-cols-3 grid-flow-col mt-40`}>
+        <div css={tw`grid grid-cols-3 grid-flow-col mt-48`}>
           <motion.p
             initial="hidden"
             whileInView="visible"

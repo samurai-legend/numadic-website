@@ -3,6 +3,11 @@ import { ContentWrapper, SectionContainer } from "./common";
 import HpclLogo from "@/svg/brands/HPCL_Logo.svg";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
+import UseCaseTabs from "../elements/useCaseTabs";
+import PaymentStatsUC from "../elements/paymentStatsUC";
+import FuelIcon from "@/svg/usecases/fuel.svg";
+import ParkingIcon from "@/svg/usecases/parking.svg";
+import TicketsIcon from "@/svg/usecases/tickets.svg";
 
 const UseCasesBlock: React.FC<any> = (props: any) => {
   return (
@@ -27,24 +32,22 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
           >
             Enable next-gen vehicle interface solutions
           </motion.p>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={TextEntryVariant}
-            css={tw`mt-10`}
-          >
-            <div css={tw`text-body-3 text-white flex flex-row gap-x-16`}>
-              <span>Vehicle payments</span> <span>Vehicle identification</span>{" "}
-              <span>Vehicle integration</span>
+          <div css={tw`flex w-full`}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={TextEntryVariant}
+              css={tw`mt-10 relative w-1/2`}
+            >
+              <UseCaseTabs />
+            </motion.div>
+            <div css={tw`w-1/2 grid grid-flow-col grid-cols-3`}>
+              <PaymentStatsUC Icon={FuelIcon} amount="2,500" />
+              <PaymentStatsUC Icon={ParkingIcon} amount="2,500" />
+              <PaymentStatsUC Icon={TicketsIcon} amount="2,500" />
             </div>
-            <div>
-              <p css={tw`text-heading-3 text-white font-bold max-w-2xl`}>
-                Accept payments for fuel, parking, theatres and more through
-                FASTag.
-              </p>
-            </div>
-          </motion.div>
+          </div>
         </div>
 
         <motion.div

@@ -1,7 +1,6 @@
 import React, {
   useRef,
   useState,
-  useLayoutEffect,
   useCallback,
   ReactElement,
   useEffect,
@@ -51,6 +50,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   }, [onResize]);
 
   const { scrollYProgress } = useViewportScroll();
+
   const transform = useTransform(
     scrollYProgress,
     [0, 1],

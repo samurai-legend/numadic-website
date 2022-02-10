@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { GlobalStyles } from "twin.macro";
+import "@/styles/common.scss";
 
 function handleExitComplete() {
   if (typeof window !== "undefined") {
