@@ -9,7 +9,7 @@ const PathVariant = {
   hidden: {
     scale: 0,
     opacity: 0,
-    y: 200,
+    y: 500,
   },
   visible: {
     scale: 1,
@@ -19,6 +19,7 @@ const PathVariant = {
       duration: 1,
       type: "spring",
       damping: 15,
+      mass: 0.02,
     },
   },
 };
@@ -66,89 +67,91 @@ const ContentVariant = {
     },
   },
 };
-const PaymentStatsUC: React.FC<any> = forwardRef(
-  ({ amount, Icon }: any, ref: any) => {
-    return (
+const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
+  const { amount, Icon, isAnimate } = props;
+  return (
+    <motion.div
+      css={[tw`relative w-max h-[max-content] self-end justify-self-center`]}
+      initial="hidden"
+      animate={isAnimate && "visible"}
+      transition={{ staggerChildren: 0.5, delayChildren: 0.5 }}
+      onAnimationComplete={(t) => {
+        console.log(t);
+      }}
+      ref={ref}
+    >
+      <motion.svg
+        width="116"
+        height="117"
+        viewBox="0 0 116 117"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        variants={PathVariant}
+      >
+        <g filter="url(#filter0_b_2_367)">
+          <path d={rectPath} fill="white" fillOpacity="0.21" />
+        </g>
+        <defs>
+          <filter
+            id="filter0_b_2_367"
+            x="-29.1645"
+            y="-29.2744"
+            width="175.114"
+            height="175.873"
+            filterUnits="userSpaceOnUse"
+            colorInterpolationFilters="sRGB"
+          >
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feGaussianBlur in="BackgroundImage" stdDeviation="15" />
+            <feComposite
+              in2="SourceAlpha"
+              operator="in"
+              result="effect1_backgroundBlur_2_367"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_backgroundBlur_2_367"
+              result="shape"
+            />
+          </filter>
+        </defs>
+      </motion.svg>
+      <div
+        css={tw`absolute  top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2`}
+      >
+        <motion.div
+          variants={ContentVariant}
+          css={tw`flex justify-center items-center 
+          flex-col gap-y-1`}
+        >
+          <Icon />
+          <span css={tw`font-normal text-white text-body-1`}>₹{amount}</span>
+        </motion.div>
+      </div>
       <motion.div
-        css={[tw`relative w-max h-[max-content] self-end justify-self-center`]}
-        initial="hidden"
-        whileInView="visible"
-        transition={{ staggerChildren: 0.5, delayChildren: 0.5 }}
-        ref={ref}
+        variants={CircleVariant}
+        css={tw`h-8 w-8 flex justify-center items-center rounded-full bg-success absolute -top-2 -right-2 border-[#242021] border-2`}
       >
         <motion.svg
-          width="116"
-          height="117"
-          viewBox="0 0 116 117"
+          width="17"
+          height="14"
+          viewBox="0 0 17 14"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          variants={PathVariant}
         >
-          <g filter="url(#filter0_b_2_367)">
-            <path d={rectPath} fill="white" fillOpacity="0.21" />
-          </g>
-          <defs>
-            <filter
-              id="filter0_b_2_367"
-              x="-29.1645"
-              y="-29.2744"
-              width="175.114"
-              height="175.873"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feGaussianBlur in="BackgroundImage" stdDeviation="15" />
-              <feComposite
-                in2="SourceAlpha"
-                operator="in"
-                result="effect1_backgroundBlur_2_367"
-              />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="effect1_backgroundBlur_2_367"
-                result="shape"
-              />
-            </filter>
-          </defs>
+          <motion.path
+            d="M1.58759,8.40805L5.4509,12.0181L14.9685,2.49097"
+            variants={CheckPathVariant}
+            stroke="white"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </motion.svg>
-        <div
-          css={tw`absolute  top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2`}
-        >
-          <motion.div
-            variants={ContentVariant}
-            css={tw`flex justify-center items-center 
-          flex-col gap-y-1`}
-          >
-            <Icon />
-            <span css={tw`font-normal text-white text-body-1`}>₹{amount}</span>
-          </motion.div>
-        </div>
-        <motion.div
-          variants={CircleVariant}
-          css={tw`h-8 w-8 flex justify-center items-center rounded-full bg-success absolute -top-2 -right-2 border-[#242021] border-2`}
-        >
-          <motion.svg
-            width="17"
-            height="14"
-            viewBox="0 0 17 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              d="M1.58759,8.40805L5.4509,12.0181L14.9685,2.49097"
-              variants={CheckPathVariant}
-              stroke="white"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </motion.svg>
-        </motion.div>
       </motion.div>
-    );
-  }
-);
+    </motion.div>
+  );
+});
 PaymentStatsUC.displayName = "PaymentStatsUC";
 export default PaymentStatsUC;

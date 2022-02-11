@@ -45,7 +45,7 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
         {Data.map((item) => (
           <TabsNavItem
             key={item.label}
-            active={selectedTab === item}
+            active={(selectedTab === item).toString()}
             onClick={() => setSelectedTab(item)}
           >
             {item.label}

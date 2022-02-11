@@ -1,15 +1,42 @@
 import tw from "twin.macro";
 import { ContentWrapper, SectionContainer } from "./common";
 import HpclLogo from "@/svg/brands/HPCL_Logo.svg";
-import { motion } from "framer-motion";
+import { motion, useAnimationFrame } from "framer-motion";
 import { TextEntryVariant } from "animations";
 import UseCaseTabs from "../elements/useCaseTabs";
 import PaymentStatsUC from "../elements/paymentStatsUC";
 import FuelIcon from "@/svg/usecases/fuel.svg";
 import ParkingIcon from "@/svg/usecases/parking.svg";
 import TicketsIcon from "@/svg/usecases/tickets.svg";
+import { useContext, useRef, useState } from "react";
+import { GlobalLineContext } from "../layouts";
+import { IsColliding } from "helpers/colliding";
 
 const UseCasesBlock: React.FC<any> = (props: any) => {
+  const { lineGroupRef } = useContext(GlobalLineContext);
+
+  const paymentRef1 = useRef<any>(null);
+  const paymentRef2 = useRef<any>(null);
+  const paymentRef3 = useRef<any>(null);
+
+  const [paymentAnim1, setPaymentAnim1] = useState(false);
+  const [paymentAnim2, setPaymentAnim2] = useState(false);
+  const [paymentAnim3, setPaymentAnim3] = useState(false);
+
+  useAnimationFrame((t) => {
+    if (lineGroupRef && paymentRef1) {
+      setPaymentAnim1(
+        IsColliding(lineGroupRef.current, paymentRef1.current, "horizontal")
+      );
+      setPaymentAnim2(
+        IsColliding(lineGroupRef.current, paymentRef2.current, "horizontal")
+      );
+      setPaymentAnim3(
+        IsColliding(lineGroupRef.current, paymentRef3.current, "horizontal")
+      );
+    }
+  });
+
   return (
     <SectionContainer>
       <ContentWrapper>
@@ -43,9 +70,24 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
               <UseCaseTabs />
             </motion.div>
             <div css={tw`w-1/2 grid grid-flow-col grid-cols-3`}>
-              <PaymentStatsUC Icon={FuelIcon} amount="2,500" />
-              <PaymentStatsUC Icon={ParkingIcon} amount="2,500" />
-              <PaymentStatsUC Icon={TicketsIcon} amount="2,500" />
+              <PaymentStatsUC
+                ref={paymentRef1}
+                Icon={FuelIcon}
+                amount="2,500"
+                isAnimate={paymentAnim1}
+              />
+              <PaymentStatsUC
+                ref={paymentRef2}
+                Icon={ParkingIcon}
+                amount="2,500"
+                isAnimate={paymentAnim2}
+              />
+              <PaymentStatsUC
+                ref={paymentRef3}
+                Icon={TicketsIcon}
+                amount="2,500"
+                isAnimate={paymentAnim3}
+              />
             </div>
           </div>
         </div>

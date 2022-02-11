@@ -63,7 +63,7 @@ const MovementBlock: React.FC<any> = (props: any) => {
             ref={ValueRef1}
           >
             <h2 css={tw`text-heading-2 font-bold text-white`}>
-              <Counter from={0} to={14000} />
+              <Counter isAnimate={animValue1} from={0} to={14000} />
             </h2>
             <span css={tw`text-overline uppercase text-gray-light font-bold`}>
               AVG. DAILY TRANSACTION VALUE
@@ -77,7 +77,7 @@ const MovementBlock: React.FC<any> = (props: any) => {
             ref={ValueRef2}
           >
             <h2 css={tw`text-heading-2 font-bold text-white`}>
-              <Counter from={0} to={97445} />
+              <Counter isAnimate={animValue2} from={0} to={97445} />
             </h2>
             <span css={tw`text-overline uppercase text-gray-light font-bold`}>
               AVG. DAILY TRANSACTION VALUE
@@ -91,7 +91,7 @@ const MovementBlock: React.FC<any> = (props: any) => {
             ref={ValueRef3}
           >
             <h2 css={tw`text-heading-2 font-bold text-white`}>
-              <Counter from={0} to={14000} />
+              <Counter isAnimate={animValue3} from={0} to={14000} />
             </h2>
             <span css={tw`text-overline uppercase text-gray-light font-bold`}>
               AVG. DAILY TRANSACTION VALUE
