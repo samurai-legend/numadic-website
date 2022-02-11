@@ -9,6 +9,13 @@ const CardContainer = styled(motion.div)(() => [
   tw`hover:(bg-white text-black)`,
   css`
     flex: 1 0 auto;
+    &:hover {
+      svg {
+        [class$="stroke-black"] {
+          stroke: black;
+        }
+      }
+    }
   `,
 ]);
 
