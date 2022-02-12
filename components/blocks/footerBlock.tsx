@@ -50,7 +50,9 @@ const FooterBlock: React.FC<any> = (props: any) => {
             </div>
           </motion.div>
         </div>
-        <div css={tw`grid grid-cols-3 grid-flow-col mt-48`}>
+        <div
+          css={tw`grid grid-cols-3 grid-flow-col mt-48 tall-md:(mt-48) tall-sm:(mt-36) tall-xs:(mt-28)`}
+        >
           <motion.p
             initial="hidden"
             whileInView="visible"
@@ -111,7 +113,7 @@ const FooterBlock: React.FC<any> = (props: any) => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={TextEntryVariant}
-          css={tw`grid grid-cols-3 grid-flow-col mt-32`}
+          css={tw`grid grid-cols-3 grid-flow-col mt-32 tall-md:(mt-32) tall-sm:(mt-24) tall-xs:(mt-16)`}
         >
           <span
             css={tw`text-gray-light text-caption leading-[34px]

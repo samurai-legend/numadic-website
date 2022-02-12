@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { Interface } from "readline";
 import tw from "twin.macro";
 
 const Data = [
@@ -45,7 +46,7 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
         {Data.map((item) => (
           <TabsNavItem
             key={item.label}
-            active={(selectedTab === item).toString()}
+            active={selectedTab === item ? true : false}
             onClick={() => setSelectedTab(item)}
           >
             {item.label}

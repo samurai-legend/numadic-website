@@ -65,7 +65,7 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={TextEntryVariant}
-              css={tw`mt-10 relative w-1/2`}
+              css={tw`mt-10 relative w-1/2 tall-md:(mt-10) tall-xs:(mt-2)`}
             >
               <UseCaseTabs />
             </motion.div>
