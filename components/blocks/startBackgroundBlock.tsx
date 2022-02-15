@@ -48,7 +48,7 @@ const StarBackgroundBlock: React.FC<any> = () => {
   const variants = {
     hidden: () => {
       return {
-        x: "-100%",
+        x: "100vw",
         y: `${Math.random() * containerHeight.get()}px`,
       };
     },
@@ -56,7 +56,7 @@ const StarBackgroundBlock: React.FC<any> = () => {
       const delay = 1 + i * 0.5;
 
       return {
-        x: "100vw",
+        x: "-100vw",
         transition: {
           x: {
             delay,

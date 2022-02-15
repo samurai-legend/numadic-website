@@ -15,23 +15,29 @@ import VehicleIntegrationIcon from "@/svg/solutions/vehicle_integration.svg";
 import VehicleIdentificationIcon from "@/svg/solutions/vehicle_identification.svg";
 import { GlobalLineContext } from "../layouts";
 import { IsColliding } from "helpers/colliding";
-import { motion, useAnimationFrame, useViewportScroll } from "framer-motion";
+import { useAnimationFrame, useElementScroll } from "framer-motion";
 import { TextEntryVariant } from "animations";
+import { Typography } from "../typography";
+import { ScrollContext } from "../layouts/smoothScroll";
+import { useRefScrollProgress } from "hooks/elementScroll";
 
 const LinesCurve = styled.div(({ direction, position }: any) => [
-  tw`w-44 absolute top-[50%] `,
+  tw`w-28 xl:w-32 2xl:w-44 absolute top-[50%] `,
   direction === "up" && position === "left" && [tw`translate-y-[-84.5%]`],
   direction === "down" &&
     position === "left" && [tw`translate-y-[10.5%] -rotate-180 scale-x-[-1]`],
   direction === "up" &&
-    position === "right" && [tw`translate-y-[-98%] right-[-10%] scale-x-[-1]`],
+    position === "right" && [tw`translate-y-[-98%] right-[20px] scale-x-[-1]`],
   direction === "down" &&
     position === "right" && [
-      tw` translate-y-[-2%] -rotate-180 right-[-10%] scale-x-[1]`,
+      tw` translate-y-[-2%] -rotate-180 right-[20px] scale-x-[1]`,
     ],
 ]);
 
-const TopContainer = styled.div(() => [tw`w-full`]);
+const TopContainer = styled.div(() => [
+  tw`w-full flex flex-col items-center`,
+  tw`lg:(items-start)`,
+]);
 
 const BottomContainer = styled.div(() => [
   tw`w-full absolute flex items-center top-1/2 -translate-y-1/2`,
@@ -39,6 +45,7 @@ const BottomContainer = styled.div(() => [
 
 const SolutionsBlock: FunctionComponent<any> = (props: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
+  const { IsMobile } = useContext(ScrollContext);
 
   const [animVPayment, setAnimVPayment] = useState(false);
   const [animVIndentification, setAnimVIndentification] = useState(false);
@@ -51,74 +58,80 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
   const animExitLinesRef = useRef(null);
 
   useAnimationFrame((t) => {
-    if (lineGroupRef && animVPaymentRef) {
-      setAnimVPayment(
-        IsColliding(lineGroupRef.current, animVPaymentRef.current, "horizontal")
-      );
-      setAnimVIndentification(
-        IsColliding(
-          lineGroupRef.current,
-          animVIndentificationRef.current,
-          "horizontal"
-        )
-      );
-      setAnimVIntegration(
-        IsColliding(
-          lineGroupRef.current,
-          animVIntegrationRef.current,
-          "horizontal"
-        )
-      );
-      setAnimExitLines(
-        IsColliding(
-          lineGroupRef.current,
-          animExitLinesRef.current,
-          "horizontal"
-        )
-      );
+    if (!IsMobile) {
+      if (lineGroupRef && animVPaymentRef) {
+        setAnimVPayment(
+          IsColliding(
+            lineGroupRef.current,
+            animVPaymentRef.current,
+            "horizontal"
+          )
+        );
+        setAnimVIndentification(
+          IsColliding(
+            lineGroupRef.current,
+            animVIndentificationRef.current,
+            "horizontal"
+          )
+        );
+        setAnimVIntegration(
+          IsColliding(
+            lineGroupRef.current,
+            animVIntegrationRef.current,
+            "horizontal"
+          )
+        );
+        setAnimExitLines(
+          IsColliding(
+            lineGroupRef.current,
+            animExitLinesRef.current,
+            "horizontal"
+          )
+        );
+      }
     }
   });
 
-  const { scrollY } = useViewportScroll();
   const SectionRef = useRef<any>(null);
 
-  useEffect(() => {
-    scrollY.onChange((t) => {
-      const section = SectionRef.current.getBoundingClientRect();
+  const { scrollYProgress } = useElementScroll(SectionRef);
 
-      section.left <= 0 && console.log("Section Left touched");
-      t > section.right && console.log("Section Crossed ");
-    });
-  }, [scrollY]);
+  // const transform = useTransform(start, [0, 1], [0, 1920]);
+
+  // const physics = { damping: 14, mass: 0.25, stiffness: 30 };
+  // const spring = useSpring(transform, physics);
 
   return (
     <SectionContainer ref={SectionRef}>
       <ContentWrapper css={tw`flex flex-col`}>
         <TopContainer>
-          <motion.p
+          <Typography
+            as="span"
+            type="overline"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-overline uppercase text-gray-light font-bold w-max`}
           >
             solutions
-          </motion.p>
-          <motion.p
+          </Typography>
+          <Typography
+            as="h2"
+            isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-heading-2 font-normal text-white w-full max-w-full leading-[2.75rem] 2xl:(max-w-6xl leading-[3.75rem])`}
+            css={tw`leading-[2.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left)`}
           >
             Undisrupting the connectivity between banks, automakers, logistics &
             infra companies
-          </motion.p>
+          </Typography>
         </TopContainer>
       </ContentWrapper>
 
       <BottomContainer>
-        <div css={tw`w-full z-0 relative container m-auto`}>
+        <div css={tw`w-full z-0 relative container m-auto -right-14`}>
           <div
             css={tw`absolute right-0 z-20 top-1/2`}
             ref={animExitLinesRef}

@@ -15,6 +15,7 @@ import {
 } from "framer-motion";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
+import { useMediaMatch } from "rooks";
 
 interface SmoothScrollProps {
   children?: ReactElement;
@@ -24,22 +25,29 @@ const ScrollContainer = styled.div(() => [tw`fixed left-0 right-0 z-20`]);
 
 const GhostContainer = styled.div(() => [tw`w-full`]);
 
-export const ScrollContext = createContext({ scrollRange: 0, viewportW: 0 });
+export const ScrollContext = createContext<any>({});
 
 const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const scrollRef = useRef<any | undefined>(null);
   const ghostRef = useRef<any | undefined>(null);
   const [scrollRange, setScrollRange] = useState<number>(0);
   const [viewportW, setViewportW] = useState<number>(0);
+  const IsMobile = useMediaMatch("(max-width: 1023px)");
 
   useEffect(() => {
-    scrollRef && setScrollRange(scrollRef.current.scrollWidth);
+    scrollRef && IsMobile
+      ? setScrollRange(scrollRef.current.scrollHeight)
+      : setScrollRange(scrollRef.current.scrollWidth);
   }, [scrollRef]);
 
   const onResize = useCallback((entries) => {
     for (let entry of entries) {
-      setScrollRange(scrollRef.current.scrollWidth);
-      setViewportW(entry.contentRect.width);
+      IsMobile
+        ? setScrollRange(scrollRef.current.scrollHeight)
+        : setScrollRange(scrollRef.current.scrollWidth);
+      IsMobile
+        ? setViewportW(window.innerHeight)
+        : setViewportW(entry.contentRect.width);
     }
   }, []);
 
@@ -56,17 +64,32 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     [0, 1],
     [0, -scrollRange + viewportW]
   );
+
   const physics = { damping: 14, mass: 0.25, stiffness: 30 };
   const spring = useSpring(transform, physics);
 
+  const [springDirection, setSpringDirection] = useState<any>({ x: spring });
+
+  useEffect(() => {
+    if (IsMobile) {
+      setSpringDirection({ y: spring });
+    } else {
+      setSpringDirection({ x: spring });
+    }
+  }, [IsMobile]);
+
   return (
     <ScrollContext.Provider
-      value={{ scrollRange: scrollRange, viewportW: viewportW }}
+      value={{
+        scrollRange: scrollRange,
+        viewportW: viewportW,
+        IsMobile: IsMobile,
+      }}
     >
       <ScrollContainer style={{ willChange: "transform" }}>
         <motion.section
           ref={scrollRef}
-          style={{ x: spring }}
+          style={springDirection}
           css={tw`relative h-screen w-screen flex`}
         >
           {children}

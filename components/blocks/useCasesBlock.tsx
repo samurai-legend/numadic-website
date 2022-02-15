@@ -11,9 +11,12 @@ import TicketsIcon from "@/svg/usecases/tickets.svg";
 import { useContext, useRef, useState } from "react";
 import { GlobalLineContext } from "../layouts";
 import { IsColliding } from "helpers/colliding";
+import { Typography } from "../typography";
+import { ScrollContext } from "../layouts/smoothScroll";
 
 const UseCasesBlock: React.FC<any> = (props: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
+  const { IsMobile } = useContext(ScrollContext);
 
   const paymentRef1 = useRef<any>(null);
   const paymentRef2 = useRef<any>(null);
@@ -24,52 +27,58 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
   const [paymentAnim3, setPaymentAnim3] = useState(false);
 
   useAnimationFrame((t) => {
-    if (lineGroupRef && paymentRef1) {
-      setPaymentAnim1(
-        IsColliding(lineGroupRef.current, paymentRef1.current, "horizontal")
-      );
-      setPaymentAnim2(
-        IsColliding(lineGroupRef.current, paymentRef2.current, "horizontal")
-      );
-      setPaymentAnim3(
-        IsColliding(lineGroupRef.current, paymentRef3.current, "horizontal")
-      );
+    if (!IsMobile) {
+      if (lineGroupRef && paymentRef1) {
+        setPaymentAnim1(
+          IsColliding(lineGroupRef.current, paymentRef1.current, "horizontal")
+        );
+        setPaymentAnim2(
+          IsColliding(lineGroupRef.current, paymentRef2.current, "horizontal")
+        );
+        setPaymentAnim3(
+          IsColliding(lineGroupRef.current, paymentRef3.current, "horizontal")
+        );
+      }
     }
   });
 
   return (
     <SectionContainer>
-      <ContentWrapper>
-        <div>
-          <motion.p
+      <ContentWrapper css={tw`flex flex-col justify-between`}>
+        <div
+          css={tw`flex flex-col items-center text-center lg:(items-start text-left)`}
+        >
+          <Typography
+            as="span"
+            type="overline"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-overline uppercase text-gray-light font-bold w-max`}
           >
             use cases
-          </motion.p>
-          <motion.p
+          </Typography>
+          <Typography
+            as="h2"
+            isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-heading-2 font-normal text-white max-w-3xl leading-[3.75rem]`}
           >
             Enable next-gen vehicle interface solutions
-          </motion.p>
-          <div css={tw`flex w-full`}>
+          </Typography>
+          <div css={tw`flex w-full flex-col lg:(flex-row)`}>
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={TextEntryVariant}
-              css={tw`mt-10 relative w-1/2 tall-md:(mt-10) tall-xs:(mt-2)`}
+              css={tw`relative w-full lg:(w-1/2) mt-2 tall-sm:mt-10`}
             >
               <UseCaseTabs />
             </motion.div>
-            <div css={tw`w-1/2 grid grid-flow-col grid-cols-3`}>
+            <div css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3`}>
               <PaymentStatsUC
                 ref={paymentRef1}
                 Icon={FuelIcon}
@@ -97,18 +106,24 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={TextEntryVariant}
-          css={tw`bg-[#333333] px-5 py-4 flex items-center mt-40 max-w-lg gap-x-5`}
+          css={tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center
+           mb-16 gap-x-5 xl:(px-5 py-4 max-w-lg mb-32)`}
         >
           <div css={tw`inline-block w-max`}>
             <HpclLogo />
           </div>
           <div>
-            <p css={tw`text-overline uppercase text-gray-light font-bold`}>
+            <Typography as="span" type="overline">
               Case study
-            </p>
-            <p css={tw`text-body-2 text-white leading-[25px]`}>
+            </Typography>
+            <Typography
+              as="p"
+              type="body-2"
+              isColor
+              css={tw`leading-6 xl:leading-10`}
+            >
               How Numadic helped HPCL accept payments for fuel through FASTag
-            </p>
+            </Typography>
           </div>
         </motion.div>
       </ContentWrapper>

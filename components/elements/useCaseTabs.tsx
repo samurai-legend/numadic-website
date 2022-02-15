@@ -1,9 +1,8 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { Interface } from "readline";
 import tw from "twin.macro";
+import { Typography } from "../typography";
 
 const Data = [
   {
@@ -27,14 +26,14 @@ const TabsNavsContainer = styled(motion.ul)(() => [
   tw`text-body-3 text-white flex flex-row gap-x-16`,
 ]);
 
-const TabsNavItem = styled(motion.li)(({ active }: any) => [
-  tw`flex flex-col relative py-2 text-gray-light cursor-pointer`,
-  active && tw`font-extrabold text-white`,
+const TabsNavItem = styled(motion.li)(() => [
+  tw`flex flex-col relative py-5 lg:(py-2) text-gray-light cursor-pointer`,
 ]);
 
 const ActiveDot = styled(motion.span)(() => [
   tw`absolute bottom-0 left-1/2 -translate-x-1/2 h-2 w-2 
   bg-gradient-to-br block from-blue-dark to-blue-light rounded-full`,
+  tw`mt-4`,
 ]);
 
 const UseCaseTabs: React.FC<any> = (props: any) => {
@@ -44,12 +43,14 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
     <>
       <TabsNavsContainer>
         {Data.map((item) => (
-          <TabsNavItem
-            key={item.label}
-            active={selectedTab === item ? true : false}
-            onClick={() => setSelectedTab(item)}
-          >
-            {item.label}
+          <TabsNavItem key={item.label} onClick={() => setSelectedTab(item)}>
+            <Typography
+              as="p"
+              type="body-3"
+              css={selectedTab === item && tw`font-extrabold text-white`}
+            >
+              {item.label}
+            </Typography>
             {item === selectedTab ? (
               <ActiveDot layoutId="selectedDot"></ActiveDot>
             ) : null}
@@ -65,9 +66,13 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
           transition={{ duration: 0.5 }}
         >
           {selectedTab && (
-            <p css={tw`text-heading-3 text-white font-bold max-w-2xl mt-5`}>
+            <Typography
+              as="h3"
+              isColor
+              css={tw`font-bold max-w-2xl mt-1 leading-6 xl:(mt-5 leading-10) mt-4 lg:(mt-0)`}
+            >
               {selectedTab.content}
-            </p>
+            </Typography>
           )}
         </motion.div>
       </AnimatePresence>

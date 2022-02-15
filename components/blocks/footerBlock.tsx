@@ -1,10 +1,10 @@
 import tw from "twin.macro";
 import { ContentWrapper, SectionContainer } from "./common";
 import MapPattern from "@/svg/movement/map.svg";
-import { useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
+import { Typography } from "../typography";
 
 const FooterBlock: React.FC<any> = (props: any) => {
   return (
@@ -14,17 +14,21 @@ const FooterBlock: React.FC<any> = (props: any) => {
       >
         <MapPattern />
       </div>
-      <ContentWrapper>
-        <div css={tw`grid grid-cols-2 grid-flow-col`}>
-          <motion.p
+      <ContentWrapper css={tw`flex flex-col justify-between`}>
+        <div
+          css={tw`grid grid-cols-1 text-center grid-flow-row lg:(grid-flow-col grid-cols-2 text-left)`}
+        >
+          <Typography
+            as="h2"
+            isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-heading-2 font-normal text-white max-w-3xl leading-[3.75rem]`}
+            css={tw`max-w-3xl`}
           >
             Locations
-          </motion.p>
+          </Typography>
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -33,108 +37,117 @@ const FooterBlock: React.FC<any> = (props: any) => {
             css={tw`grid grid-cols-2 grid-flow-col mt-10`}
           >
             <div>
-              <span css={tw`text-overline uppercase text-gray-light font-bold`}>
+              <Typography as="span" type="overline">
                 India
-              </span>
-              <p css={tw`text-body-1 text-white max-w-[12rem]`}>
+              </Typography>
+              <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
                 Greyscale HQ, Dona Paula, Goa 403 004
-              </p>
+              </Typography>
             </div>
             <div>
-              <span css={tw`text-overline uppercase text-gray-light font-bold`}>
+              <Typography as="span" type="overline">
                 uk
-              </span>
-              <p css={tw`text-body-1 text-white max-w-[12rem]`}>
+              </Typography>
+              <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
                 10 John Street, London, United Kingdom WC1N 2EB
-              </p>
+              </Typography>
             </div>
           </motion.div>
         </div>
-        <div
-          css={tw`grid grid-cols-3 grid-flow-col mt-48 tall-md:(mt-48) tall-sm:(mt-36) tall-xs:(mt-28)`}
-        >
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={TextEntryVariant}
-            css={tw`text-heading-2 font-normal text-white max-w-3xl leading-[3.75rem]`}
+        <div css={tw`mb-2 tall-lg:mb-20`}>
+          <div
+            css={tw`grid grid-cols-1 grid-flow-row lg:(grid-cols-3 grid-flow-col)`}
           >
-            Other links
-          </motion.p>
+            <Typography
+              as="h2"
+              isColor
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={TextEntryVariant}
+              css={tw`max-w-3xl text-center lg:(text-left)`}
+            >
+              Other links
+            </Typography>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={TextEntryVariant}
+            >
+              <Typography as="span" type="overline">
+                SOLUTIONS
+              </Typography>
+              <ul
+                css={tw`grid grid-rows-3 grid-flow-col mt-2 text-white text-body-3`}
+              >
+                <li>
+                  <Link href="#">
+                    <a>Vehicle payments</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#">
+                    <a>Vehicle identification</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#">
+                    <a> Vehicle integration</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#">
+                    <a>About us</a>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link href="#">
+                    <a>Careers</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#">
+                    <a>Contact</a>
+                  </Link>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
+            css={tw`grid grid-cols-1 grid-flow-row mt-16 tall-lg:mt-32 lg:(grid-cols-3 grid-flow-col)`}
           >
-            <span css={tw`text-overline uppercase text-gray-light font-bold`}>
-              SOLUTIONS
-            </span>
-            <ul
-              css={tw`grid grid-rows-3 grid-flow-col mt-2 text-white text-body-3`}
+            <Typography
+              as="span"
+              type="caption"
+              css={tw`text-gray-light justify-self-center lg:(justify-self-start)`}
             >
-              <li>
-                <Link href="#">
-                  <a>Vehicle payments</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>Vehicle identification</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a> Vehicle integration</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>About us</a>
-                </Link>
-              </li>
+              © Numadic IoT Pvt. Ltd.
+            </Typography>
 
-              <li>
-                <Link href="#">
-                  <a>Careers</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>Contact</a>
-                </Link>
-              </li>
-            </ul>
+            <Typography
+              as="span"
+              type="caption"
+              css={tw`text-gray-light justify-self-center lg:(justify-self-center)
+            `}
+            >
+              Warm regards from Goa, India
+            </Typography>
+
+            <Typography
+              as="span"
+              type="caption"
+              css={tw`text-gray-light justify-self-center lg:(justify-self-end)`}
+            >
+              Terms of service | Privacy policy | Cancellation policy
+            </Typography>
           </motion.div>
         </div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={TextEntryVariant}
-          css={tw`grid grid-cols-3 grid-flow-col mt-32 tall-md:(mt-32) tall-sm:(mt-24) tall-xs:(mt-16)`}
-        >
-          <span
-            css={tw`text-gray-light text-caption leading-[34px]
-            `}
-          >
-            © Numadic IoT Pvt. Ltd.
-          </span>
-
-          <span
-            css={tw`text-gray-light text-caption leading-[34px] justify-self-center
-            `}
-          >
-            Warm regards from Goa, India
-          </span>
-
-          <span
-            css={tw`text-gray-light text-caption leading-[34px] justify-self-end`}
-          >
-            Terms of service | Privacy policy | Cancellation policy
-          </span>
-        </motion.div>
       </ContentWrapper>
     </SectionContainer>
   );

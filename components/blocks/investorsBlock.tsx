@@ -8,6 +8,7 @@ import DynamoLogo from "@/svg/brands/dynamo.svg";
 import SapStartupLogo from "@/svg/brands/sap_startup.svg";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
+import { Typography } from "../typography";
 
 const InvestorsBlock: React.FC<any> = (props: any) => {
   return (
@@ -17,23 +18,27 @@ const InvestorsBlock: React.FC<any> = (props: any) => {
       >
         <MapPattern />
       </div>
-      <ContentWrapper>
-        <div css={tw`grid grid-cols-2 grid-flow-col gap-4`}>
-          <motion.p
+      <ContentWrapper css={tw`flex flex-col justify-between`}>
+        <div
+          css={tw`grid grid-flow-row gap-4 text-center grid-cols-1 lg:(grid-cols-2 grid-flow-col text-left)`}
+        >
+          <Typography
+            as="h2"
+            isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-heading-2 font-normal text-white max-w-md leading-[3.75rem]`}
+            css={tw`max-w-md!`}
           >
             Fueled by terrific investors
-          </motion.p>
+          </Typography>
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-rows-2 grid-flow-col gap-y-24`}
+            css={tw`grid grid-rows-2 grid-flow-col gap-y-12 tall-sm:gap-y-24 `}
           >
             <DynamoLogo />
             <CvwLogo />
@@ -41,30 +46,34 @@ const InvestorsBlock: React.FC<any> = (props: any) => {
             <SapStartupLogo />
           </motion.div>
         </div>
-        <div css={tw`grid grid-cols-2 grid-flow-col gap-4 mt-44`}>
+        <div
+          css={tw`grid grid-cols-1 grid-flow-row gap-4 mt-10 mb-20 tall-lg:mb-44 lg:(grid-cols-2 grid-flow-col  mt-0)`}
+        >
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
+            css={tw`justify-self-center text-center lg:(justify-self-start text-left)`}
           >
-            <p css={tw`text-heading-2 text-white font-bold leading-[60px]`}>
+            <Typography as="h2" isColor css={tw`font-bold`}>
               And you...
-            </p>
-            <span css={tw`text-body-1 text-white block max-w-lg`}>
+            </Typography>
+            <Typography as="p" isColor type="body-1" css={tw`block max-w-lg`}>
               We’re always on the lookout for bright, humble people to join our
               journey.
-            </span>
+            </Typography>
           </motion.div>
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`justify-self-start self-center`}
+            css={tw`justify-self-center self-center lg:(justify-self-start)`}
           >
             <button
-              css={tw`border-white border-2 appearance-none text-white font-normal text-body-2 px-8 py-1 hover:(bg-gray-700) transition-all duration-150 ease-in`}
+              css={tw`border-white border-2 appearance-none text-white font-normal
+               text-body-2 px-8 py-1 hover:(bg-gray-700) transition-all duration-150 ease-in`}
             >
               View open positions
             </button>

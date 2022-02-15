@@ -3,6 +3,7 @@ import {
   createContext,
   FunctionComponent,
   ReactElement,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -12,9 +13,11 @@ import StarBackgroundBlock from "../blocks/startBackgroundBlock";
 import GradientLine from "../elements/gradientLine";
 import Header from "./header";
 import Seo, { SeoProps } from "./seo";
-import SmoothScroll from "./smoothScroll";
+import SmoothScroll, { ScrollContext } from "./smoothScroll";
 
-const ContainerWrapper = styled.div(() => [tw`w-max h-full relative flex`]);
+const ContainerWrapper = styled.div(() => [
+  tw`w-max h-full relative flex flex-col lg:flex-row`,
+]);
 
 export const GlobalLineContext = createContext<any>({});
 

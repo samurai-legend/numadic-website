@@ -12,10 +12,12 @@ import { TextEntryVariant } from "animations";
 import { GlobalLineContext } from "../layouts";
 import { IsColliding } from "helpers/colliding";
 import Counter from "../elements/counter";
+import { Typography } from "../typography";
+import { ScrollContext } from "../layouts/smoothScroll";
 
 const MovementBlock: React.FC<any> = (props: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
-
+  const { IsMobile } = useContext(ScrollContext);
   const [animValue1, setValue1] = useState(false);
   const [animValue2, setValue2] = useState(false);
   const [animValue3, setValue3] = useState(false);
@@ -25,15 +27,17 @@ const MovementBlock: React.FC<any> = (props: any) => {
   const ValueRef3 = useRef(null);
 
   useAnimationFrame((t) => {
-    setValue1(
-      IsColliding(lineGroupRef.current, ValueRef1.current, "horizontal")
-    );
-    setValue2(
-      IsColliding(lineGroupRef.current, ValueRef2.current, "horizontal")
-    );
-    setValue3(
-      IsColliding(lineGroupRef.current, ValueRef3.current, "horizontal")
-    );
+    if (!IsMobile) {
+      setValue1(
+        IsColliding(lineGroupRef.current, ValueRef1.current, "horizontal")
+      );
+      setValue2(
+        IsColliding(lineGroupRef.current, ValueRef2.current, "horizontal")
+      );
+      setValue3(
+        IsColliding(lineGroupRef.current, ValueRef3.current, "horizontal")
+      );
+    }
   });
   return (
     <SectionContainer>
@@ -42,74 +46,77 @@ const MovementBlock: React.FC<any> = (props: any) => {
       >
         <MapPattern />
       </div>
-      <ContentWrapper>
-        <div>
-          <motion.p
+      <ContentWrapper css={tw`flex flex-col justify-between`}>
+        <div
+          css={tw`flex flex-col items-center text-center lg:(items-start text-left)`}
+        >
+          <Typography
+            as="h2"
+            isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`text-heading-2 font-normal text-white max-w-3xl leading-[3.75rem] w-max`}
+            css={tw`max-w-3xl w-max`}
           >
             Undisrupting movement
-          </motion.p>
+          </Typography>
+          <div css={tw`flex w-full justify-between mt-16 tall-sm:mt-28 px-20`}>
+            <motion.div
+              initial="hidden"
+              animate={animValue1 && "visible"}
+              variants={TextEntryVariant}
+              css={tw`flex items-center justify-center flex-col`}
+              ref={ValueRef1}
+            >
+              <Typography as="h2" isColor css={tw`font-bold`}>
+                <Counter isAnimate={animValue1} from={0} to={14000} />
+              </Typography>
+              <Typography as="span" type="overline">
+                AVG. DAILY TRANSACTION VALUE
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              animate={animValue2 && "visible"}
+              variants={TextEntryVariant}
+              css={tw`flex items-center justify-center flex-col`}
+              ref={ValueRef2}
+            >
+              <Typography as="h2" isColor css={tw`font-bold`}>
+                <Counter isAnimate={animValue2} from={0} to={97445} />
+              </Typography>
+              <Typography as="span" type="overline">
+                AVG. DAILY TRANSACTION VALUE
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              animate={animValue3 && "visible"}
+              variants={TextEntryVariant}
+              css={tw`flex items-center justify-center flex-col`}
+              ref={ValueRef3}
+            >
+              <Typography as="h2" isColor css={tw`font-bold`}>
+                <Counter isAnimate={animValue3} from={0} to={14000} />
+              </Typography>
+              <Typography as="span" type="overline">
+                AVG. DAILY TRANSACTION VALUE
+              </Typography>
+            </motion.div>
+          </div>
         </div>
-        <div css={tw`flex w-full justify-between mt-28 px-20`}>
-          <motion.div
-            initial="hidden"
-            animate={animValue1 && "visible"}
-            variants={TextEntryVariant}
-            css={tw`flex items-center justify-center flex-col`}
-            ref={ValueRef1}
-          >
-            <h2 css={tw`text-heading-2 font-bold text-white`}>
-              <Counter isAnimate={animValue1} from={0} to={14000} />
-            </h2>
-            <span css={tw`text-overline uppercase text-gray-light font-bold`}>
-              AVG. DAILY TRANSACTION VALUE
-            </span>
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            animate={animValue2 && "visible"}
-            variants={TextEntryVariant}
-            css={tw`flex items-center justify-center flex-col`}
-            ref={ValueRef2}
-          >
-            <h2 css={tw`text-heading-2 font-bold text-white`}>
-              <Counter isAnimate={animValue2} from={0} to={97445} />
-            </h2>
-            <span css={tw`text-overline uppercase text-gray-light font-bold`}>
-              AVG. DAILY TRANSACTION VALUE
-            </span>
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            animate={animValue3 && "visible"}
-            variants={TextEntryVariant}
-            css={tw`flex items-center justify-center flex-col`}
-            ref={ValueRef3}
-          >
-            <h2 css={tw`text-heading-2 font-bold text-white`}>
-              <Counter isAnimate={animValue3} from={0} to={14000} />
-            </h2>
-            <span css={tw`text-overline uppercase text-gray-light font-bold`}>
-              AVG. DAILY TRANSACTION VALUE
-            </span>
-          </motion.div>
-        </div>
-
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={TextEntryVariant}
-          css={tw`flex flex-col justify-center items-center mt-40`}
+          css={tw`flex flex-col justify-center items-center mb-20 tall-lg:mb-40`}
         >
-          <span css={tw`text-body-3 text-white font-normal`}>
+          <Typography as="p" isColor type="body-2">
             Together with the industry leaders
-          </span>
-          <div css={tw`flex gap-20 mt-10`}>
+          </Typography>
+          <div css={tw`flex gap-20 mt-10 flex-col items-center lg:(flex-row items-start)`}>
             <BoschLogo />
             <IciciBankLogo />
             <AdityaBirlaLogo css={tw`mix-blend-luminosity`} />

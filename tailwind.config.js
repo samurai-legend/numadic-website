@@ -20,12 +20,14 @@ module.exports = {
       "body-2-lg": [".75rem", "2.5rem"],
       "body-3-lg": ["0.675rem", "2.5rem"],
 
-      "heading-1-xl": ["3.5rem", "2.5rem"],
-      "heading-2-xl": ["2.2rem", "2.5rem"],
-      "heading-3-xl": ["1.4rem", "2.5rem"],
-      "body-1-xl": ["1rem", "2.5rem"],
-      "body-2-xl": [".75rem", "2.5rem"],
-      "body-3-xl": ["0.675rem", "2.5rem"],
+      "heading-1-sm": ["2.125rem", "2.5rem"],
+      "heading-2-sm": ["1.438rem", "2.5rem"],
+      "heading-3-sm": ["1rem", "2.5rem"],
+      "body-1-sm": ["1rem", "1.5rem"],
+      "body-2-sm": ["0.875rem", "1.2rem"],
+      "body-3-sm": ["0.75rem", "1rem"],
+      caption: ["0.688rem", "2.5rem"],
+      overline: ["0.625rem", "2.5rem"],
     },
     extend: {
       colors: {
@@ -41,7 +43,16 @@ module.exports = {
         "tall-sm": { raw: "(min-height: 768px)" },
         "tall-md": { raw: "(min-height: 896px)" },
         "tall-lg": { raw: "(min-height: 920px)" },
-        '1xl': '1440px',
+        "1xl": "1440px",
+      },
+      container: {
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "4rem",
+          xl: "6.216rem",
+          "2xl": "6.216rem",
+        },
       },
     },
     fontFamily: {
