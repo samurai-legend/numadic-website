@@ -39,13 +39,16 @@ const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
       transition={{
         duration: 0.5,
         type: "spring",
-        damping: 5,
+        damping: 10,
       }}
       ref={ref}
     >
       <IconComponent />
       <div>
-        <Typography as="h3" css={tw`font-bold leading-[1.5rem] xl:leading-[3rem]`}>
+        <Typography
+          as="h3"
+          css={tw`font-bold leading-[1.5rem] xl:leading-[3rem]`}
+        >
           {title}
         </Typography>
         <Typography

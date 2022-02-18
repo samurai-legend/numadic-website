@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
+import AnimatedCharacters from "animations/animatedCharacters";
 
 const FooterBlock: React.FC<any> = (props: any) => {
   return (
@@ -18,17 +19,17 @@ const FooterBlock: React.FC<any> = (props: any) => {
         <div
           css={tw`grid grid-cols-1 text-center grid-flow-row lg:(grid-flow-col grid-cols-2 text-left)`}
         >
-          <Typography
+          <AnimatedCharacters
             as="h2"
             isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={TextEntryVariant}
-            css={tw`max-w-3xl`}
-          >
-            Locations
-          </Typography>
+            css={tw`leading-[2.75rem] max-w-full
+             text-center 2xl:(leading-[3.75rem]) 
+             lg:(max-w-3xl text-left)`}
+            text="Locations"
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -58,17 +59,17 @@ const FooterBlock: React.FC<any> = (props: any) => {
           <div
             css={tw`grid grid-cols-1 grid-flow-row lg:(grid-cols-3 grid-flow-col)`}
           >
-            <Typography
+            <AnimatedCharacters
               as="h2"
               isColor
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={TextEntryVariant}
-              css={tw`max-w-3xl text-center lg:(text-left)`}
-            >
-              Other links
-            </Typography>
+              css={tw`leading-[2.75rem] max-w-full
+             text-center 2xl:(leading-[3.75rem]) 
+             lg:(max-w-3xl text-left)`}
+              text="Other links"
+            />
             <motion.div
               initial="hidden"
               whileInView="visible"

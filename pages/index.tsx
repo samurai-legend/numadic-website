@@ -10,8 +10,8 @@ import FooterBlock from "@/components/blocks/footerBlock";
 const Home: NextPage = (props: any) => {
   return (
     <>
-      <LandingBlock />
-      <SolutionsBlock />
+      <LandingBlock secNo={0} />
+      <SolutionsBlock secNo={1} />
       <UseCasesBlock />
       <MovementBlock />
       <InvestorsBlock />

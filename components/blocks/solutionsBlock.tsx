@@ -20,6 +20,7 @@ import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import { useRefScrollProgress } from "hooks/elementScroll";
+import AnimatedCharacters from "animations/animatedCharacters";
 
 const LinesCurve = styled.div(({ direction, position }: any) => [
   tw`w-28 xl:w-32 2xl:w-44 absolute top-[50%] `,
@@ -44,8 +45,10 @@ const BottomContainer = styled.div(() => [
 ]);
 
 const SolutionsBlock: FunctionComponent<any> = (props: any) => {
+  const { secNo } = props;
+  
   const { lineGroupRef } = useContext(GlobalLineContext);
-  const { IsMobile } = useContext(ScrollContext);
+  const { IsMobile, setPauseScroll } = useContext(ScrollContext);
 
   const [animVPayment, setAnimVPayment] = useState(false);
   const [animVIndentification, setAnimVIndentification] = useState(false);
@@ -56,6 +59,8 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
 
   const [animExitLines, setAnimExitLines] = useState(false);
   const animExitLinesRef = useRef(null);
+
+  const SectionRef = useRef<any>(null);
 
   useAnimationFrame((t) => {
     if (!IsMobile) {
@@ -92,15 +97,6 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
     }
   });
 
-  const SectionRef = useRef<any>(null);
-
-  const { scrollYProgress } = useElementScroll(SectionRef);
-
-  // const transform = useTransform(start, [0, 1], [0, 1920]);
-
-  // const physics = { damping: 14, mass: 0.25, stiffness: 30 };
-  // const spring = useSpring(transform, physics);
-
   return (
     <SectionContainer ref={SectionRef}>
       <ContentWrapper css={tw`flex flex-col`}>
@@ -115,18 +111,16 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
           >
             solutions
           </Typography>
-          <Typography
+          <AnimatedCharacters
             as="h2"
             isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={TextEntryVariant}
             css={tw`leading-[2.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left)`}
-          >
-            Undisrupting the connectivity between banks, automakers, logistics &
-            infra companies
-          </Typography>
+            text="Undisrupting the connectivity between banks, automakers, logistics &
+            infra companies"
+          />
         </TopContainer>
       </ContentWrapper>
 

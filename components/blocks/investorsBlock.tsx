@@ -9,6 +9,7 @@ import SapStartupLogo from "@/svg/brands/sap_startup.svg";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
+import AnimatedCharacters from "animations/animatedCharacters";
 
 const InvestorsBlock: React.FC<any> = (props: any) => {
   return (
@@ -22,17 +23,17 @@ const InvestorsBlock: React.FC<any> = (props: any) => {
         <div
           css={tw`grid grid-flow-row gap-4 text-center grid-cols-1 lg:(grid-cols-2 grid-flow-col text-left)`}
         >
-          <Typography
+          <AnimatedCharacters
             as="h2"
             isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={TextEntryVariant}
-            css={tw`max-w-md!`}
-          >
-            Fueled by terrific investors
-          </Typography>
+            css={tw`leading-[2.75rem] max-w-full
+             text-center 2xl:(leading-[3.75rem]) 
+             lg:(max-w-md! text-left)`}
+            text="Fueled by terrific investors"
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -49,21 +50,30 @@ const InvestorsBlock: React.FC<any> = (props: any) => {
         <div
           css={tw`grid grid-cols-1 grid-flow-row gap-4 mt-10 mb-20 tall-lg:mb-44 lg:(grid-cols-2 grid-flow-col  mt-0)`}
         >
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={TextEntryVariant}
+          <div
             css={tw`justify-self-center text-center lg:(justify-self-start text-left)`}
           >
-            <Typography as="h2" isColor css={tw`font-bold`}>
-              And you...
-            </Typography>
-            <Typography as="p" isColor type="body-1" css={tw`block max-w-lg`}>
-              We’re always on the lookout for bright, humble people to join our
-              journey.
-            </Typography>
-          </motion.div>
+            <AnimatedCharacters
+              as="h2"
+              isColor
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              css={tw`font-bold`}
+              text="And you..."
+            />
+            <AnimatedCharacters
+              as="p"
+              type="body-1"
+              isColor
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              css={tw`block max-w-lg leading-3 lg:(leading-5!)`}
+              text="We’re always on the lookout for bright, humble people to join our
+              journey."
+            />
+          </div>
           <motion.div
             initial="hidden"
             whileInView="visible"

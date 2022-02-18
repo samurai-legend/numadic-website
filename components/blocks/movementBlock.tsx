@@ -14,6 +14,7 @@ import { IsColliding } from "helpers/colliding";
 import Counter from "../elements/counter";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
+import AnimatedCharacters from "animations/animatedCharacters";
 
 const MovementBlock: React.FC<any> = (props: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
@@ -50,17 +51,15 @@ const MovementBlock: React.FC<any> = (props: any) => {
         <div
           css={tw`flex flex-col items-center text-center lg:(items-start text-left)`}
         >
-          <Typography
+          <AnimatedCharacters
             as="h2"
             isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={TextEntryVariant}
-            css={tw`max-w-3xl w-max`}
-          >
-            Undisrupting movement
-          </Typography>
+            css={tw`leading-[2.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left)`}
+            text="Undisrupting movement"
+          />
           <div css={tw`flex w-full justify-between mt-16 tall-sm:mt-28 px-20`}>
             <motion.div
               initial="hidden"
@@ -116,7 +115,9 @@ const MovementBlock: React.FC<any> = (props: any) => {
           <Typography as="p" isColor type="body-2">
             Together with the industry leaders
           </Typography>
-          <div css={tw`flex gap-20 mt-10 flex-col items-center lg:(flex-row items-start)`}>
+          <div
+            css={tw`flex gap-20 mt-10 flex-col items-center lg:(flex-row items-start)`}
+          >
             <BoschLogo />
             <IciciBankLogo />
             <AdityaBirlaLogo css={tw`mix-blend-luminosity`} />

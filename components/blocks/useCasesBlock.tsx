@@ -13,6 +13,7 @@ import { GlobalLineContext } from "../layouts";
 import { IsColliding } from "helpers/colliding";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
+import AnimatedCharacters from "animations/animatedCharacters";
 
 const UseCasesBlock: React.FC<any> = (props: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
@@ -58,16 +59,15 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
           >
             use cases
           </Typography>
-          <Typography
+          <AnimatedCharacters
             as="h2"
             isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={TextEntryVariant}
-          >
-            Enable next-gen vehicle interface solutions
-          </Typography>
+            css={tw`leading-[2.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left)`}
+            text="Enable next-gen vehicle interface solutions"
+          />
           <div css={tw`flex w-full flex-col lg:(flex-row)`}>
             <motion.div
               initial="hidden"

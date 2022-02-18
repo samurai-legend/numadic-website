@@ -65,18 +65,20 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     [0, -scrollRange + viewportW]
   );
 
-  const physics = { damping: 14, mass: 0.25, stiffness: 30 };
+  const physics = { damping: 20, mass: 0.25, stiffness: 30 };
   const spring = useSpring(transform, physics);
 
   const [springDirection, setSpringDirection] = useState<any>({ x: spring });
 
+  const [pauseScroll, setPauseScroll] = useState(false);
+
   useEffect(() => {
     if (IsMobile) {
-      setSpringDirection({ y: spring });
+      setSpringDirection({ y: pauseScroll ? -1336 : spring });
     } else {
-      setSpringDirection({ x: spring });
+      setSpringDirection({ x: pauseScroll ? -1336 : spring });
     }
-  }, [IsMobile]);
+  }, [IsMobile, pauseScroll]);
 
   return (
     <ScrollContext.Provider
@@ -84,6 +86,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         scrollRange: scrollRange,
         viewportW: viewportW,
         IsMobile: IsMobile,
+        setPauseScroll: setPauseScroll,
       }}
     >
       <ScrollContainer style={{ willChange: "transform" }}>
