@@ -65,39 +65,41 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            css={tw`leading-[2.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left)`}
+            css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
             text="Enable next-gen vehicle interface solutions"
           />
-          <div css={tw`flex w-full flex-col lg:(flex-row)`}>
+          <div css={tw`flex w-full flex-col items-start lg:(flex-row)`}>
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={TextEntryVariant}
-              css={tw`relative w-full lg:(w-1/2) mt-2 tall-sm:mt-10`}
+              css={tw`relative w-full lg:(w-1/2) mt-2 tall-sm:mt-3`}
             >
-              <UseCaseTabs />
+              <UseCaseTabs isMobile={IsMobile} />
             </motion.div>
-            <div css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3`}>
-              <PaymentStatsUC
-                ref={paymentRef1}
-                Icon={FuelIcon}
-                amount="2,500"
-                isAnimate={paymentAnim1}
-              />
-              <PaymentStatsUC
-                ref={paymentRef2}
-                Icon={ParkingIcon}
-                amount="2,500"
-                isAnimate={paymentAnim2}
-              />
-              <PaymentStatsUC
-                ref={paymentRef3}
-                Icon={TicketsIcon}
-                amount="2,500"
-                isAnimate={paymentAnim3}
-              />
-            </div>
+            {!IsMobile && (
+              <div css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3`}>
+                <PaymentStatsUC
+                  ref={paymentRef1}
+                  Icon={FuelIcon}
+                  amount="2,500"
+                  isAnimate={paymentAnim1}
+                />
+                <PaymentStatsUC
+                  ref={paymentRef2}
+                  Icon={ParkingIcon}
+                  amount="2,500"
+                  isAnimate={paymentAnim2}
+                />
+                <PaymentStatsUC
+                  ref={paymentRef3}
+                  Icon={TicketsIcon}
+                  amount="2,500"
+                  isAnimate={paymentAnim3}
+                />
+              </div>
+            )}
           </div>
         </div>
 
@@ -107,7 +109,7 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
           viewport={{ once: true }}
           variants={TextEntryVariant}
           css={tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center
-           mb-16 gap-x-5 xl:(px-5 py-4 max-w-lg mb-32)`}
+           mb-0 mt-10 gap-x-5 xl:(px-5 py-4 max-w-lg mb-32 mt-0)`}
         >
           <div css={tw`inline-block w-max`}>
             <HpclLogo />

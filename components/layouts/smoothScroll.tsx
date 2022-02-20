@@ -12,6 +12,7 @@ import {
   useViewportScroll,
   useTransform,
   useSpring,
+  useMotionValue,
 } from "framer-motion";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
@@ -66,7 +67,10 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   );
 
   const physics = { damping: 20, mass: 0.25, stiffness: 30 };
-  const spring = useSpring(transform, physics);
+
+  const scrollStopValue = useMotionValue(0);
+
+  const spring = useSpring(scrollStopValue, physics);
 
   const [springDirection, setSpringDirection] = useState<any>({ x: spring });
 
@@ -74,10 +78,16 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
   useEffect(() => {
     if (IsMobile) {
-      setSpringDirection({ y: pauseScroll ? -1336 : spring });
+      setSpringDirection({ y: spring });
     } else {
-      setSpringDirection({ x: pauseScroll ? -1336 : spring });
+      setSpringDirection({ x: spring });
     }
+    transform.onChange((x) => {
+      scrollStopValue.set(x);
+      // if (-x > 1920) {
+      //   scrollStopValue.set(-1920);
+      // }
+    });
   }, [IsMobile, pauseScroll]);
 
   return (

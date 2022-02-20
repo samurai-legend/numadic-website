@@ -57,7 +57,7 @@ const MovementBlock: React.FC<any> = (props: any) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            css={tw`leading-[2.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left)`}
+            css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
             text="Undisrupting movement"
           />
           <div css={tw`flex w-full justify-between mt-16 tall-sm:mt-28 px-20`}>

@@ -31,6 +31,7 @@ const GradientLineUp: FunctionComponent<any> = (props: any) => {
         <g id="Layer_1-2" data-name="Layer 1">
           <LinePath
             d={path}
+            vectorEffect="non-scaling-stroke"
             style={{
               fill: "none",
               strokeWidth: "8px",

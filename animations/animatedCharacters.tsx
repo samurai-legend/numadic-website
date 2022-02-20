@@ -9,11 +9,13 @@ const Wrapper = styled.span(() => [tw`whitespace-nowrap`]);
 const AnimatedCharacters: React.FC<any> = (props: any) => {
   const item = {
     hidden: {
-      y: "200%",
+      opacity: 0,
+      x: "-100%",
       transition: { ease: [0.455, 0.03, 0.515, 0.955], duration: 0.85 },
     },
     visible: {
-      y: 0,
+      opacity: 1,
+      x: 0,
       transition: { ease: [0.455, 0.03, 0.515, 0.955], duration: 1.5 },
     },
   };

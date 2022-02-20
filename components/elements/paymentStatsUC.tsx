@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import tw from "twin.macro";
 
 const rectPath =
@@ -69,15 +69,26 @@ const ContentVariant = {
 };
 const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
   const { amount, Icon, isAnimate } = props;
+
+  const [animateObject, setAnimateObject] = useState({});
+
+  useEffect(() => {
+    isAnimate != null
+      ? setAnimateObject({
+          animate: isAnimate && "visible",
+        })
+      : setAnimateObject({
+          whileInView: "visible",
+          viewport: { once: true },
+        });
+  }, [isAnimate]);
+
   return (
     <motion.div
       css={[tw`relative w-max h-[max-content] self-end justify-self-center`]}
       initial="hidden"
-      animate={isAnimate && "visible"}
+      {...animateObject}
       transition={{ staggerChildren: 0.5, delayChildren: 0.5 }}
-      onAnimationComplete={(t) => {
-        console.log(t);
-      }}
       ref={ref}
     >
       <motion.svg
@@ -87,6 +98,7 @@ const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         variants={PathVariant}
+        css={tw`w-full`}
       >
         <g filter="url(#filter0_b_2_367)">
           <path d={rectPath} fill="white" fillOpacity="0.21" />

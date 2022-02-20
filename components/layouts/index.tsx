@@ -13,7 +13,7 @@ import StarBackgroundBlock from "../blocks/startBackgroundBlock";
 import GradientLine from "../elements/gradientLine";
 import Header from "./header";
 import Seo, { SeoProps } from "./seo";
-import SmoothScroll, { ScrollContext } from "./smoothScroll";
+import SmoothScroll from "./smoothScroll";
 
 const ContainerWrapper = styled.div(() => [
   tw`w-max h-full relative flex flex-col lg:flex-row`,

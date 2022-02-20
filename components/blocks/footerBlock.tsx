@@ -35,7 +35,7 @@ const FooterBlock: React.FC<any> = (props: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-cols-2 grid-flow-col mt-10`}
+            css={tw`grid grid-cols-2 grid-flow-col mt-10 text-left`}
           >
             <div>
               <Typography as="span" type="overline">
@@ -57,7 +57,7 @@ const FooterBlock: React.FC<any> = (props: any) => {
         </div>
         <div css={tw`mb-2 tall-lg:mb-20`}>
           <div
-            css={tw`grid grid-cols-1 grid-flow-row lg:(grid-cols-3 grid-flow-col)`}
+            css={tw`grid grid-cols-1 grid-flow-row mt-20 lg:(grid-cols-3 grid-flow-col mt-0)`}
           >
             <AnimatedCharacters
               as="h2"

@@ -1,17 +1,17 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import tw from "twin.macro";
 import { Typography } from "../typography";
 
 const CardContainer = styled(motion.div)(() => [
-  tw`flex flex-col self-stretch items-start justify-center
-  gap-y-5 px-5 text-white bg-[#333333]
-   w-1/3 backdrop-blur-[30px] py-10 rounded-[2px]
-    transition-all duration-300 ease-in cursor-pointer`,
+  tw`w-full flex flex-row self-center items-center justify-start
+  gap-x-5 px-5 text-white bg-[#333333]
+   backdrop-blur-[30px] py-10 rounded-[2px]
+    transition-all duration-300 ease-in cursor-pointer max-w-md`,
   tw`hover:(bg-white text-black)`,
-  tw`lg:(px-5 py-5 gap-y-1)`,
+  tw`lg:(w-1/3 flex-col px-5 py-5 gap-y-1 items-start justify-center self-stretch)`,
   tw`xl:(px-5 py-5 gap-y-1)`,
   tw`2xl:(px-16 py-10 gap-y-5)`,
   css`
@@ -28,14 +28,33 @@ const CardContainer = styled(motion.div)(() => [
 
 const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
   const { IconComponent, title, description, isAnimate } = props;
+  const variants = {
+    animate: {
+      opacity: 1,
+    },
+    hidden: {
+      opacity: 0,
+    },
+  };
+
+  const [animateObject, setAnimateObject] = useState({});
+
+  useEffect(() => {
+    isAnimate != null
+      ? setAnimateObject({
+          animate: isAnimate ? "animate" : "hidden",
+        })
+      : setAnimateObject({
+          whileInView: "animate",
+          viewport: { once: true },
+        });
+  }, [isAnimate]);
+
   return (
     <CardContainer
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: isAnimate ? 1 : 0,
-      }}
+      initial="hidden"
+      variants={variants}
+      {...animateObject}
       transition={{
         duration: 0.5,
         type: "spring",
@@ -43,7 +62,9 @@ const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
       }}
       ref={ref}
     >
-      <IconComponent />
+      <div>
+        <IconComponent />
+      </div>
       <div>
         <Typography
           as="h3"

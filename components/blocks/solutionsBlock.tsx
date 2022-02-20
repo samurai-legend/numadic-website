@@ -46,7 +46,7 @@ const BottomContainer = styled.div(() => [
 
 const SolutionsBlock: FunctionComponent<any> = (props: any) => {
   const { secNo } = props;
-  
+
   const { lineGroupRef } = useContext(GlobalLineContext);
   const { IsMobile, setPauseScroll } = useContext(ScrollContext);
 
@@ -117,74 +117,105 @@ const SolutionsBlock: FunctionComponent<any> = (props: any) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            css={tw`leading-[2.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left)`}
+            css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
             text="Undisrupting the connectivity between banks, automakers, logistics &
             infra companies"
           />
         </TopContainer>
+        {IsMobile && (
+          <div
+            css={tw`w-full flex flex-col justify-center items-center  gap-y-4 relative z-50`}
+          >
+            <SolutionCard
+              IconComponent={VehiclePaymentIcon}
+              title={"Vehicle payments"}
+              description={
+                "Empower your customers to pay for anything with FASTags, from toll fees to fuel, all while being contactless."
+              }
+            />
+            <SolutionCard
+              IconComponent={VehicleIdentificationIcon}
+              title={"Vehicle identification"}
+              description={
+                "Offer the delightful digital mobile and web user experience to your FASTag customers with our white-labeled Apps."
+              }
+            />
+            <SolutionCard
+              IconComponent={VehicleIntegrationIcon}
+              title={"Vehicle integration"}
+              description={
+                "Developer-friendly API platform to build your own solutions as per your use cases."
+              }
+            />
+          </div>
+        )}
       </ContentWrapper>
 
-      <BottomContainer>
-        <div css={tw`w-full z-0 relative container m-auto -right-14`}>
-          <div
-            css={tw`absolute right-0 z-20 top-1/2`}
-            ref={animExitLinesRef}
-          ></div>
-          <LinesCurve direction="up" position="right">
-            <GradientLineUp
-              path="M209.55,0h0A177.5,177.5,0,0,1,32,177.51H0"
-              isAnimate={animExitLines}
-            />
-          </LinesCurve>
-          <LinesCurve direction="down" position="right">
-            <GradientLineUp
-              path="M209.55,0h0A177.5,177.5,0,0,1,32,177.51H0"
-              isAnimate={animExitLines}
-            />
-          </LinesCurve>
-        </div>
-      </BottomContainer>
+      {!IsMobile && (
+        <>
+          <BottomContainer>
+            <div css={tw`w-full z-0 relative container m-auto -right-14`}>
+              <div
+                css={tw`absolute right-0 z-20 top-1/2`}
+                ref={animExitLinesRef}
+              ></div>
+              <LinesCurve direction="up" position="right">
+                <GradientLineUp
+                  path="M209.55,0h0A177.5,177.5,0,0,1,32,177.51H0"
+                  isAnimate={animExitLines}
+                />
+              </LinesCurve>
+              <LinesCurve direction="down" position="right">
+                <GradientLineUp
+                  path="M209.55,0h0A177.5,177.5,0,0,1,32,177.51H0"
+                  isAnimate={animExitLines}
+                />
+              </LinesCurve>
+            </div>
+          </BottomContainer>
 
-      <BottomContainer css={tw`z-50`}>
-        {/* <LinesCurve direction="up" position="left">
+          <BottomContainer css={tw`z-50`}>
+            {/* <LinesCurve direction="up" position="left">
             <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
           </LinesCurve>
           <LinesCurve direction="down" position="left">
             <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
           </LinesCurve> */}
 
-        <div
-          css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-50 container m-auto`}
-        >
-          <SolutionCard
-            IconComponent={VehiclePaymentIcon}
-            title={"Vehicle payments"}
-            description={
-              "Empower your customers to pay for anything with FASTags, from toll fees to fuel, all while being contactless."
-            }
-            isAnimate={animVPayment}
-            ref={animVPaymentRef}
-          />
-          <SolutionCard
-            IconComponent={VehicleIdentificationIcon}
-            title={"Vehicle identification"}
-            description={
-              "Offer the delightful digital mobile and web user experience to your FASTag customers with our white-labeled Apps."
-            }
-            isAnimate={animVIndentification}
-            ref={animVIndentificationRef}
-          />
-          <SolutionCard
-            IconComponent={VehicleIntegrationIcon}
-            title={"Vehicle integration"}
-            description={
-              "Developer-friendly API platform to build your own solutions as per your use cases."
-            }
-            isAnimate={animVIntegration}
-            ref={animVIntegrationRef}
-          />
-        </div>
-      </BottomContainer>
+            <div
+              css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-50 container m-auto`}
+            >
+              <SolutionCard
+                IconComponent={VehiclePaymentIcon}
+                title={"Vehicle payments"}
+                description={
+                  "Empower your customers to pay for anything with FASTags, from toll fees to fuel, all while being contactless."
+                }
+                isAnimate={animVPayment}
+                ref={animVPaymentRef}
+              />
+              <SolutionCard
+                IconComponent={VehicleIdentificationIcon}
+                title={"Vehicle identification"}
+                description={
+                  "Offer the delightful digital mobile and web user experience to your FASTag customers with our white-labeled Apps."
+                }
+                isAnimate={animVIndentification}
+                ref={animVIndentificationRef}
+              />
+              <SolutionCard
+                IconComponent={VehicleIntegrationIcon}
+                title={"Vehicle integration"}
+                description={
+                  "Developer-friendly API platform to build your own solutions as per your use cases."
+                }
+                isAnimate={animVIntegration}
+                ref={animVIntegrationRef}
+              />
+            </div>
+          </BottomContainer>
+        </>
+      )}
     </SectionContainer>
   );
 };

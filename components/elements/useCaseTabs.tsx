@@ -3,6 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import tw from "twin.macro";
 import { Typography } from "../typography";
+import PaymentStatsUC from "./paymentStatsUC";
+import FuelIcon from "@/svg/usecases/fuel.svg";
+import ParkingIcon from "@/svg/usecases/parking.svg";
+import TicketsIcon from "@/svg/usecases/tickets.svg";
 
 const Data = [
   {
@@ -23,11 +27,11 @@ const Data = [
 ];
 
 const TabsNavsContainer = styled(motion.ul)(() => [
-  tw`text-body-3 text-white flex flex-row gap-x-16`,
+  tw`text-body-3 text-white flex flex-row gap-x-16 justify-center lg:(justify-start)`,
 ]);
 
 const TabsNavItem = styled(motion.li)(() => [
-  tw`flex flex-col relative py-5 lg:(py-2) text-gray-light cursor-pointer`,
+  tw`flex flex-col relative pb-5 pt-5 max-w-[80px] lg:(pb-5 pt-2 max-w-full) 2xl:(pb-3 pt-0) text-gray-light cursor-pointer`,
 ]);
 
 const ActiveDot = styled(motion.span)(() => [
@@ -37,6 +41,7 @@ const ActiveDot = styled(motion.span)(() => [
 ]);
 
 const UseCaseTabs: React.FC<any> = (props: any) => {
+  const { isMobile } = props;
   const [selectedTab, setSelectedTab] = useState(Data[0]);
 
   return (
@@ -57,6 +62,7 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
           </TabsNavItem>
         ))}
       </TabsNavsContainer>
+
       <AnimatePresence exitBeforeEnter>
         <motion.div
           key={selectedTab ? selectedTab.label : "empty"}
@@ -76,6 +82,15 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
           )}
         </motion.div>
       </AnimatePresence>
+      {isMobile && (
+        <div css={tw`w-full grid grid-flow-col grid-cols-3 my-10 gap-x-2`}>
+          <PaymentStatsUC Icon={FuelIcon} amount="2,500" />
+
+          <PaymentStatsUC Icon={ParkingIcon} amount="2,500" />
+
+          <PaymentStatsUC Icon={TicketsIcon} amount="2,500" />
+        </div>
+      )}
     </>
   );
 };

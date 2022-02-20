@@ -9,6 +9,7 @@
       "@/blocks/*": ["components/block/*"],
       "@/elements/*": ["components/elements/*"],
       "@/svg/*": ["svg/*"],
+      "@/portals/*": ["portals/*"],
       "@/styles/*": ["styles/*"]
     },
     "allowJs": true,
