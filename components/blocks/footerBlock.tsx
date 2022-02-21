@@ -6,10 +6,11 @@ import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
 import AnimatedCharacters from "animations/animatedCharacters";
+import { forwardRef } from "react";
 
-const FooterBlock: React.FC<any> = (props: any) => {
+const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
-    <SectionContainer>
+    <SectionContainer ref={ref}>
       <div
         css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
       >
@@ -152,6 +153,6 @@ const FooterBlock: React.FC<any> = (props: any) => {
       </ContentWrapper>
     </SectionContainer>
   );
-};
-
+});
+FooterBlock.displayName = "FooterBlock";
 export default FooterBlock;

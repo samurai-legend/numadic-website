@@ -5,6 +5,7 @@ import React, {
   ReactElement,
   useEffect,
   createContext,
+  useContext,
 } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 import {
@@ -17,6 +18,7 @@ import {
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 import { useMediaMatch } from "rooks";
+import { GlobalLineContext } from ".";
 
 interface SmoothScrollProps {
   children?: ReactElement;
@@ -39,18 +41,21 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     scrollRef && IsMobile
       ? setScrollRange(scrollRef.current.scrollHeight)
       : setScrollRange(scrollRef.current.scrollWidth);
-  }, [scrollRef]);
+  }, [scrollRef, IsMobile]);
 
-  const onResize = useCallback((entries) => {
-    for (let entry of entries) {
-      IsMobile
-        ? setScrollRange(scrollRef.current.scrollHeight)
-        : setScrollRange(scrollRef.current.scrollWidth);
-      IsMobile
-        ? setViewportW(window.innerHeight)
-        : setViewportW(entry.contentRect.width);
-    }
-  }, []);
+  const onResize = useCallback(
+    (entries) => {
+      for (let entry of entries) {
+        IsMobile
+          ? setScrollRange(scrollRef.current.scrollHeight)
+          : setScrollRange(scrollRef.current.scrollWidth);
+        IsMobile
+          ? setViewportW(window.innerHeight)
+          : setViewportW(entry.contentRect.width);
+      }
+    },
+    [IsMobile]
+  );
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => onResize(entries));
@@ -76,6 +81,10 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
   const [pauseScroll, setPauseScroll] = useState(false);
 
+  const [refArr, setRefArr] = useState([]);
+
+  const { lineGroupRef } = useContext(GlobalLineContext);
+
   useEffect(() => {
     if (IsMobile) {
       setSpringDirection({ y: spring });
@@ -84,11 +93,20 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     }
     transform.onChange((x) => {
       scrollStopValue.set(x);
-      // if (-x > 1920) {
-      //   scrollStopValue.set(-1920);
-      // }
+
+      if (!IsMobile) {
+        refArr.map((ref: any, key: any) => {
+          let checkwidth = scrollRef.current.offsetWidth * key;
+          let checkMaxWidth = scrollRef.current.offsetWidth * (key + 1);
+          let lineWidth = lineGroupRef.current.getBoundingClientRect().width;
+
+          if (-x >= checkwidth && lineWidth <= checkMaxWidth) {
+            scrollStopValue.set(-checkwidth);
+          }
+        });
+      }
     });
-  }, [IsMobile, pauseScroll]);
+  }, [IsMobile, refArr]);
 
   return (
     <ScrollContext.Provider
@@ -97,6 +115,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         viewportW: viewportW,
         IsMobile: IsMobile,
         setPauseScroll: setPauseScroll,
+        setRefArr: setRefArr,
       }}
     >
       <ScrollContainer style={{ willChange: "transform" }}>

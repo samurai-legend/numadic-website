@@ -1,7 +1,7 @@
 import tw from "twin.macro";
 import { ContentWrapper, SectionContainer } from "./common";
 import MapPattern from "@/svg/movement/map.svg";
-import { useRef } from "react";
+import { forwardRef, useRef } from "react";
 import NineUnifcornLogo from "@/svg/brands/9unifcorn.svg";
 import CvwLogo from "@/svg/brands/cvw.svg";
 import DynamoLogo from "@/svg/brands/dynamo.svg";
@@ -11,9 +11,9 @@ import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
 import AnimatedCharacters from "animations/animatedCharacters";
 
-const InvestorsBlock: React.FC<any> = (props: any) => {
+const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
-    <SectionContainer>
+    <SectionContainer ref={ref}>
       <div
         css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
       >
@@ -92,6 +92,8 @@ const InvestorsBlock: React.FC<any> = (props: any) => {
       </ContentWrapper>
     </SectionContainer>
   );
-};
+});
+
+InvestorsBlock.displayName = "InvestorsBlock";
 
 export default InvestorsBlock;

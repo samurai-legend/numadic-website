@@ -1,7 +1,7 @@
 import tw from "twin.macro";
 import { SectionContainer, ContentWrapper } from "./common";
 import MapPattern from "@/svg/movement/map.svg";
-import { useContext, useEffect, useRef, useState } from "react";
+import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import BoschLogo from "@/svg/brands/bosh.svg";
 import AdityaBirlaLogo from "@/svg/brands/aditya_birla.svg";
 import IciciBankLogo from "@/svg/brands/icicibank.svg";
@@ -16,7 +16,7 @@ import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
 
-const MovementBlock: React.FC<any> = (props: any) => {
+const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
   const { IsMobile } = useContext(ScrollContext);
   const [animValue1, setValue1] = useState(false);
@@ -41,7 +41,7 @@ const MovementBlock: React.FC<any> = (props: any) => {
     }
   });
   return (
-    <SectionContainer>
+    <SectionContainer ref={ref}>
       <div
         css={tw`absolute w-screen h-full flex justify-center items-center z-0 pointer-events-none`}
       >
@@ -129,6 +129,8 @@ const MovementBlock: React.FC<any> = (props: any) => {
       </ContentWrapper>
     </SectionContainer>
   );
-};
+});
+
+MovementBlock.displayName = "MovementBlock";
 
 export default MovementBlock;

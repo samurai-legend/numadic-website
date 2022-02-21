@@ -8,14 +8,14 @@ import PaymentStatsUC from "../elements/paymentStatsUC";
 import FuelIcon from "@/svg/usecases/fuel.svg";
 import ParkingIcon from "@/svg/usecases/parking.svg";
 import TicketsIcon from "@/svg/usecases/tickets.svg";
-import { useContext, useRef, useState } from "react";
+import { forwardRef, useContext, useRef, useState } from "react";
 import { GlobalLineContext } from "../layouts";
 import { IsColliding } from "helpers/colliding";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
 
-const UseCasesBlock: React.FC<any> = (props: any) => {
+const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
   const { IsMobile } = useContext(ScrollContext);
 
@@ -44,7 +44,7 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
   });
 
   return (
-    <SectionContainer>
+    <SectionContainer ref={ref}>
       <ContentWrapper
         css={tw`flex flex-col justify-between items-center lg:(items-start)`}
       >
@@ -133,6 +133,7 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
       </ContentWrapper>
     </SectionContainer>
   );
-};
+});
 
+UseCasesBlock.displayName = "UseCasesBlock";
 export default UseCasesBlock;

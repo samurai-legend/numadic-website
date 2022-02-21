@@ -29,12 +29,14 @@ const Layout: FunctionComponent<LayoutProps> = ({ children, seo }) => {
       <Seo {...seo} />
       <Header />
       <StarBackgroundBlock />
-      <SmoothScroll>
-        <GlobalLineContext.Provider value={{ lineGroupRef: lineGroupRef }}>
-          <GradientLine ref={lineGroupRef} />
-          <ContainerWrapper>{children}</ContainerWrapper>
-        </GlobalLineContext.Provider>
-      </SmoothScroll>
+      <GlobalLineContext.Provider value={{ lineGroupRef: lineGroupRef }}>
+        <SmoothScroll>
+          <>
+            <GradientLine ref={lineGroupRef} />
+            <ContainerWrapper>{children}</ContainerWrapper>
+          </>
+        </SmoothScroll>
+      </GlobalLineContext.Provider>
     </>
   );
 };
