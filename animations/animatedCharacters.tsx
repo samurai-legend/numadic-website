@@ -4,7 +4,7 @@ import tw from "twin.macro";
 import styled from "@emotion/styled";
 import { Typography } from "@/components/typography";
 
-const Wrapper = styled.span(() => [tw`whitespace-nowrap`]);
+const Wrapper = styled.span(() => [tw``]);
 
 const AnimatedCharacters: React.FC<any> = (props: any) => {
   const item = {

@@ -66,7 +66,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     [0, -scrollRange + viewportW]
   );
 
-  const physics = { damping: 20, mass: 0.25, stiffness: 30 };
+  const physics = { stiffness: 15, mass: 1 };
 
   const scrollStopValue = useMotionValue(0);
 

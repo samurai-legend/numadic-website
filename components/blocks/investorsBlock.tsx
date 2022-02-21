@@ -39,7 +39,7 @@ const InvestorsBlock: React.FC<any> = (props: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-rows-2 grid-flow-col gap-y-12 tall-sm:gap-y-24 `}
+            css={tw`grid grid-rows-2 grid-flow-col gap-y-12 tall-sm:gap-y-24 items-center`}
           >
             <DynamoLogo />
             <CvwLogo />

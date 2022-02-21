@@ -45,9 +45,11 @@ const UseCasesBlock: React.FC<any> = (props: any) => {
 
   return (
     <SectionContainer>
-      <ContentWrapper css={tw`flex flex-col justify-between`}>
+      <ContentWrapper
+        css={tw`flex flex-col justify-between items-center lg:(items-start)`}
+      >
         <div
-          css={tw`flex flex-col items-center text-center lg:(items-start text-left)`}
+          css={tw`flex flex-col w-full items-center text-center lg:(items-start text-left)`}
         >
           <Typography
             as="span"

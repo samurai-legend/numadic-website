@@ -51,7 +51,7 @@ const SideMenu: React.FC<any> = (props: any) => {
       initial="initial"
       exit="exit"
       variants={variantsBackground}
-      css={tw`bg-black-dark w-full h-full absolute top-0 z-40 px-10 py-32 text-body-1`}
+      css={tw`bg-black-dark w-full h-full fixed top-0 z-40 py-32 text-body-1`}
     >
       <NavContainer
         animate="open"
@@ -59,7 +59,7 @@ const SideMenu: React.FC<any> = (props: any) => {
         exit="exit"
         variants={variants}
         transition={{ duration: 1 }}
-        css={tw`flex-col gap-y-5 items-start`}
+        css={tw`flex-col gap-y-5 items-start container m-auto`}
       >
         <NavItem>
           <Link href="/" passHref>

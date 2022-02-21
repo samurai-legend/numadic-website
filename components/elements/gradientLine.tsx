@@ -26,7 +26,8 @@ const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
     [0, 1],
     [viewportW / 2, scrollRange]
   );
-  const physics = { damping: 14, mass: 0.25, stiffness: 30 };
+  const physics = { stiffness: 10, mass: 1 };
+
   const spring = useSpring(transform, physics);
 
   const [toggleDriection, setDirection] = useState(true);
