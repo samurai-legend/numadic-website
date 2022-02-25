@@ -99,7 +99,7 @@ const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
         css={tw`w-full`}
       >
         <g filter="url(#filter0_b_2_367)">
-          <path d={rectPath} fill="white" fillOpacity="0.21" />
+          <path d={rectPath} fill="#393939" fillOpacity="1" />
         </g>
         <defs>
           <filter

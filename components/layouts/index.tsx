@@ -11,6 +11,8 @@ import {
 import tw from "twin.macro";
 import StarBackgroundBlock from "../blocks/startBackgroundBlock";
 import GradientLine from "../elements/gradientLine";
+import VerticalLine from "../elements/VerticalLine";
+
 import Header from "./header";
 import Seo, { SeoProps } from "./seo";
 import SmoothScroll from "./smoothScroll";

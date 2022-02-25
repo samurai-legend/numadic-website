@@ -16,6 +16,7 @@ import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
 import TransactionStats from "../elements/transactionStats";
+import VerticalLine from "../elements/VerticalLine";
 
 const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
@@ -25,7 +26,7 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
       >
         <MapPattern />
       </div>
-      <ContentWrapper css={tw`flex flex-col justify-between`}>
+      <ContentWrapper css={tw`flex flex-col justify-between `}>
         <div
           css={tw`flex flex-col items-center text-center lg:(items-start text-left)`}
         >
@@ -80,6 +81,9 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             <MahindraLogo />
           </div>
         </motion.div>
+        <VerticalLine
+          css={tw`h-52 md:h-80 relative visible lg:hidden justify-self-center z-0`}
+        />
       </ContentWrapper>
     </SectionContainer>
   );

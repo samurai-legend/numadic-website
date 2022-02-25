@@ -46,7 +46,7 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
       <ContentWrapper
-        css={tw`flex flex-col justify-between items-center lg:(items-start)`}
+        css={tw`flex flex-col justify-between items-center lg:(items-start) `}
       >
         <div
           css={tw`flex flex-col w-full items-center text-center lg:(items-start text-left)`}

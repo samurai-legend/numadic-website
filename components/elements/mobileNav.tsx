@@ -4,12 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import tw from "twin.macro";
 import { NavContainer, NavItem } from "../blocks/common";
-import HamburgerButton from "./hamburger";
+import { MenuButton } from "./hamburger";
 import SideMenu from "./sideMenu";
 
 const MobileNav: React.FC<any> = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <div css={tw`flex relative justify-end items-center gap-x-8`}>
@@ -20,12 +19,15 @@ const MobileNav: React.FC<any> = (props: any) => {
           </Link>
         </NavItem>
       </NavContainer>
-      <HamburgerButton
+      <MenuButton
         isOpen={isOpen}
-        onClick={() => toggleOpen()}
-        strokeWidth={4}
-        width={40}
-        color={"#fff"}
+        onClick={() => setIsOpen(!isOpen)}
+        strokeWidth="4"
+        lineProps={{ strokeLinecap: "round" }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        width="34"
+        height="24"
+        color="#fff"
         css={tw`cursor-pointer z-50`}
       />
       <ExternalPortal>

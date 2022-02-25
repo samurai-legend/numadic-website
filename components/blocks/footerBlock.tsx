@@ -16,7 +16,7 @@ import Twitter from "@/svg/twitter.svg";
 import { css } from "@emotion/react";
 
 const SocialMediaContainer = styled(motion.div)(() => [
-  tw`flex gap-x-10 self-center justify-self-center lg:(justify-self-end)`,
+  tw`flex gap-x-10 self-center justify-self-center py-5 lg:(justify-self-end)`,
 ]);
 const SocialLinks = styled(motion.a)(() => [
   tw`cursor-pointer`,
@@ -82,7 +82,10 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
         </div>
         <div css={tw`mb-2 tall-lg:mb-20`}>
           <div
-            css={tw`grid grid-cols-1 grid-flow-row mt-20 gap-y-10 lg:(grid-cols-3 grid-flow-col mt-0)`}
+            css={tw`grid grid-cols-1 grid-flow-row mt-20
+             gap-y-10 border-b-[0.5px] border-gray-400 
+             pb-5 mb-5
+             lg:(grid-cols-3 grid-flow-col mt-0 pb-10 mb-10)`}
           >
             <AnimatedCharacters
               as="h2"
@@ -172,7 +175,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-cols-1 grid-flow-row mt-16 tall-lg:mt-32 lg:(grid-cols-3 grid-flow-col)`}
+            css={tw`grid grid-cols-1 grid-flow-row lg:(grid-cols-3 grid-flow-col)`}
           >
             <Typography
               as="span"

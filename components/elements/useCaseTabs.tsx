@@ -7,6 +7,7 @@ import PaymentStatsUC from "./paymentStatsUC";
 import FuelIcon from "@/svg/usecases/fuel.svg";
 import ParkingIcon from "@/svg/usecases/parking.svg";
 import TicketsIcon from "@/svg/usecases/tickets.svg";
+import VerticalLine from "./VerticalLine";
 
 const Data = [
   {
@@ -84,12 +85,17 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
         </motion.div>
       </AnimatePresence>
       {isMobile && (
-        <div css={tw`w-full grid grid-flow-col grid-cols-3 my-10 gap-x-2`}>
+        <div
+          css={tw`w-full grid grid-flow-col grid-cols-3 my-10 gap-x-2 py-20 relative`}
+        >
           <PaymentStatsUC Icon={FuelIcon} amount="2,500" />
 
           <PaymentStatsUC Icon={ParkingIcon} amount="2,500" />
 
           <PaymentStatsUC Icon={TicketsIcon} amount="2,500" />
+          <VerticalLine
+            css={tw`h-full absolute bottom-2 visible lg:hidden justify-self-center z-[-1]`}
+          />
         </div>
       )}
     </>

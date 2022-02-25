@@ -21,6 +21,7 @@ import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
+import VerticalLine from "../elements/VerticalLine";
 
 const LinesCurve = styled.div(({ direction, position }: any) => [
   tw`w-28 xl:w-32 2xl:w-44 absolute top-[50%] `,
@@ -122,7 +123,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
           </TopContainer>
           {IsMobile && (
             <div
-              css={tw`w-full flex flex-col justify-center items-center  gap-y-4 relative z-50`}
+              css={tw`w-full flex flex-col justify-center items-center gap-y-4 relative z-50 pt-20 pb-32 mt-5`}
             >
               <SolutionCard
                 IconComponent={VehiclePaymentIcon}
@@ -144,6 +145,9 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
                 description={
                   "Developer-friendly API platform to build your own solutions as per your use cases."
                 }
+              />
+              <VerticalLine
+                css={tw`h-full absolute bottom-2 visible lg:hidden z-[-1]`}
               />
             </div>
           )}

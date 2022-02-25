@@ -11,12 +11,13 @@ import { TextEntryVariant } from "animations";
 import AnimatedCharacters from "animations/animatedCharacters";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import VerticalLine from "../elements/VerticalLine";
 
 const LogoContainer = styled.div(() => [
   tw`relative justify-self-center`,
   css`
     svg {
-      ${tw`w-full h-16 lg:(w-52 h-20)`}
+      ${tw`w-full h-10 lg:(w-52 h-20)`}
     }
   `,
 ]);
@@ -25,11 +26,11 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
       <div
-        css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
+        css={tw`absolute w-screen h-full flex justify-center items-center z-0 `}
       >
         <MapPattern />
       </div>
-      <ContentWrapper css={tw`flex flex-col justify-between`}>
+      <ContentWrapper css={tw`flex flex-col justify-between `}>
         <div
           css={tw`grid grid-flow-row gap-4 text-center grid-cols-1 lg:(grid-cols-2 grid-flow-col text-left)`}
         >
@@ -107,6 +108,9 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             </button>
           </motion.div>
         </div>
+        <VerticalLine
+          css={tw`h-52 md:h-80 relative visible lg:hidden justify-self-center z-0`}
+        />
       </ContentWrapper>
     </SectionContainer>
   );

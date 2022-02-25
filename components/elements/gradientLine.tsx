@@ -6,14 +6,14 @@ import {
   useViewportScroll,
 } from "framer-motion";
 import { forwardRef, useContext, useEffect, useState } from "react";
-import { useOnWindowScroll, useWindowScrollPosition } from "rooks";
 import tw from "twin.macro";
 
 import { ScrollContext } from "../layouts/smoothScroll";
 
 const SvgElement = styled(motion.svg)(() => [
-  tw`fixed top-full z-0 lg:(z-30 -translate-y-1/2 top-1/2)`,
+  tw`fixed z-30 -translate-y-1/2 top-1/2`,
 ]);
+
 const ArrowGroup = styled(motion.g)(() => [tw`relative`]);
 const LineStroke = styled(motion.line)(() => [tw`relative`]);
 const LineGroup = styled.g(() => []);
@@ -26,7 +26,10 @@ const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
   const transform = useTransform(
     scrollY,
     [0, scrollRange],
-    [viewportW / 2, scrollRange]
+    [
+      IsMobile ? viewportW / 3 : viewportW / 2,
+      IsMobile ? scrollRange - 842 : scrollRange,
+    ]
   );
   const physics = { stiffness: 50, mass: 0.05, damping: 5 };
 
