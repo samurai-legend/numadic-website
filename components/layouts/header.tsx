@@ -9,7 +9,7 @@ import Link from "next/link";
 import MobileNav from "../elements/mobileNav";
 import { useMediaMatch } from "rooks";
 
-const HeaderContainer = styled.div(() => [tw`fixed w-full z-50 `]);
+const HeaderContainer = styled.div(() => [tw`fixed w-full z-[60]`]);
 const HeaderWtapper = styled.div(() => [
   tw`container m-auto py-5 flex justify-between items-center bg-black-dark lg:(py-10 bg-transparent)`,
 ]);
