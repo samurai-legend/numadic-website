@@ -1,10 +1,10 @@
 const TextEntryVariant = {
   hidden: {
-    x: 0,
+    y: "100%",
     opacity: 0,
   },
   visible: {
-    x: ["100%", '0%'],
+    y: "0%",
     opacity: 1,
     transition: {
       duration: 1,

@@ -5,13 +5,13 @@ import NumadicLogoM from "@/svg/NU-mobile-logo.svg";
 
 import NavBar from "@/elements/navbar";
 import Link from "next/link";
-import { useContext } from "react";
-import { ScrollContext } from "./smoothScroll";
+
 import MobileNav from "../elements/mobileNav";
 import { useMediaMatch } from "rooks";
+
 const HeaderContainer = styled.div(() => [tw`fixed w-full z-50 `]);
 const HeaderWtapper = styled.div(() => [
-  tw`container m-auto py-10 flex justify-between items-center`,
+  tw`container m-auto py-5 flex justify-between items-center bg-black-dark lg:(py-10 bg-transparent)`,
 ]);
 const Header = () => {
   const IsMobile = useMediaMatch("(max-width: 1023px)");

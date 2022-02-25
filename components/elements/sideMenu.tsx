@@ -7,28 +7,21 @@ import { NavContainer, NavItem } from "../blocks/common";
 const menuHover = {
   open: {
     opacity: 1,
-    transition: {
-      duration: 0.2,
-    },
+    height: "auto",
+    transition: { duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] },
   },
-  hidden: {
-    opacity: 0,
-    transition: {
-      duration: 0.1,
-    },
-  },
+
   exit: {
     opacity: 0,
-    transition: {
-      duration: 0.1,
-    },
+    height: 0,
+    transition: { duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] },
   },
 };
 
 const variants = {
-  open: { opacity: 1, x: 0 },
-  initial: { opacity: 0, x: "-100%" },
-  exit: { opacity: 0, x: "-100%" },
+  open: { opacity: 1 },
+  initial: { opacity: 0 },
+  exit: { opacity: 0 },
 };
 
 const variantsBackground = {
@@ -90,25 +83,23 @@ const SideMenu: React.FC<any> = (props: any) => {
           <AnimatePresence exitBeforeEnter>
             {dropOpen && (
               <motion.ul
+                initial="exit"
                 animate="open"
-                initial="hidden"
                 exit="exit"
-                transition={{
-                  staggerChildren: 0.2,
-                }}
+                variants={menuHover}
                 css={tw`relative top-full left-10 whitespace-nowrap flex flex-col gap-y-2 pt-1`}
               >
-                <NavItem variants={menuHover}>
+                <NavItem>
                   <Link href="/" passHref>
                     <a>Vehicle payments</a>
                   </Link>
                 </NavItem>
-                <NavItem variants={menuHover}>
+                <NavItem>
                   <Link href="/" passHref>
                     <a>Vehicle identification</a>
                   </Link>
                 </NavItem>
-                <NavItem variants={menuHover}>
+                <NavItem>
                   <Link href="/" passHref>
                     <a>Vehicle integration</a>
                   </Link>

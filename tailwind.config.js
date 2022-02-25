@@ -43,6 +43,7 @@ module.exports = {
         "tall-sm": { raw: "(min-height: 768px)" },
         "tall-md": { raw: "(min-height: 896px)" },
         "tall-lg": { raw: "(min-height: 920px)" },
+        "w-h-lg": { raw: "(max-height: 850px) and (min-width: 1535px)" },
         "1xl": "1440px",
       },
       container: {

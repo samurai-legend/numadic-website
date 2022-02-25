@@ -81,7 +81,9 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               <UseCaseTabs isMobile={IsMobile} />
             </motion.div>
             {!IsMobile && (
-              <div css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3`}>
+              <div
+                css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3 gap-x-5 lg:(gap-x-10)`}
+              >
                 <PaymentStatsUC
                   ref={paymentRef1}
                   Icon={FuelIcon}

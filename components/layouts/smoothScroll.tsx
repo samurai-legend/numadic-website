@@ -24,7 +24,9 @@ interface SmoothScrollProps {
   children?: ReactElement;
 }
 
-const ScrollContainer = styled.div(() => [tw`fixed left-0 right-0 z-20`]);
+const ScrollContainer = styled.div((props: any) => [
+  tw`fixed left-0 right-0 z-20`,
+]);
 
 const GhostContainer = styled.div(() => [tw`w-full`]);
 
@@ -58,9 +60,11 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   );
 
   useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => onResize(entries));
-    resizeObserver.observe(ghostRef.current);
-    return () => resizeObserver.disconnect();
+    if (ghostRef.current) {
+      const resizeObserver = new ResizeObserver((entries) => onResize(entries));
+      resizeObserver.observe(ghostRef.current);
+      return () => resizeObserver.disconnect();
+    }
   }, [onResize]);
 
   const { scrollYProgress } = useViewportScroll();
@@ -71,15 +75,13 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     [0, -scrollRange + viewportW]
   );
 
-  const physics = { stiffness: 15, mass: 1 };
+  const physics = { stiffness: 30, mass: 1, damping: 10 };
 
   const scrollStopValue = useMotionValue(0);
 
   const spring = useSpring(scrollStopValue, physics);
 
   const [springDirection, setSpringDirection] = useState<any>({ x: spring });
-
-  const [pauseScroll, setPauseScroll] = useState(false);
 
   const [refArr, setRefArr] = useState([]);
 
@@ -98,7 +100,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         refArr.map((ref: any, key: any) => {
           let checkwidth = scrollRef.current.offsetWidth * key;
           let checkMaxWidth = scrollRef.current.offsetWidth * (key + 1);
-          let lineWidth = lineGroupRef.current.getBoundingClientRect().width;
+          let lineWidth = lineGroupRef?.current?.getBoundingClientRect().width;
 
           if (-x >= checkwidth && lineWidth <= checkMaxWidth) {
             scrollStopValue.set(-checkwidth);
@@ -106,7 +108,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         });
       }
     });
-  }, [IsMobile, refArr]);
+  }, [IsMobile, refArr, scrollRef, lineGroupRef]);
 
   return (
     <ScrollContext.Provider
@@ -114,7 +116,6 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         scrollRange: scrollRange,
         viewportW: viewportW,
         IsMobile: IsMobile,
-        setPauseScroll: setPauseScroll,
         setRefArr: setRefArr,
       }}
     >

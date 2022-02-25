@@ -9,16 +9,14 @@ const PathVariant = {
   hidden: {
     scale: 0,
     opacity: 0,
-    y: 500,
   },
   visible: {
     scale: 1,
     opacity: 1,
-    y: 0,
     transition: {
       duration: 1,
       type: "spring",
-      damping: 15,
+      damping: 25,
       mass: 0.02,
     },
   },
@@ -85,15 +83,15 @@ const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
 
   return (
     <motion.div
-      css={[tw`relative w-max h-[max-content] self-end justify-self-center`]}
+      css={[
+        tw`relative w-full max-w-[120px] h-[max-content] self-end justify-self-center`,
+      ]}
       initial="hidden"
       {...animateObject}
       transition={{ staggerChildren: 0.5, delayChildren: 0.5 }}
       ref={ref}
     >
       <motion.svg
-        width="116"
-        height="117"
         viewBox="0 0 116 117"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

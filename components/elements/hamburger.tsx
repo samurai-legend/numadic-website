@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { motion, Transition } from "framer-motion";
+import { AnimatePresence, motion, Transition } from "framer-motion";
+import { useEffect } from "react";
 import tw from "twin.macro";
 
 interface Props {
@@ -28,6 +29,9 @@ const HamburgerButton: React.FC<any> = ({
   const unitHeight = 4;
   const unitWidth = (unitHeight * (width as number)) / (height as number);
 
+  useEffect(() => {
+    console.log("rendered");
+  }, []);
   const top = {
     closed: {
       rotate: 0,
@@ -36,6 +40,10 @@ const HamburgerButton: React.FC<any> = ({
     opened: {
       rotate: 45,
       translateY: 2,
+      transition: {
+        duration: 1,
+        stiffness: 2,
+      },
     },
   };
   const center = {
@@ -50,19 +58,24 @@ const HamburgerButton: React.FC<any> = ({
     closed: {
       rotate: 0,
       translateY: 0,
+      transition: {
+        duration: 1,
+        stiffness: 2,
+      },
     },
     opened: {
       rotate: -45,
       translateY: -2,
+      transition: {
+        duration: 1,
+        stiffness: 2,
+      },
     },
   };
   lineProps = {
     stroke: color,
     strokeWidth: strokeWidth as number,
     vectorEffect: "non-scaling-stroke",
-    initial: "closed",
-    animate: variant,
-    transition,
     ...lineProps,
   };
 
@@ -79,8 +92,11 @@ const HamburgerButton: React.FC<any> = ({
       width={width}
       height={height}
       {...props}
+      initial="closed"
+      exit="closed"
+      animate={variant}
     >
-      <Line x1="0" x2={unitWidth} y1="0" y2="0" variants={top} {...lineProps} />
+      <Line x1="0" x2={unitWidth} y1="0" y2="0" {...lineProps} variants={top} />
       <Line
         x1="0"
         x2={unitWidth}

@@ -18,7 +18,7 @@ const LandingBlock: FunctionComponent<any> = forwardRef(
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          css={tw`max-w-[400px] leading-[1.8rem]! xl:(max-w-[770px] leading-[5.5rem]!)`}
+          css={tw`max-w-[400px] leading-[1.8rem]! md:(max-w-[700px] leading-[3.5rem]!) lg:(max-w-[700px] leading-[3.5rem]!) xl:(max-w-[770px] leading-[5.5rem]!)`}
           text="We build vehicle interface solutions"
         />
 
@@ -29,7 +29,7 @@ const LandingBlock: FunctionComponent<any> = forwardRef(
           whileInView="visible"
           viewport={{ once: true }}
           css={[
-            tw`max-w-[300px] leading-[1rem]! xl:(max-w-[720px] leading-[1.7rem]!)`,
+            tw`max-w-[300px] leading-[1rem]! md:(max-w-[500px] leading-[1.3rem]!) lg:(max-w-[500px] leading-[1.3rem]!) xl:(max-w-[720px] leading-[1.7rem]!)`,
           ]}
           text="Numadic offers solutions that empowers Banks, Automakers and Financial
         Service Providers to automate vehicle payments & offer delightful

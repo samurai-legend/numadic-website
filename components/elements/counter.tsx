@@ -8,11 +8,11 @@ const Counter: React.FC<any> = ({ from, to, isAnimate }: any) => {
     const node = nodeRef.current;
     if (isAnimate) {
       const controls = animate(from, to, {
-        duration: 3,
+        duration: 1,
         damping: 10,
         mass: 0.02,
         onUpdate(value) {
-          node.textContent = value.toFixed(0);
+          node.textContent = Math.ceil(value.toFixed(0)).toLocaleString("en");
         },
       });
 

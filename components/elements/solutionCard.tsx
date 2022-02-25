@@ -11,9 +11,11 @@ const CardContainer = styled(motion.div)(() => [
    backdrop-blur-[30px] py-10 rounded-[2px]
     transition-all duration-300 ease-in cursor-pointer max-w-md`,
   tw`hover:(bg-white text-black)`,
+
   tw`lg:(w-1/3 flex-col px-5 py-5 gap-y-1 items-start justify-center self-stretch)`,
   tw`xl:(px-5 py-5 gap-y-1)`,
   tw`2xl:(px-16 py-10 gap-y-5)`,
+  tw`w-h-lg:(px-5 py-4 gap-x-5 flex-row items-center)`,
   css`
     flex: 1 0 auto;
     &:hover {

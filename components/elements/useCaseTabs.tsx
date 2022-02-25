@@ -32,6 +32,7 @@ const TabsNavsContainer = styled(motion.ul)(() => [
 
 const TabsNavItem = styled(motion.li)(() => [
   tw`flex flex-col relative pb-5 pt-5 max-w-[80px] lg:(pb-5 pt-2 max-w-full) 2xl:(pb-3 pt-0) text-gray-light cursor-pointer`,
+  tw`w-h-lg:(pb-0)`,
 ]);
 
 const ActiveDot = styled(motion.span)(() => [
@@ -75,7 +76,7 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
             <Typography
               as="h3"
               isColor
-              css={tw`font-bold max-w-2xl mt-1 leading-6 xl:(mt-5 leading-10) mt-4 lg:(mt-0)`}
+              css={tw`font-bold max-w-2xl mt-1 leading-6 xl:(mt-5 leading-10) mt-4 lg:(mt-0) w-h-lg:(mt-1 leading-9)`}
             >
               {selectedTab.content}
             </Typography>

@@ -1,5 +1,5 @@
 import tw from "twin.macro";
-import { ContentWrapper, SectionContainer } from "./common";
+import { ContentWrapper, NavItem, SectionContainer } from "./common";
 import MapPattern from "@/svg/movement/map.svg";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -7,6 +7,30 @@ import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
 import AnimatedCharacters from "animations/animatedCharacters";
 import { forwardRef } from "react";
+import styled from "@emotion/styled";
+
+import Instagram from "@/svg/instagram.svg";
+import LinkedIn from "@/svg/linkedin.svg";
+import Facebook from "@/svg/facebook.svg";
+import Twitter from "@/svg/twitter.svg";
+import { css } from "@emotion/react";
+
+const SocialMediaContainer = styled(motion.div)(() => [
+  tw`flex gap-x-10 self-center justify-self-center lg:(justify-self-end)`,
+]);
+const SocialLinks = styled(motion.a)(() => [
+  tw`cursor-pointer`,
+  css`
+    &:hover {
+      svg {
+        path {
+          ${tw`transition-all duration-150 ease-in`}
+          fill: white;
+        }
+      }
+    }
+  `,
+]);
 
 const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
@@ -36,10 +60,10 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-cols-2 grid-flow-col mt-10 text-left`}
+            css={tw`grid grid-rows-2 grid-cols-none grid-flow-row justify-center mt-10 text-center lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start)`}
           >
             <div>
-              <Typography as="span" type="overline">
+              <Typography as="span" type="overline" css={tw`w-full lg:(w-max)`}>
                 India
               </Typography>
               <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
@@ -47,7 +71,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               </Typography>
             </div>
             <div>
-              <Typography as="span" type="overline">
+              <Typography as="span" type="overline" css={tw`w-full lg:(w-max)`}>
                 uk
               </Typography>
               <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
@@ -58,7 +82,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
         </div>
         <div css={tw`mb-2 tall-lg:mb-20`}>
           <div
-            css={tw`grid grid-cols-1 grid-flow-row mt-20 lg:(grid-cols-3 grid-flow-col mt-0)`}
+            css={tw`grid grid-cols-1 grid-flow-row mt-20 gap-y-10 lg:(grid-cols-3 grid-flow-col mt-0)`}
           >
             <AnimatedCharacters
               as="h2"
@@ -83,39 +107,65 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               <ul
                 css={tw`grid grid-rows-3 grid-flow-col mt-2 text-white text-body-3`}
               >
-                <li>
+                <NavItem>
                   <Link href="#">
                     <a>Vehicle payments</a>
                   </Link>
-                </li>
-                <li>
+                </NavItem>
+                <NavItem>
                   <Link href="#">
                     <a>Vehicle identification</a>
                   </Link>
-                </li>
-                <li>
+                </NavItem>
+                <NavItem>
                   <Link href="#">
                     <a> Vehicle integration</a>
                   </Link>
-                </li>
-                <li>
+                </NavItem>
+                <NavItem>
                   <Link href="#">
                     <a>About us</a>
                   </Link>
-                </li>
-
-                <li>
+                </NavItem>
+                <NavItem>
                   <Link href="#">
                     <a>Careers</a>
                   </Link>
-                </li>
-                <li>
+                </NavItem>
+                <NavItem>
                   <Link href="#">
                     <a>Contact</a>
                   </Link>
-                </li>
+                </NavItem>
               </ul>
             </motion.div>
+            <SocialMediaContainer
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={TextEntryVariant}
+            >
+              <Link href="#">
+                <SocialLinks>
+                  <Twitter />
+                </SocialLinks>
+              </Link>
+              <Link href="#">
+                <SocialLinks>
+                  <LinkedIn />
+                </SocialLinks>
+              </Link>
+              <Link href="#">
+                <SocialLinks>
+                  <Instagram />
+                </SocialLinks>
+              </Link>
+              <Link href="#">
+                <SocialLinks>
+                  <Facebook />
+                </SocialLinks>
+              </Link>
+            </SocialMediaContainer>
           </div>
           <motion.div
             initial="hidden"

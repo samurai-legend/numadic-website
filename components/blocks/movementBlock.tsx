@@ -15,31 +15,9 @@ import Counter from "../elements/counter";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
+import TransactionStats from "../elements/transactionStats";
 
 const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
-  const { lineGroupRef } = useContext(GlobalLineContext);
-  const { IsMobile } = useContext(ScrollContext);
-  const [animValue1, setValue1] = useState(false);
-  const [animValue2, setValue2] = useState(false);
-  const [animValue3, setValue3] = useState(false);
-
-  const ValueRef1 = useRef(null);
-  const ValueRef2 = useRef(null);
-  const ValueRef3 = useRef(null);
-
-  useAnimationFrame((t) => {
-    if (!IsMobile) {
-      setValue1(
-        IsColliding(lineGroupRef.current, ValueRef1.current, "horizontal")
-      );
-      setValue2(
-        IsColliding(lineGroupRef.current, ValueRef2.current, "horizontal")
-      );
-      setValue3(
-        IsColliding(lineGroupRef.current, ValueRef3.current, "horizontal")
-      );
-    }
-  });
   return (
     <SectionContainer ref={ref}>
       <div
@@ -60,49 +38,25 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
             text="Undisrupting movement"
           />
-          <div css={tw`flex w-full justify-between mt-16 tall-sm:mt-28 px-20`}>
-            <motion.div
-              initial="hidden"
-              animate={animValue1 && "visible"}
-              variants={TextEntryVariant}
-              css={tw`flex items-center justify-center flex-col`}
-              ref={ValueRef1}
-            >
-              <Typography as="h2" isColor css={tw`font-bold`}>
-                <Counter isAnimate={animValue1} from={0} to={14000} />
-              </Typography>
-              <Typography as="span" type="overline">
-                AVG. DAILY TRANSACTION VALUE
-              </Typography>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              animate={animValue2 && "visible"}
-              variants={TextEntryVariant}
-              css={tw`flex items-center justify-center flex-col`}
-              ref={ValueRef2}
-            >
-              <Typography as="h2" isColor css={tw`font-bold`}>
-                <Counter isAnimate={animValue2} from={0} to={97445} />
-              </Typography>
-              <Typography as="span" type="overline">
-                AVG. DAILY TRANSACTION VALUE
-              </Typography>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              animate={animValue3 && "visible"}
-              variants={TextEntryVariant}
-              css={tw`flex items-center justify-center flex-col`}
-              ref={ValueRef3}
-            >
-              <Typography as="h2" isColor css={tw`font-bold`}>
-                <Counter isAnimate={animValue3} from={0} to={14000} />
-              </Typography>
-              <Typography as="span" type="overline">
-                AVG. DAILY TRANSACTION VALUE
-              </Typography>
-            </motion.div>
+          <div
+            css={tw`flex w-full justify-between mt-5 px-20 flex-col gap-y-5 lg:(flex-row mt-16)`}
+          >
+            <TransactionStats
+              from={0}
+              to={14000}
+              text="AVG. DAILY TRANSACTION VALUE"
+            />
+
+            <TransactionStats
+              from={0}
+              to={97445}
+              text="AVG. DAILY TRANSACTION VALUE"
+            />
+            <TransactionStats
+              from={0}
+              to={14000}
+              text="AVG. DAILY TRANSACTION VALUE"
+            />
           </div>
         </div>
         <motion.div
@@ -110,13 +64,13 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={TextEntryVariant}
-          css={tw`flex flex-col justify-center items-center mb-20 tall-lg:mb-40`}
+          css={tw`flex flex-col justify-center items-center mb-20 tall-lg:mb-40 mt-20`}
         >
           <Typography as="p" isColor type="body-2">
             Together with the industry leaders
           </Typography>
           <div
-            css={tw`flex gap-20 mt-10 flex-col items-center lg:(flex-row items-start)`}
+            css={tw`flex gap-x-20 gap-y-10 mt-10 flex-col items-center lg:(flex-row items-start)`}
           >
             <BoschLogo />
             <IciciBankLogo />

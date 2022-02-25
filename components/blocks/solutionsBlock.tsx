@@ -20,11 +20,11 @@ import { useAnimationFrame, useElementScroll } from "framer-motion";
 import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
-import { useRefScrollProgress } from "hooks/elementScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
 
 const LinesCurve = styled.div(({ direction, position }: any) => [
   tw`w-28 xl:w-32 2xl:w-44 absolute top-[50%] `,
+  tw`w-h-lg:(w-[110px] right-10)`,
   direction === "up" && position === "left" && [tw`translate-y-[-84.5%]`],
   direction === "down" &&
     position === "left" && [tw`translate-y-[10.5%] -rotate-180 scale-x-[-1]`],
@@ -115,7 +115,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
+              css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem]) w-h-lg:(leading-[2.4rem])`}
               text="Undisrupting the connectivity between banks, automakers, logistics &
             infra companies"
             />

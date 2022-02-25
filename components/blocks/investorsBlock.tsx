@@ -8,8 +8,18 @@ import DynamoLogo from "@/svg/brands/dynamo.svg";
 import SapStartupLogo from "@/svg/brands/sap_startup.svg";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
-import { Typography } from "../typography";
 import AnimatedCharacters from "animations/animatedCharacters";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
+const LogoContainer = styled.div(() => [
+  tw`relative justify-self-center`,
+  css`
+    svg {
+      ${tw`w-full h-16 lg:(w-52 h-20)`}
+    }
+  `,
+]);
 
 const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
@@ -39,16 +49,24 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-rows-2 grid-flow-col gap-y-12 tall-sm:gap-y-24 items-center`}
+            css={tw`grid grid-rows-2 grid-flow-col gap-y-10 gap-x-10  lg:(gap-y-12)`}
           >
-            <DynamoLogo />
-            <CvwLogo />
-            <NineUnifcornLogo />
-            <SapStartupLogo />
+            <LogoContainer>
+              <DynamoLogo />
+            </LogoContainer>
+            <LogoContainer>
+              <CvwLogo />
+            </LogoContainer>
+            <LogoContainer>
+              <NineUnifcornLogo />
+            </LogoContainer>
+            <LogoContainer>
+              <SapStartupLogo />
+            </LogoContainer>
           </motion.div>
         </div>
         <div
-          css={tw`grid grid-cols-1 grid-flow-row gap-4 mt-10 mb-20 tall-lg:mb-44 lg:(grid-cols-2 grid-flow-col  mt-0)`}
+          css={tw`grid grid-cols-1 grid-flow-row gap-4 mt-10 mb-20 lg:(grid-cols-2 grid-flow-col mt-0)`}
         >
           <div
             css={tw`justify-self-center text-center lg:(justify-self-start text-left)`}
