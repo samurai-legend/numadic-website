@@ -9,7 +9,13 @@ import SideMenu from "./sideMenu";
 
 const MobileNav: React.FC<any> = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [isOpen]);
   return (
     <div css={tw`flex relative justify-end items-center gap-x-8`}>
       <NavContainer>
@@ -24,7 +30,7 @@ const MobileNav: React.FC<any> = (props: any) => {
         onClick={() => setIsOpen(!isOpen)}
         strokeWidth="4"
         lineProps={{ strokeLinecap: "round" }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
         width="34"
         height="24"
         color="#fff"

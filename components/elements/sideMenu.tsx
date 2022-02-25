@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import tw from "twin.macro";
 import { NavContainer, NavItem } from "../blocks/common";
 
@@ -38,6 +38,7 @@ const variantsCarrot = {
 const SideMenu: React.FC<any> = (props: any) => {
   const [dropOpen, setDropOpen] = useState(false);
   const toggleOpen = () => setDropOpen(!dropOpen);
+
   return (
     <motion.div
       animate="open"

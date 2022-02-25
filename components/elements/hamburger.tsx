@@ -12,6 +12,9 @@ const MenuButton = ({
   ...props
 }: any) => {
   const variant = isOpen ? "opened" : "closed";
+  const unitHeight = 4;
+  const unitWidth = (unitHeight * (width as number)) / (height as number);
+
   const top = {
     closed: {
       rotate: 0,
@@ -49,8 +52,6 @@ const MenuButton = ({
     transition,
     ...lineProps,
   };
-  const unitHeight = 4;
-  const unitWidth = (unitHeight * (width as number)) / (height as number);
 
   return (
     <motion.svg

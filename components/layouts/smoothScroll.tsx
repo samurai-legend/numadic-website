@@ -88,11 +88,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
 
   useEffect(() => {
-    if (IsMobile) {
-      setSpringDirection({ y: spring });
-    } else {
-      setSpringDirection({ x: spring });
-    }
+    setSpringDirection({ x: spring });
     transform.onChange((x) => {
       scrollStopValue.set(x);
 
@@ -119,20 +115,33 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         setRefArr: setRefArr,
       }}
     >
-      <ScrollContainer style={{ willChange: "transform" }}>
-        <motion.section
-          ref={scrollRef}
-          style={springDirection}
-          css={tw`relative h-screen w-screen flex`}
-        >
-          {children}
-        </motion.section>
-      </ScrollContainer>
-      <GhostContainer
-        ref={ghostRef}
-        style={{ height: scrollRange }}
-        css={tw`bg-black-dark`}
-      />
+      {IsMobile ? (
+        <>
+          <motion.section
+            ref={scrollRef}
+            css={tw`relative h-full w-screen flex bg-black-dark`}
+          >
+            {children}
+          </motion.section>
+        </>
+      ) : (
+        <>
+          <ScrollContainer style={{ willChange: "transform" }}>
+            <motion.section
+              ref={scrollRef}
+              style={springDirection}
+              css={tw`relative h-screen w-screen flex `}
+            >
+              {children}
+            </motion.section>
+          </ScrollContainer>
+          <GhostContainer
+            ref={ghostRef}
+            style={{ height: scrollRange }}
+            css={tw`bg-black-dark`}
+          />
+        </>
+      )}
     </ScrollContext.Provider>
   );
 };
