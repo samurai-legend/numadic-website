@@ -126,11 +126,14 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         </>
       ) : (
         <>
-          <ScrollContainer style={{ willChange: "transform" }}>
+          <ScrollContainer
+            style={{ willChange: "transform" }}
+            css={tw`pt-[120px]`}
+          >
             <motion.section
               ref={scrollRef}
               style={springDirection}
-              css={tw`relative h-screen w-screen flex `}
+              css={tw`relative h-[calc(100vh - 120px)] w-screen flex `}
             >
               {children}
             </motion.section>

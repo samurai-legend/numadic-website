@@ -12,13 +12,15 @@ export const Typography = motion(
           ...includeColor,
           tw`text-heading-1-sm font-bold`,
           tw`leading-[5.5rem]`,
-          tw`md:text-heading-1`,
+          tw`md:text-heading-1-md`,
+          tw`lg:text-heading-1-lg`,
+          tw`xl:text-heading-1`,
         ];
       case "h2":
         return [
           ...includeColor,
           tw`text-heading-2-sm font-normal`,
-          tw`leading-[2.75rem] 2xl:(max-w-6xl leading-[3.75rem])`,
+          tw`leading-[2.75rem] 2xl:(max-w-6xl leading-[2.75rem])`,
           tw`xl:text-heading-2`,
         ];
       case "h3":

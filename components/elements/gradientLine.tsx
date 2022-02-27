@@ -11,7 +11,7 @@ import tw from "twin.macro";
 import { ScrollContext } from "../layouts/smoothScroll";
 
 const SvgElement = styled(motion.svg)(() => [
-  tw`fixed z-30 -translate-y-1/2 top-1/2`,
+  tw`absolute z-30 -translate-y-1/2 top-1/2`,
 ]);
 
 const ArrowGroup = styled(motion.g)(() => [tw`relative`]);
@@ -31,7 +31,7 @@ const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
       IsMobile ? scrollRange - 842 : scrollRange,
     ]
   );
-  const physics = { stiffness: 50, mass: 0.05, damping: 5 };
+  const physics = { stiffness: 30, mass: 0.05, damping: 5 };
 
   const spring = useSpring(transform, physics);
 

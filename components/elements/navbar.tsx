@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FunctionComponent } from "react";
 import tw from "twin.macro";
 import { NavContainer, NavDropdownContainer, NavItem } from "../blocks/common";
+import Carrot from "./carrot";
 
 const NavBar: FunctionComponent<any> = () => {
   const variants = {
@@ -29,6 +30,7 @@ const NavBar: FunctionComponent<any> = () => {
     hovered: { rotate: -180 },
     hidden: { rotate: 0 },
   };
+
   return (
     <NavContainer
       animate={{ opacity: 1, y: 0 }}
@@ -46,22 +48,7 @@ const NavBar: FunctionComponent<any> = () => {
       >
         <span css={tw`flex items-center gap-x-2 cursor-pointer`}>
           Solutions
-          <motion.svg
-            width="12"
-            height="7"
-            viewBox="0 0 12 7"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            variants={variantsCarrot}
-          >
-            <path
-              className="carrot-stroke"
-              d="M1.61768 1.24512L6.11768 5.74512L10.6177 1.24512"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </motion.svg>
+          <Carrot variants={variantsCarrot} />
         </span>
         <NavDropdownContainer
           variants={{

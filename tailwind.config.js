@@ -13,7 +13,14 @@ module.exports = {
       caption: ["0.75rem", "2.5rem"],
       overline: ["0.875rem", "2.5rem"],
 
-      "heading-1-lg": ["3rem", "2.5rem"],
+      "heading-1-md": ["3rem", "2.5rem"],
+      "heading-2-md": ["2.2rem", "2.5rem"],
+      "heading-3-md": ["1.2rem", "2.5rem"],
+      "body-1-md": ["1rem", "2.5rem"],
+      "body-2-md": [".75rem", "2.5rem"],
+      "body-3-md": ["0.675rem", "2.5rem"],
+
+      "heading-1-lg": ["4rem", "2.5rem"],
       "heading-2-lg": ["2.2rem", "2.5rem"],
       "heading-3-lg": ["1.2rem", "2.5rem"],
       "body-1-lg": ["1rem", "2.5rem"],

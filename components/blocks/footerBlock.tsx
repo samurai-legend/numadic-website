@@ -1,6 +1,6 @@
 import tw from "twin.macro";
 import { ContentWrapper, NavItem, SectionContainer } from "./common";
-import MapPattern from "@/svg/movement/map.svg";
+ 
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
@@ -14,6 +14,7 @@ import LinkedIn from "@/svg/linkedin.svg";
 import Facebook from "@/svg/facebook.svg";
 import Twitter from "@/svg/twitter.svg";
 import { css } from "@emotion/react";
+import MapPattern from "../elements/mapPattern";
 
 const SocialMediaContainer = styled(motion.div)(() => [
   tw`flex gap-x-10 self-center justify-self-center py-5 lg:(justify-self-end)`,
@@ -42,7 +43,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
       </div>
       <ContentWrapper css={tw`flex flex-col justify-between`}>
         <div
-          css={tw`grid grid-cols-1 text-center grid-flow-row lg:(grid-flow-col grid-cols-2 text-left)`}
+          css={tw`flex-[50%] grid grid-cols-1 text-center grid-flow-row lg:(grid-flow-col grid-cols-2 text-left)`}
         >
           <AnimatedCharacters
             as="h2"
@@ -60,7 +61,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-rows-2 grid-cols-none grid-flow-row justify-center mt-10 text-center lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start)`}
+            css={tw`grid grid-rows-2 grid-cols-none grid-flow-row justify-center text-center lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start)`}
           >
             <div>
               <Typography as="span" type="overline" css={tw`w-full lg:(w-max)`}>
@@ -80,12 +81,12 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             </div>
           </motion.div>
         </div>
-        <div css={tw`mb-2 tall-lg:mb-20`}>
+        <div css={tw`flex-[50%] flex flex-col justify-between`}>
           <div
             css={tw`grid grid-cols-1 grid-flow-row mt-20
-             gap-y-10 border-b-[0.5px] border-gray-400 
-             pb-5 mb-5
-             lg:(grid-cols-3 grid-flow-col mt-0 pb-10 mb-10)`}
+             gap-y-10 pb-5
+             lg:(grid-cols-3 grid-flow-col  mt-10)
+             w-h-lg:(pb-8)`}
           >
             <AnimatedCharacters
               as="h2"
@@ -175,7 +176,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-cols-1 grid-flow-row lg:(grid-cols-3 grid-flow-col)`}
+            css={tw`grid grid-cols-1 grid-flow-row py-2 border-t-[0.5px] border-gray-400 lg:(grid-cols-3 grid-flow-col)`}
           >
             <Typography
               as="span"
@@ -194,13 +195,49 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               Warm regards from Goa, India
             </Typography>
 
-            <Typography
-              as="span"
-              type="caption"
-              css={tw`text-gray-light justify-self-center lg:(justify-self-end)`}
+            <ul
+              css={tw`flex justify-self-center lg:(justify-self-end) gap-x-5`}
             >
-              Terms of service | Privacy policy | Cancellation policy
-            </Typography>
+              <NavItem>
+                <Link href="#">
+                  <a>
+                    <Typography
+                      as="span"
+                      type="caption"
+                      css={tw`text-gray-light hover:text-white`}
+                    >
+                      Terms of service
+                    </Typography>
+                  </a>
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link href="#">
+                  <a>
+                    <Typography
+                      as="span"
+                      type="caption"
+                      css={tw`text-gray-light hover:text-white`}
+                    >
+                      Privacy policy
+                    </Typography>
+                  </a>
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link href="#">
+                  <a>
+                    <Typography
+                      as="span"
+                      type="caption"
+                      css={tw`text-gray-light hover:text-white`}
+                    >
+                      Cancellation policy
+                    </Typography>
+                  </a>
+                </Link>
+              </NavItem>
+            </ul>
           </motion.div>
         </div>
       </ContentWrapper>

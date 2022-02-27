@@ -84,7 +84,7 @@ const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <motion.div
       css={[
-        tw`relative w-full max-w-[120px] h-[max-content] self-end justify-self-center`,
+        tw`relative w-full max-w-[105px] h-[max-content] self-end justify-self-center`,
       ]}
       initial="hidden"
       {...animateObject}

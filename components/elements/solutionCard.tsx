@@ -6,16 +6,16 @@ import tw from "twin.macro";
 import { Typography } from "../typography";
 
 const CardContainer = styled(motion.div)(() => [
-  tw`w-full flex flex-row self-center items-center justify-start
-  gap-x-5 px-5 text-white bg-[#333333]
-   backdrop-blur-[30px] py-10 rounded-[2px]
+  tw`w-full flex flex-row self-center items-start justify-start
+  gap-x-5 px-2  text-white bg-[#333333]
+   backdrop-blur-[30px] py-5 rounded-[2px]
     transition-all duration-300 ease-in cursor-pointer max-w-md`,
   tw`hover:(bg-white text-black)`,
 
-  tw`lg:(w-1/3 flex-col px-5 py-5 gap-y-1 items-start justify-center self-stretch)`,
+  tw`lg:(w-1/3 flex-col px-5 py-5 gap-y-1 items-start justify-start self-stretch)`,
   tw`xl:(px-5 py-5 gap-y-1)`,
   tw`2xl:(px-16 py-10 gap-y-5)`,
-  tw`w-h-lg:(px-5 py-4 gap-x-5 flex-row items-center)`,
+  tw`w-h-lg:(px-5 py-4 gap-x-5 flex-row items-start)`,
   css`
     flex: 1 0 auto;
     &:hover {
@@ -64,7 +64,9 @@ const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
       }}
       ref={ref}
     >
-      <div>
+      <div
+        css={tw`w-16 h-16 min-w-[3rem] pt-2 w-h-lg:(pt-2) lg:(w-20 h-20 min-w-[5rem] pt-0)`}
+      >
         <IconComponent />
       </div>
       <div>

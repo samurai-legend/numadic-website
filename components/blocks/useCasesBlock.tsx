@@ -46,10 +46,10 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
       <ContentWrapper
-        css={tw`flex flex-col justify-between items-center lg:(items-start) `}
+        css={tw`flex flex-col justify-between items-center lg:(items-start mb-0) mb-28`}
       >
         <div
-          css={tw`flex flex-col w-full items-center text-center lg:(items-start text-left)`}
+          css={tw`flex flex-[50%] flex-col w-full items-center text-center lg:(items-start text-left)`}
         >
           <Typography
             as="span"
@@ -70,7 +70,9 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
             text="Enable next-gen vehicle interface solutions"
           />
-          <div css={tw`flex w-full flex-col items-start lg:(flex-row)`}>
+          <div
+            css={tw`flex w-full flex-col items-start lg:(flex-row) relative`}
+          >
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -82,7 +84,7 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             </motion.div>
             {!IsMobile && (
               <div
-                css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3 gap-x-5 lg:(gap-x-10)`}
+                css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3 gap-x-5 lg:(gap-x-10) self-end`}
               >
                 <PaymentStatsUC
                   ref={paymentRef1}
@@ -107,31 +109,33 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
           </div>
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={TextEntryVariant}
-          css={tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center
-           mb-0 mt-10 gap-x-5 xl:(px-5 py-4 max-w-lg mb-32 mt-0)`}
-        >
-          <div css={tw`inline-block w-max`}>
-            <HpclLogo />
-          </div>
-          <div>
-            <Typography as="span" type="overline">
-              Case study
-            </Typography>
-            <Typography
-              as="p"
-              type="body-2"
-              isColor
-              css={tw`leading-6 xl:leading-10`}
-            >
-              How Numadic helped HPCL accept payments for fuel through FASTag
-            </Typography>
-          </div>
-        </motion.div>
+        <div css={tw`flex-[50%]`}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={TextEntryVariant}
+            css={tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center
+           mb-0 gap-x-5 lg:(px-5 py-4 max-w-md mt-20) xl:(max-w-lg)`}
+          >
+            <div css={tw`inline-block w-max`}>
+              <HpclLogo />
+            </div>
+            <div>
+              <Typography as="span" type="overline">
+                Case study
+              </Typography>
+              <Typography
+                as="p"
+                type="body-2"
+                isColor
+                css={tw`leading-6 xl:leading-7`}
+              >
+                How Numadic helped HPCL accept payments for fuel through FASTag
+              </Typography>
+            </div>
+          </motion.div>
+        </div>
       </ContentWrapper>
     </SectionContainer>
   );

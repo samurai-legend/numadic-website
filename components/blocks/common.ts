@@ -8,7 +8,7 @@ const SectionContainer = styled.div(() => [
 ]);
 
 const ContentWrapper = styled.div(() => [
-  tw`container mx-auto relative h-full pt-24 tall-lg:pt-28 `,
+  tw`container mx-auto relative h-full`,
 ]);
 
 const NavContainer = styled(motion.ul)(() => [
@@ -35,6 +35,9 @@ const NavItem = styled(motion.li)(({ type, active }: any) => [
         active &&
           tw`text-white after:(contents[""] absolute top-full h-1 w-full left-0 rounded-md bg-gradient-to-r from-blue-dark to-blue-primary)`,
         css`
+          .carrot {
+            ${tw`relative top-[2px]`}
+          }
           .carrot-stroke {
             ${tw`stroke-current transition-all duration-150 ease-in`}
           }

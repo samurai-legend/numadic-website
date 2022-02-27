@@ -116,7 +116,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem]) w-h-lg:(leading-[2.4rem])`}
+              css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl) md:(max-w-3xl) lg:(text-left max-w-4xl)`}
               text="Undisrupting the connectivity between banks, automakers, logistics &
             infra companies"
             />
