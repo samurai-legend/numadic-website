@@ -66,7 +66,7 @@ const ContentVariant = {
   },
 };
 const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
-  const { amount, Icon, isAnimate } = props;
+  const { amount, Icon, isAnimate, css } = props;
 
   const [animateObject, setAnimateObject] = useState({});
 
@@ -86,6 +86,7 @@ const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
       css={[
         tw`relative w-full max-w-[105px] h-[max-content] self-end justify-self-center`,
       ]}
+      {...props}
       initial="hidden"
       {...animateObject}
       transition={{ staggerChildren: 0.5, delayChildren: 0.5 }}

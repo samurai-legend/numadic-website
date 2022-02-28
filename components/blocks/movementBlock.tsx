@@ -21,24 +21,36 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
       <div
         css={tw`absolute w-screen h-full flex justify-center items-center z-0 pointer-events-none`}
       >
-        <MapPattern />
+        <div css={tw`container mx-auto`}>
+          <MapPattern />
+        </div>
       </div>
       <ContentWrapper css={tw`flex flex-col justify-between `}>
         <div css={tw`flex-[50%]`}>
           <div
-            css={tw`flex flex-col items-center h-full text-center lg:(items-start text-left justify-between)`}
+            css={tw`flex flex-col items-center h-full text-center 
+            lg:(items-start text-left justify-between)`}
           >
+            <Typography
+              as="span"
+              type="overline"
+              css={tw`hidden lg:(visible block)`}
+            >
+              {" "}
+            </Typography>
             <AnimatedCharacters
               as="h2"
               isColor
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
+              css={tw`leading-[1.25rem] max-w-full text-center 
+              2xl:(max-w-6xl leading-[3.75rem]) 
+              lg:(text-left leading-[2.75rem])`}
               text="Undisrupting movement"
             />
             <div
-              css={tw`flex w-full justify-between my-5 px-20 flex-col gap-y-5 lg:(flex-row my-16)`}
+              css={tw`flex w-full justify-between my-16 px-20 flex-col gap-y-5 lg:(flex-row)`}
             >
               <TransactionStats
                 from={0}
@@ -65,7 +77,7 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`flex flex-col justify-center items-center mt-20`}
+            css={tw`flex flex-col justify-center items-center mt-10 mb-20 lg:(mb-0 mt-20)`}
           >
             <Typography as="p" isColor type="body-2">
               Together with the industry leaders

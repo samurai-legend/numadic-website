@@ -2,7 +2,7 @@ import tw from "twin.macro";
 import { ContentWrapper, SectionContainer } from "./common";
 import HpclLogo from "@/svg/brands/HPCL_Logo.svg";
 import { motion, useAnimationFrame } from "framer-motion";
-import { TextEntryVariant } from "animations";
+import { EntryVariant, TextEntryVariant } from "animations";
 import UseCaseTabs from "../elements/useCaseTabs";
 import PaymentStatsUC from "../elements/paymentStatsUC";
 import FuelIcon from "@/svg/usecases/fuel.svg";
@@ -46,7 +46,7 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
       <ContentWrapper
-        css={tw`flex flex-col justify-between items-center lg:(items-start mb-0) mb-28`}
+        css={tw`flex flex-col justify-between items-center lg:(items-start mb-0)`}
       >
         <div
           css={tw`flex flex-[50%] flex-col w-full items-center text-center lg:(items-start text-left)`}
@@ -67,7 +67,7 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
+            css={tw`leading-[1.25rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
             text="Enable next-gen vehicle interface solutions"
           />
           <div
@@ -77,7 +77,7 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={TextEntryVariant}
+              variants={EntryVariant}
               css={tw`relative w-full lg:(w-1/2) mt-2 tall-sm:mt-3`}
             >
               <UseCaseTabs isMobile={IsMobile} />

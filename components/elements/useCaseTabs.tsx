@@ -86,15 +86,27 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
       </AnimatePresence>
       {isMobile && (
         <div
-          css={tw`w-full grid grid-flow-col grid-cols-3 my-10 gap-x-2 py-20 relative`}
+          css={tw`w-full grid grid-flow-row grid-rows-3 grid-cols-2 my-10 gap-y-5 py-20 relative`}
         >
-          <PaymentStatsUC Icon={FuelIcon} amount="2,500" />
+          <PaymentStatsUC
+            Icon={FuelIcon}
+            amount="2,500"
+            css={tw`row-start-1`}
+          />
 
-          <PaymentStatsUC Icon={ParkingIcon} amount="2,500" />
+          <PaymentStatsUC
+            Icon={ParkingIcon}
+            amount="2,500"
+            css={tw`row-start-2 col-start-2`}
+          />
 
-          <PaymentStatsUC Icon={TicketsIcon} amount="2,500" />
+          <PaymentStatsUC
+            Icon={TicketsIcon}
+            amount="2,500"
+            css={tw`row-start-3`}
+          />
           <VerticalLine
-            css={tw`h-full absolute bottom-2 visible lg:hidden justify-self-center z-[-1]`}
+            css={tw`h-full absolute justify-self-center z-[1]`}
           />
         </div>
       )}

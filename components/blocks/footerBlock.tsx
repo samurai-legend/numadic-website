@@ -1,6 +1,6 @@
 import tw from "twin.macro";
 import { ContentWrapper, NavItem, SectionContainer } from "./common";
- 
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
@@ -39,9 +39,19 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
       <div
         css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
       >
-        <MapPattern />
+        <div css={tw`container mx-auto`}>
+          <MapPattern />
+        </div>
       </div>
       <ContentWrapper css={tw`flex flex-col justify-between`}>
+        {/* filler */}
+        <Typography
+          as="span"
+          type="overline"
+          css={tw`hidden lg:(visible block text-transparent)`}
+        >
+          {"filler"}
+        </Typography>
         <div
           css={tw`flex-[50%] grid grid-cols-1 text-center grid-flow-row lg:(grid-flow-col grid-cols-2 text-left)`}
         >
@@ -68,7 +78,9 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 India
               </Typography>
               <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
-                Greyscale HQ, Dona Paula, Goa 403 004
+                Greyscale HQ,
+                <br /> Dona Paula, <br />
+                Goa 403 004
               </Typography>
             </div>
             <div>
@@ -76,7 +88,11 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 uk
               </Typography>
               <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
-                10 John Street, London, United Kingdom WC1N 2EB
+                10 John Street,
+                <br /> London,
+                <br />
+                United Kingdom
+                <br /> WC1N 2EB
               </Typography>
             </div>
           </motion.div>
@@ -176,7 +192,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-cols-1 grid-flow-row py-2 border-t-[0.5px] border-gray-400 lg:(grid-cols-3 grid-flow-col)`}
+            css={tw`grid grid-cols-1 grid-flow-row py-2 border-t-[0.5px] border-[#333333] lg:(grid-cols-3 grid-flow-col)`}
           >
             <Typography
               as="span"

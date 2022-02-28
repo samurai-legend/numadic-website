@@ -20,7 +20,7 @@ export const Typography = motion(
         return [
           ...includeColor,
           tw`text-heading-2-sm font-normal`,
-          tw`leading-[2.75rem] 2xl:(max-w-6xl leading-[2.75rem])`,
+          tw`2xl:(max-w-6xl)`,
           tw`xl:text-heading-2`,
         ];
       case "h3":
@@ -67,14 +67,20 @@ export const Typography = motion(
           case "overline":
             return [
               ...includeColor,
-              tw`text-overline uppercase text-gray-light font-bold w-max block`,
+              tw`text-overline-sm uppercase text-gray-light font-bold w-max block`,
+              tw`md:text-overline`,
             ];
           case "caption":
-            return [...includeColor, tw`text-caption leading-[34px] block`];
+            return [
+              ...includeColor,
+              tw`text-caption-sm leading-[34px] block`,
+              tw`md:text-caption`,
+            ];
           default:
             return [
               ...includeColor,
               tw`text-overline uppercase text-gray-light font-bold w-max block`,
+              tw`md:text-overline`,
             ];
         }
       default:

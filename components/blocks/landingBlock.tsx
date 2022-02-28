@@ -5,10 +5,12 @@ import AnimatedCharacters from "animations/animatedCharacters";
 import VerticalLine from "../elements/VerticalLine";
 
 const LandingContainer = styled.div(() => [
-  tw`h-screen flex-shrink-0 w-full text-center  flex flex-col justify-center items-center gap-y-5 relative top-0 
+  tw`h-screen flex-shrink-0 w-full text-center  flex flex-col justify-center items-center gap-y-5 relative 
+  pb-40
+  top-0 
   lg:-top-8
   xl:-top-9`,
-  tw`lg:(w-screen h-full gap-y-16)`,
+  tw`lg:(w-screen h-full gap-y-16 pb-0)`,
   tw`xl:(gap-y-20)`,
   tw`2xl:(gap-y-24)`,
 ]);
@@ -50,7 +52,7 @@ const LandingBlock: FunctionComponent<any> = forwardRef(
         digital experiences through Mobile & Web Apps"
           />
           <VerticalLine
-            css={tw`h-52 md:h-80 absolute bottom-2 visible lg:hidden`}
+            css={tw`h-60 md:h-80 absolute bottom-2 visible lg:hidden`}
           />
         </LandingContainer>
       </>

@@ -85,13 +85,13 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               "horizontal"
             )
           );
-          setAnimExitLines(
-            IsColliding(
-              lineGroupRef.current,
-              animExitLinesRef.current,
-              "horizontal"
-            )
-          );
+          // setAnimExitLines(
+          //   IsColliding(
+          //     lineGroupRef.current,
+          //     animExitLinesRef.current,
+          //     "horizontal"
+          //   )
+          // );
         }
       }
     });
@@ -116,7 +116,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`leading-[1.75rem] max-w-full text-center 2xl:(max-w-6xl) md:(max-w-3xl) lg:(text-left max-w-4xl)`}
+              css={tw`leading-[1.25rem] max-w-full text-center 2xl:(max-w-6xl) md:(max-w-3xl) lg:(text-left max-w-4xl)`}
               text="Undisrupting the connectivity between banks, automakers, logistics &
             infra companies"
             />
@@ -155,7 +155,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
 
         {!IsMobile && (
           <>
-            <BottomContainer>
+            {/* <BottomContainer>
               <div css={tw`w-full z-0 relative container m-auto -right-14`}>
                 <div
                   css={tw`absolute right-0 z-20 top-1/2`}
@@ -174,7 +174,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
                   />
                 </LinesCurve>
               </div>
-            </BottomContainer>
+            </BottomContainer> */}
 
             <BottomContainer css={tw`z-50`}>
               {/* <LinesCurve direction="up" position="left">

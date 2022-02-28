@@ -4,7 +4,7 @@ import tw from "twin.macro";
 import { css } from "@emotion/react";
 
 const SectionContainer = styled.div(() => [
-  tw`h-auto w-screen relative lg:(h-full)`,
+  tw`h-auto w-screen relative my-20 lg:(h-full my-0)`,
 ]);
 
 const ContentWrapper = styled.div(() => [

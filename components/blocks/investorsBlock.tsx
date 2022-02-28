@@ -13,12 +13,13 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import VerticalLine from "../elements/VerticalLine";
 import MapPattern from "../elements/mapPattern";
+import { Typography } from "../typography";
 
 const LogoContainer = styled.div(() => [
-  tw`relative justify-self-center`,
+  tw`relative justify-self-center lg:(justify-self-start)`,
   css`
     svg {
-      ${tw`w-full h-10 lg:(w-40 h-16) xl:(w-40 h-16) 2xl:(w-52 h-20)`}
+      ${tw`w-full h-8 md:(h-10) lg:(w-auto h-12) xl:(w-auto h-14) 2xl:(w-auto h-16)`}
     }
   `,
 ]);
@@ -27,12 +28,23 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
       <div
-        css={tw`absolute w-screen h-full flex justify-center items-center z-0 `}
+        css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
       >
-        <MapPattern />
+        <div css={tw`container mx-auto`}>
+          <MapPattern />
+        </div>
       </div>
+
       <ContentWrapper css={tw`flex flex-col justify-center`}>
         <div css={tw`flex-[50%]`}>
+          {/* filler */}
+          <Typography
+            as="span"
+            type="overline"
+            css={tw`hidden lg:(visible block text-transparent)`}
+          >
+            {"filler"}
+          </Typography>
           <div
             css={tw`h-full grid grid-flow-row gap-4 text-center grid-cols-1 lg:(grid-cols-2 grid-flow-col text-left)`}
           >
@@ -42,9 +54,10 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`leading-[2.75rem] max-w-full
-             text-center  
-             lg:(max-w-md! text-left)`}
+              css={tw`leading-[1.25rem] max-w-full text-center 
+              2xl:(max-w-lg leading-[3.75rem]) 
+              lg:(max-w-md! text-left leading-[2.75rem])
+             `}
               text="Fueled by terrific investors"
             />
             <motion.div
@@ -52,7 +65,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={TextEntryVariant}
-              css={tw`grid grid-rows-2 grid-flow-col gap-y-10 gap-x-10  lg:(gap-y-5)`}
+              css={tw`grid grid-rows-2 grid-flow-col gap-y-10 gap-x-10 mt-5 lg:(gap-y-5 mt-0)`}
             >
               <LogoContainer>
                 <DynamoLogo />
@@ -71,7 +84,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
         </div>
         <div css={tw`flex-[50%]`}>
           <div
-            css={tw`grid grid-cols-1 grid-flow-row gap-4 mt-10 lg:(grid-cols-2 grid-flow-col mt-20)`}
+            css={tw`grid grid-cols-1 grid-flow-row gap-4 mt-20 mb-20 lg:(grid-cols-2 grid-flow-col mb-0)`}
           >
             <div
               css={tw`justify-self-center text-center lg:(justify-self-start text-left) flex flex-col gap-y-4`}
@@ -92,7 +105,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                css={tw`block max-w-lg leading-3 lg:(leading-5!)`}
+                css={tw`block max-w-sm leading-3! lg:(leading-5!)`}
                 text="We’re always on the lookout for bright, humble people to join our
               journey."
               />
@@ -102,7 +115,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={TextEntryVariant}
-              css={tw`justify-self-center self-center lg:(justify-self-start self-start)`}
+              css={tw`justify-self-center self-center lg:(justify-self-start)`}
             >
               <button
                 css={tw`border-white border-2 appearance-none text-white font-normal

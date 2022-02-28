@@ -59,7 +59,7 @@ const TransactionStats: React.FC<any> = (props: any) => {
       <Typography as="h2" isColor css={tw`font-bold`}>
         <Counter isAnimate={isAnimate} from={from} to={to} />
       </Typography>
-      <Typography as="span" type="overline" css={tw`uppercase`}>
+      <Typography as="span" type="overline" css={tw`uppercase tracking-[0.15em]`}>
         {text}
       </Typography>
     </motion.div>

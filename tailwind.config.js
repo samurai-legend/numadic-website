@@ -28,13 +28,13 @@ module.exports = {
       "body-3-lg": ["0.675rem", "2.5rem"],
 
       "heading-1-sm": ["2.125rem", "2.5rem"],
-      "heading-2-sm": ["1.438rem", "2.5rem"],
-      "heading-3-sm": ["1rem", "2.5rem"],
-      "body-1-sm": ["1rem", "1.5rem"],
-      "body-2-sm": ["0.875rem", "1.2rem"],
-      "body-3-sm": ["0.75rem", "1rem"],
-      caption: ["0.688rem", "2.5rem"],
-      overline: ["0.625rem", "2.5rem"],
+      "heading-2-sm": ["1.438rem", "1.25rem"],
+      "heading-3-sm": ["1rem", "1.25rem"],
+      "body-1-sm": ["1rem", "1.25rem"],
+      "body-2-sm": ["0.875rem", "1.25rem"],
+      "body-3-sm": ["0.75rem", "1.25rem"],
+      "caption-sm": ["0.688rem", "1.5rem"],
+      "overline-sm": ["0.625rem", "1.5rem"],
     },
     extend: {
       colors: {

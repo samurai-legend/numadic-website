@@ -13,7 +13,7 @@ const VerticalLine: React.FC<any> = (props: any) => {
     view: {
       pathLength: 1,
       transition: {
-        duration: 2,
+        duration: 0.8,
       },
     },
     hidden: { pathLength: 0 },
@@ -32,7 +32,7 @@ const VerticalLine: React.FC<any> = (props: any) => {
   };
   return (
     <SvgElementMobile
-      viewBox={`0 0 49.39 750.08`}
+      viewBox={`0 0 32 254`}
       {...props}
       whileInView="view"
       initial="hidden"
@@ -41,11 +41,10 @@ const VerticalLine: React.FC<any> = (props: any) => {
       <defs>
         <linearGradient
           id="linear-gradient"
-          x1="363.42"
-          y1="228.73"
-          x2="-349.38"
-          y2="228.73"
-          gradientTransform="matrix(0, 1, 1, 0, -204.09, 349.38)"
+          x1="13.8486"
+          y1="0.0209961"
+          x2="13.8486"
+          y2="231.35"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset="0" stopColor="#ffc7a4" stopOpacity="1" />
@@ -59,36 +58,31 @@ const VerticalLine: React.FC<any> = (props: any) => {
           spreadMethod="repeat"
         />
       </defs>
-      <LineGroup>
-        <g id="group_line">
-          <LineStroke
-            id="line"
-            x1="24.64"
-            x2="24.64"
-            y2="712.8"
-            vectorEffect="non-scaling-stroke"
-            style={{
-              fill: "none",
-              strokeMiterlimit: 10,
-              strokeWidth: "9px",
-              stroke: "url(#repeat)",
-              fillOpacity: 1,
-            }}
-            variants={variants}
-          />
-        </g>
-        <ArrowGroup variants={arrow}>
-          <motion.path
-            d="M36.89,709.08l1.1,2.8-1.1-2.8-11.8,4.5a.85.85,0,0,1-.7,0l-11.9-4.5A7.06,7.06,0,0,0,4,719.28l14.6,24.4a7,7,0,0,0,9.6,2.4,6.89,6.89,0,0,0,2.4-2.4l14.8-24.4a7,7,0,0,0-2.4-9.6,7.29,7.29,0,0,0-6.1-.6Z"
-            style={{
-              fill: "#fff",
-              stroke: "#242021",
-              strokeWidth: "6px",
-              fillOpacity: 1,
-            }}
-          />
-        </ArrowGroup>
-      </LineGroup>
+
+      <LineStroke
+        x1="15.8486"
+        y1="0.0209962"
+        x2="15.8486"
+        y2="231.35"
+        stroke="url(#repeat)"
+        strokeWidth="4"
+        vectorEffect="non-scaling-stroke"
+        variants={variants}
+      />
+      <ArrowGroup variants={arrow}>
+        <path
+          d="M17.4756 248.546C16.7038 249.869 14.7922 249.869 14.0205 248.546L4.63103 232.45C3.67733 230.815 5.3176 228.893 7.08215 229.578L15.0245 232.66C15.49 232.841 16.0061 232.841 16.4716 232.66L24.4139 229.578C26.1785 228.893 27.8188 230.815 26.8651 232.45L17.4756 248.546Z"
+          fill="white"
+          fillOpacity="1"
+        />
+        <path
+          d="M2.90347 233.458L12.2929 249.554C13.8364 252.2 17.6596 252.2 19.2032 249.554L28.5926 233.458C30.5 230.188 27.2195 226.344 23.6904 227.713L15.748 230.795L7.80571 227.713C4.27663 226.344 0.996059 230.188 2.90347 233.458Z"
+          stroke="#1B1B1B"
+          strokeWidth="4"
+          fill="white"
+          fillOpacity="1"
+        />
+      </ArrowGroup>
     </SvgElementMobile>
   );
 };
