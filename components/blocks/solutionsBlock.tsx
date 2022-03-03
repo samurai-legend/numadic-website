@@ -155,35 +155,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
 
         {!IsMobile && (
           <>
-            {/* <BottomContainer>
-              <div css={tw`w-full z-0 relative container m-auto -right-14`}>
-                <div
-                  css={tw`absolute right-0 z-20 top-1/2`}
-                  ref={animExitLinesRef}
-                ></div>
-                <LinesCurve direction="up" position="right">
-                  <GradientLineUp
-                    path="M209.55,0h0A177.5,177.5,0,0,1,32,177.51H0"
-                    isAnimate={animExitLines}
-                  />
-                </LinesCurve>
-                <LinesCurve direction="down" position="right">
-                  <GradientLineUp
-                    path="M209.55,0h0A177.5,177.5,0,0,1,32,177.51H0"
-                    isAnimate={animExitLines}
-                  />
-                </LinesCurve>
-              </div>
-            </BottomContainer> */}
-
             <BottomContainer css={tw`z-50`}>
-              {/* <LinesCurve direction="up" position="left">
-            <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
-          </LinesCurve>
-          <LinesCurve direction="down" position="left">
-            <GradientLineUp path="M0.9,177.9h32c98,0,177.5-79.5,177.5-177.5l0,0" isAnimate/>
-          </LinesCurve> */}
-
               <div
                 css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-50 container m-auto`}
               >

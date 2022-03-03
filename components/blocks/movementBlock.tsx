@@ -1,5 +1,5 @@
 import tw from "twin.macro";
-import { SectionContainer, ContentWrapper } from "./common";
+import { SectionContainer, ContentWrapper, MapWrapper } from "./common";
 
 import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import BoschLogo from "@/svg/brands/bosh.svg";
@@ -18,26 +18,25 @@ import MapPattern from "../elements/mapPattern";
 const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
-      <div
-        css={tw`absolute w-screen h-full flex justify-center items-center z-0 pointer-events-none`}
-      >
+      <MapWrapper>
         <div css={tw`container mx-auto`}>
           <MapPattern />
         </div>
-      </div>
+      </MapWrapper>
       <ContentWrapper css={tw`flex flex-col justify-between `}>
+        {/* filler */}
+        <Typography
+          as="span"
+          type="overline"
+          css={tw`hidden lg:(visible block text-transparent)`}
+        >
+          {"filler"}
+        </Typography>
         <div css={tw`flex-[50%]`}>
           <div
             css={tw`flex flex-col items-center h-full text-center 
             lg:(items-start text-left justify-between)`}
           >
-            <Typography
-              as="span"
-              type="overline"
-              css={tw`hidden lg:(visible block)`}
-            >
-              {" "}
-            </Typography>
             <AnimatedCharacters
               as="h2"
               isColor
@@ -45,8 +44,8 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               whileInView="visible"
               viewport={{ once: true }}
               css={tw`leading-[1.25rem] max-w-full text-center 
-              2xl:(max-w-6xl leading-[3.75rem]) 
-              lg:(text-left leading-[2.75rem])`}
+              2xl:(max-w-6xl) 
+              lg:(text-left)`}
               text="Undisrupting movement"
             />
             <div

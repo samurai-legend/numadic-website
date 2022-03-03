@@ -59,10 +59,21 @@ const NavDropdownContainer = styled(motion.ul)(() => [
   `,
 ]);
 
+const MapWrapper = styled.div(() => [
+  tw`absolute w-screen h-full flex justify-center items-center z-0 pointer-events-none`,
+]);
+
+const SquareButton = styled.a(() => [
+  tw`border-white block cursor-pointer border-2 appearance-none text-white font-normal
+               text-body-2 px-8 py-1 hover:(bg-gray-700) transition-all duration-150 ease-in`,
+]);
+
 export {
   SectionContainer,
   ContentWrapper,
   NavContainer,
   NavItem,
   NavDropdownContainer,
+  MapWrapper,
+  SquareButton
 };

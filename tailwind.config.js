@@ -43,6 +43,7 @@ module.exports = {
         "blue-light": "#70DDFF",
         "black-dark": "#1B1B1B",
         "gray-light": "#999999",
+        "gray-medium": "#393939",
         success: "#22CD9D",
       },
       screens: {

@@ -1,5 +1,10 @@
 import tw from "twin.macro";
-import { ContentWrapper, NavItem, SectionContainer } from "./common";
+import {
+  ContentWrapper,
+  MapWrapper,
+  NavItem,
+  SectionContainer,
+} from "./common";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -33,16 +38,45 @@ const SocialLinks = styled(motion.a)(() => [
   `,
 ]);
 
+const MiscellaneousContainer = styled(motion.div)(() => [
+  tw`grid grid-cols-1 grid-flow-row py-2 border-t-[0.5px] border-[#333333] lg:(grid-cols-3 grid-flow-col)`,
+]);
+
+const TermAndCondition = styled.ul(() => [
+  tw`flex justify-self-center lg:(justify-self-end) gap-x-5`,
+]);
+
+const FooterContainer = styled.div(() => [
+  tw`flex-[50%] flex flex-col justify-between`,
+]);
+
+const FooterContentWrapper = styled.div(() => [
+  tw`grid grid-cols-1 grid-flow-row mt-20 gap-y-10 pb-5`,
+  tw`lg:(grid-cols-3 grid-flow-col  mt-10)`,
+  tw`w-h-lg:(pb-8)`,
+]);
+
+const LocationContainer = styled.div(() => [
+  tw`flex-[50%] grid grid-cols-1 text-center grid-flow-row `,
+  tw`lg:(grid-flow-col grid-cols-2 text-left)`,
+]);
+
+const AddressWrapper = styled(motion.div)(() => [
+  tw`grid grid-rows-2 grid-cols-none 
+  grid-flow-row justify-center text-center 
+  `,
+  tw`lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start)`,
+]);
+
 const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
-      <div
-        css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
-      >
+      <MapWrapper>
         <div css={tw`container mx-auto`}>
           <MapPattern />
         </div>
-      </div>
+      </MapWrapper>
+
       <ContentWrapper css={tw`flex flex-col justify-between`}>
         {/* filler */}
         <Typography
@@ -52,26 +86,23 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
         >
           {"filler"}
         </Typography>
-        <div
-          css={tw`flex-[50%] grid grid-cols-1 text-center grid-flow-row lg:(grid-flow-col grid-cols-2 text-left)`}
-        >
+        <LocationContainer>
           <AnimatedCharacters
             as="h2"
             isColor
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            css={tw`leading-[2.75rem] max-w-full
-             text-center 2xl:(leading-[3.75rem]) 
+            css={tw`leading-[1.25rem] max-w-full
+             text-center 
              lg:(max-w-3xl text-left)`}
             text="Locations"
           />
-          <motion.div
+          <AddressWrapper
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-rows-2 grid-cols-none grid-flow-row justify-center text-center lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start)`}
           >
             <div>
               <Typography as="span" type="overline" css={tw`w-full lg:(w-max)`}>
@@ -95,23 +126,18 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 <br /> WC1N 2EB
               </Typography>
             </div>
-          </motion.div>
-        </div>
-        <div css={tw`flex-[50%] flex flex-col justify-between`}>
-          <div
-            css={tw`grid grid-cols-1 grid-flow-row mt-20
-             gap-y-10 pb-5
-             lg:(grid-cols-3 grid-flow-col  mt-10)
-             w-h-lg:(pb-8)`}
-          >
+          </AddressWrapper>
+        </LocationContainer>
+        <FooterContainer>
+          <FooterContentWrapper>
             <AnimatedCharacters
               as="h2"
               isColor
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`leading-[2.75rem] max-w-full
-             text-center 2xl:(leading-[3.75rem]) 
+              css={tw`leading-[1.25rem] max-w-full
+             text-center
              lg:(max-w-3xl text-left)`}
               text="Other links"
             />
@@ -186,13 +212,12 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 </SocialLinks>
               </Link>
             </SocialMediaContainer>
-          </div>
-          <motion.div
+          </FooterContentWrapper>
+          <MiscellaneousContainer
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`grid grid-cols-1 grid-flow-row py-2 border-t-[0.5px] border-[#333333] lg:(grid-cols-3 grid-flow-col)`}
           >
             <Typography
               as="span"
@@ -211,7 +236,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               Warm regards from Goa, India
             </Typography>
 
-            <ul
+            <TermAndCondition
               css={tw`flex justify-self-center lg:(justify-self-end) gap-x-5`}
             >
               <NavItem>
@@ -253,9 +278,9 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                   </a>
                 </Link>
               </NavItem>
-            </ul>
-          </motion.div>
-        </div>
+            </TermAndCondition>
+          </MiscellaneousContainer>
+        </FooterContainer>
       </ContentWrapper>
     </SectionContainer>
   );

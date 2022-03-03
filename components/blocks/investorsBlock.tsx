@@ -1,5 +1,10 @@
 import tw from "twin.macro";
-import { ContentWrapper, SectionContainer } from "./common";
+import {
+  ContentWrapper,
+  MapWrapper,
+  SectionContainer,
+  SquareButton,
+} from "./common";
 
 import { forwardRef } from "react";
 import NineUnifcornLogo from "@/svg/brands/9unifcorn.svg";
@@ -14,6 +19,7 @@ import { css } from "@emotion/react";
 import VerticalLine from "../elements/VerticalLine";
 import MapPattern from "../elements/mapPattern";
 import { Typography } from "../typography";
+import Link from "next/link";
 
 const LogoContainer = styled.div(() => [
   tw`relative justify-self-center lg:(justify-self-start)`,
@@ -27,13 +33,11 @@ const LogoContainer = styled.div(() => [
 const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
-      <div
-        css={tw`absolute w-screen h-full flex justify-center items-center z-0`}
-      >
+      <MapWrapper>
         <div css={tw`container mx-auto`}>
           <MapPattern />
         </div>
-      </div>
+      </MapWrapper>
 
       <ContentWrapper css={tw`flex flex-col justify-center`}>
         <div css={tw`flex-[50%]`}>
@@ -55,8 +59,8 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               whileInView="visible"
               viewport={{ once: true }}
               css={tw`leading-[1.25rem] max-w-full text-center 
-              2xl:(max-w-lg leading-[3.75rem]) 
-              lg:(max-w-md! text-left leading-[2.75rem])
+              2xl:(max-w-lg) 
+              lg:(max-w-md! text-left)
              `}
               text="Fueled by terrific investors"
             />
@@ -117,12 +121,9 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               variants={TextEntryVariant}
               css={tw`justify-self-center self-center lg:(justify-self-start)`}
             >
-              <button
-                css={tw`border-white border-2 appearance-none text-white font-normal
-               text-body-2 px-8 py-1 hover:(bg-gray-700) transition-all duration-150 ease-in`}
-              >
-                View open positions
-              </button>
+              <Link href="#">
+                <SquareButton>View open positions</SquareButton>
+              </Link>
             </motion.div>
           </div>
         </div>

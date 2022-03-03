@@ -92,22 +92,23 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
             Icon={FuelIcon}
             amount="2,500"
             css={tw`row-start-1`}
+            direction="right"
           />
 
           <PaymentStatsUC
             Icon={ParkingIcon}
             amount="2,500"
             css={tw`row-start-2 col-start-2`}
+            direction="left"
           />
 
           <PaymentStatsUC
             Icon={TicketsIcon}
             amount="2,500"
             css={tw`row-start-3`}
+            direction="right"
           />
-          <VerticalLine
-            css={tw`h-full absolute justify-self-center z-[1]`}
-          />
+          <VerticalLine css={tw`h-full absolute justify-self-center z-[1]`} />
         </div>
       )}
     </>

@@ -52,7 +52,7 @@ const LandingBlock: FunctionComponent<any> = forwardRef(
         digital experiences through Mobile & Web Apps"
           />
           <VerticalLine
-            css={tw`h-60 md:h-80 absolute bottom-2 visible lg:hidden`}
+            css={tw`h-60 md:h-80 absolute bottom-16 visible lg:hidden`}
           />
         </LandingContainer>
       </>

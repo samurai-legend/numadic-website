@@ -14,6 +14,14 @@ import { IsColliding } from "helpers/colliding";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
+import styled from "@emotion/styled";
+
+const UseCaseCardContainer = styled(motion.div)(() => [
+  tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center
+           mb-0 gap-x-5 lg:(px-5 py-4 max-w-md mt-20) xl:(max-w-lg)`,
+]);
+
+const UseCaseCardImage = styled.div(() => [tw`inline-block w-max`]);
 
 const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
   const { lineGroupRef } = useContext(GlobalLineContext);
@@ -110,17 +118,15 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
         </div>
 
         <div css={tw`flex-[50%]`}>
-          <motion.div
+          <UseCaseCardContainer
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={TextEntryVariant}
-            css={tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center
-           mb-0 gap-x-5 lg:(px-5 py-4 max-w-md mt-20) xl:(max-w-lg)`}
           >
-            <div css={tw`inline-block w-max`}>
+            <UseCaseCardImage>
               <HpclLogo />
-            </div>
+            </UseCaseCardImage>
             <div>
               <Typography as="span" type="overline">
                 Case study
@@ -134,7 +140,7 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 How Numadic helped HPCL accept payments for fuel through FASTag
               </Typography>
             </div>
-          </motion.div>
+          </UseCaseCardContainer>
         </div>
       </ContentWrapper>
     </SectionContainer>

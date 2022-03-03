@@ -19,19 +19,16 @@ const LineStroke = styled(motion.line)(() => [tw`relative`]);
 const LineGroup = styled.g(() => []);
 
 const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
-  const { scrollYProgress, scrollY } = useViewportScroll();
+  const { scrollYProgress } = useViewportScroll();
 
   const { scrollRange, viewportW, IsMobile } = useContext(ScrollContext);
 
   const transform = useTransform(
-    scrollY,
-    [0, scrollRange],
-    [
-      IsMobile ? viewportW / 3 : viewportW / 2,
-      IsMobile ? scrollRange - 842 : scrollRange,
-    ]
+    scrollYProgress,
+    [0, 1],
+    [viewportW / 2, scrollRange - viewportW / 12]
   );
-  const physics = { stiffness: 30, mass: 0.05, damping: 5 };
+  const physics = { stiffness: 30, mass: 0.02, damping: 5 };
 
   const spring = useSpring(transform, physics);
 
