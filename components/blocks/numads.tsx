@@ -29,12 +29,41 @@ const Numads: React.FC<any> = (props: any) => {
         <div
           css={tw`grid grid-flow-row grid-cols-4 w-full h-full gap-y-24 mt-32`}
         >
-          <NumadsCard />
-          <NumadsCard />
-          <NumadsCard />
-          <NumadsCard />
-          <NumadsCard />
-          <NumadsCard />
+          <NumadsCard
+            src="/images/luke.png"
+            ocupation="Founder, CEO"
+            name="Luke"
+          />
+          <NumadsCard
+            src="/images/aprup.png"
+            ocupation="co-founder"
+            name="Luke"
+          />
+          <NumadsCard
+            src="/images/luke.png"
+            ocupation="Founder, CEO"
+            name="Luke"
+          />
+          <NumadsCard
+            src="/images/luke.png"
+            ocupation="Founder, CEO"
+            name="Luke"
+          />
+          <NumadsCard
+            src="/images/aprup.png"
+            ocupation="co-founder"
+            name="Luke"
+          />
+          <NumadsCard
+            src="/images/aprup.png"
+            ocupation="co-founder"
+            name="Luke"
+          />
+          <NumadsCard
+            src="/images/luke.png"
+            ocupation="Founder, CEO"
+            name="Luke"
+          />
         </div>
       </InnerContentWrapper>
     </ContentWrapper>
