@@ -32,7 +32,7 @@ const NumadsCard: React.FC<any> = (props: any) => {
       </ImageContainer>
 
       <div css={tw`mt-5`}>
-        <Typography as="h3" isColor css={tw`font-normal leading-6!`}>
+        <Typography as="p" isColor css={tw`font-bold leading-6!`} type="body-1">
           Luke
         </Typography>
         <Typography as="p" isColor css={tw`font-normal`} type="body-3">
