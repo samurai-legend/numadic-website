@@ -24,131 +24,132 @@ const MessageBubble = styled(motion.div)((props: any) => [
   ],
 ]);
 
-const PaymentStatsUC: React.FC<any> = forwardRef((props: any, ref: any) => {
-  const { amount, Icon, isAnimate, direction } = props;
-  const PathVariant = {
-    hidden: {
-      scale: 0,
-      opacity: 0,
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 1,
-        type: "spring",
-        damping: 25,
-        mass: 0.02,
+const PaymentStatsUC: React.FC<any> = forwardRef(
+  ({ amount, Icon, isAnimate, direction, ...props }: any, ref: any) => {
+    const PathVariant = {
+      hidden: {
+        scale: 0,
+        opacity: 0,
       },
-    },
-  };
-
-  const CheckPathVariant = {
-    hidden: {
-      pathLength: 0,
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      pathLength: 1,
-      transition: {
-        duration: 0.5,
+      visible: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 1,
+          type: "spring",
+          damping: 25,
+          mass: 0.02,
+        },
       },
-    },
-  };
+    };
 
-  const CircleVariant = {
-    hidden: {
-      scale: 0,
-      opacity: 0,
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
+    const CheckPathVariant = {
+      hidden: {
+        pathLength: 0,
+        opacity: 0,
       },
-    },
-  };
-
-  const ContentVariant = {
-    hidden: {
-      scale: 0,
-      opacity: 0,
-      rotate: 90,
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      rotate: 0,
-      transition: {
-        duration: 0.5,
+      visible: {
+        opacity: 1,
+        pathLength: 1,
+        transition: {
+          duration: 0.5,
+        },
       },
-    },
-  };
+    };
 
-  const [animateObject, setAnimateObject] = useState({});
+    const CircleVariant = {
+      hidden: {
+        scale: 0,
+        opacity: 0,
+      },
+      visible: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 0.5,
+        },
+      },
+    };
 
-  useEffect(() => {
-    isAnimate != null
-      ? setAnimateObject({
-          animate: isAnimate && "visible",
-        })
-      : setAnimateObject({
-          whileInView: "visible",
-          viewport: { once: true },
-        });
-  }, [isAnimate]);
+    const ContentVariant = {
+      hidden: {
+        scale: 0,
+        opacity: 0,
+        rotate: 90,
+      },
+      visible: {
+        scale: 1,
+        opacity: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.5,
+        },
+      },
+    };
 
-  return (
-    <motion.div
-      css={[
-        tw`relative w-full max-w-[105px] h-[max-content] self-end justify-self-center`,
-      ]}
-      {...props}
-      initial="hidden"
-      {...animateObject}
-      transition={{ staggerChildren: 0.5, delayChildren: 0.5 }}
-      ref={ref}
-    >
-      <MessageBubble
-        variants={PathVariant}
-        direction={direction ? direction : "bottom"}
+    const [animateObject, setAnimateObject] = useState({});
+
+    useEffect(() => {
+      isAnimate != null
+        ? setAnimateObject({
+            animate: isAnimate && "visible",
+          })
+        : setAnimateObject({
+            whileInView: "visible",
+            viewport: { once: true },
+          });
+    }, [isAnimate]);
+
+    return (
+      <motion.div
+        css={[
+          tw`relative w-full max-w-[105px] h-[max-content] self-end justify-self-center`,
+        ]}
+        {...props}
+        initial="hidden"
+        {...animateObject}
+        transition={{ staggerChildren: 0.5, delayChildren: 0.5 }}
+        ref={ref}
       >
-        <motion.div
-          variants={ContentVariant}
-          css={tw`flex justify-center items-center 
+        <MessageBubble
+          variants={PathVariant}
+          direction={direction ? direction : "bottom"}
+        >
+          <motion.div
+            variants={ContentVariant}
+            css={tw`flex justify-center items-center 
           flex-col gap-y-1`}
-        >
-          <div css={tw`h-10 w-8`}>
-            <Icon />
-          </div>
-          <span css={tw`font-normal text-white text-body-1`}>₹{amount}</span>
-        </motion.div>
-        <motion.div
-          variants={CircleVariant}
-          css={tw`h-8 w-8 flex justify-center items-center rounded-full bg-success absolute -top-2 -right-2 border-[#242021] border-2`}
-        >
-          <motion.svg
-            width="17"
-            height="14"
-            viewBox="0 0 17 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <motion.path
-              d="M1.58759,8.40805L5.4509,12.0181L14.9685,2.49097"
-              variants={CheckPathVariant}
-              stroke="white"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </motion.svg>
-        </motion.div>
-      </MessageBubble>
-    </motion.div>
-  );
-});
+            <div css={tw`h-10 w-8`}>
+              <Icon />
+            </div>
+            <span css={tw`font-normal text-white text-body-1`}>₹{amount}</span>
+          </motion.div>
+          <motion.div
+            variants={CircleVariant}
+            css={tw`h-8 w-8 flex justify-center items-center rounded-full bg-success absolute -top-2 -right-2 border-[#242021] border-2`}
+          >
+            <motion.svg
+              width="17"
+              height="14"
+              viewBox="0 0 17 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <motion.path
+                d="M1.58759,8.40805L5.4509,12.0181L14.9685,2.49097"
+                variants={CheckPathVariant}
+                stroke="white"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </motion.svg>
+          </motion.div>
+        </MessageBubble>
+      </motion.div>
+    );
+  }
+);
 PaymentStatsUC.displayName = "PaymentStatsUC";
 export default PaymentStatsUC;

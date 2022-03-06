@@ -47,7 +47,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             type="overline"
             css={tw`hidden lg:(visible block text-transparent)`}
           >
-            {"filler"}
+            {"-"}
           </Typography>
           <div
             css={tw`h-full grid grid-flow-row gap-4 text-center grid-cols-1 lg:(grid-cols-2 grid-flow-col text-left)`}

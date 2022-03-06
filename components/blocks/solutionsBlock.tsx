@@ -14,7 +14,7 @@ import { ContentWrapper, SectionContainer } from "./common";
 import VehiclePaymentIcon from "@/svg/solutions/vehicle_payment.svg";
 import VehicleIntegrationIcon from "@/svg/solutions/vehicle_integration.svg";
 import VehicleIdentificationIcon from "@/svg/solutions/vehicle_identification.svg";
-import { GlobalLineContext } from "../layouts";
+
 import { IsColliding } from "helpers/colliding";
 import { useAnimationFrame, useElementScroll } from "framer-motion";
 import { TextEntryVariant } from "animations";
@@ -22,6 +22,7 @@ import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
 import VerticalLine from "../elements/VerticalLine";
+import { GlobalLineContext } from "../layouts/horizontalScroll";
 
 const LinesCurve = styled.div(({ direction, position }: any) => [
   tw`w-28 xl:w-32 2xl:w-44 absolute top-[50%] `,

@@ -84,7 +84,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
           type="overline"
           css={tw`hidden lg:(visible block text-transparent)`}
         >
-          {"filler"}
+          {"-"}
         </Typography>
         <LocationContainer>
           <AnimatedCharacters

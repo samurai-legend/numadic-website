@@ -1,44 +1,23 @@
-import styled from "@emotion/styled";
-import {
-  createContext,
-  FunctionComponent,
-  ReactElement,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import tw from "twin.macro";
+import { FunctionComponent, ReactElement } from "react";
+
 import StarBackgroundBlock from "../blocks/startBackgroundBlock";
-import GradientLine from "../elements/gradientLine";
-import VerticalLine from "../elements/VerticalLine";
 
 import Header from "./header";
 import Seo, { SeoProps } from "./seo";
-import SmoothScroll from "./smoothScroll";
+import { ScrollDirection } from "./smoothScroll";
 
-const ContainerWrapper = styled.div(() => [
-  tw`w-max h-full relative flex flex-col lg:flex-row`,
-]);
-
-export const GlobalLineContext = createContext<any>({});
-
-const Layout: FunctionComponent<LayoutProps> = ({ children, seo }) => {
-  const lineGroupRef = useRef(null);
-
+const Layout: FunctionComponent<LayoutProps> = ({
+  children,
+  seo,
+  direction,
+}) => {
+  
   return (
     <>
       <Seo {...seo} />
       <Header />
-      <StarBackgroundBlock />
-      <GlobalLineContext.Provider value={{ lineGroupRef: lineGroupRef }}>
-        <SmoothScroll>
-          <>
-            <GradientLine ref={lineGroupRef} />
-            <ContainerWrapper>{children}</ContainerWrapper>
-          </>
-        </SmoothScroll>
-      </GlobalLineContext.Provider>
+      <StarBackgroundBlock direction={direction} />
+      {children}
     </>
   );
 };
@@ -48,4 +27,5 @@ export default Layout;
 export interface LayoutProps {
   children?: ReactElement;
   seo: SeoProps;
+  direction: ScrollDirection;
 }

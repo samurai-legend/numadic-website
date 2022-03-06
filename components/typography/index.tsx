@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
@@ -5,11 +6,20 @@ import tw from "twin.macro";
 
 export const Typography = motion(
   styled.div(({ as, type, isColor }: any) => {
-    const includeColor = isColor ? [tw`text-white`] : [];
+    const colorStyles = isColor ? [tw`text-white`] : [];
+    const colorText = [
+      css`
+        .gradientColor {
+          color: red;
+        }
+      `,
+    ];
+    const transitions = [tw`transition-all duration-150 ease-in`];
+    const includeStyles = [...colorStyles, ...colorText, ...transitions];
     switch (as) {
       case "h1":
         return [
-          ...includeColor,
+          ...includeStyles,
           tw`text-heading-1-sm font-bold`,
           tw`leading-[5.5rem]`,
           tw`md:text-heading-1-md`,
@@ -18,14 +28,14 @@ export const Typography = motion(
         ];
       case "h2":
         return [
-          ...includeColor,
+          ...includeStyles,
           tw`text-heading-2-sm font-normal`,
           tw`2xl:(max-w-6xl)`,
           tw`xl:text-heading-2`,
         ];
       case "h3":
         return [
-          ...includeColor,
+          ...includeStyles,
           tw`text-heading-3-sm font-normal`,
           tw`xl:text-heading-3`,
         ];
@@ -39,25 +49,31 @@ export const Typography = motion(
         switch (type) {
           case "body-1":
             return [
-              ...includeColor,
+              ...includeStyles,
               tw`text-body-1-sm font-normal`,
               tw`xl:text-body-1`,
             ];
           case "body-2":
             return [
-              ...includeColor,
+              ...includeStyles,
               tw`text-body-2-sm font-normal`,
               tw`xl:text-body-2`,
             ];
           case "body-3":
             return [
-              ...includeColor,
+              ...includeStyles,
               tw`text-body-3-sm font-normal`,
               tw`xl:text-body-3`,
             ];
+          case "quote":
+            return [
+              ...includeStyles,
+              tw`text-quote-sm font-thin`,
+              tw`xl:text-quote`,
+            ];
           default:
             return [
-              ...includeColor,
+              ...includeStyles,
               tw`text-body-1-sm font-normal`,
               tw`xl:text-body-1`,
             ];
@@ -66,25 +82,25 @@ export const Typography = motion(
         switch (type) {
           case "overline":
             return [
-              ...includeColor,
+              ...includeStyles,
               tw`text-overline-sm uppercase text-gray-light font-bold w-max block`,
               tw`md:text-overline`,
             ];
           case "caption":
             return [
-              ...includeColor,
+              ...includeStyles,
               tw`text-caption-sm leading-[34px] block`,
               tw`md:text-caption`,
             ];
           default:
             return [
-              ...includeColor,
+              ...includeStyles,
               tw`text-overline uppercase text-gray-light font-bold w-max block`,
               tw`md:text-overline`,
             ];
         }
       default:
-        return [...includeColor, tw`text-body-1 font-normal`];
+        return [...includeStyles, tw`text-body-1 font-normal`];
     }
   })
 );

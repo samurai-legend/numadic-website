@@ -1,9 +1,10 @@
 import Layout from "@/components/layouts";
 import { AnimatePresence } from "framer-motion";
-import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { GlobalStyles } from "twin.macro";
 import "@/styles/common.scss";
+import { MyAppProps } from "types/pages";
+import { ScrollDirection } from "@/components/layouts/smoothScroll";
 
 function handleExitComplete() {
   if (typeof window !== "undefined") {
@@ -11,15 +12,20 @@ function handleExitComplete() {
   }
 }
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: MyAppProps) {
   const router = useRouter();
   return (
     <>
       <GlobalStyles />
-      <Layout seo={pageProps.seo}>
-        <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
+      <Layout
+        seo={pageProps.seo}
+        direction={
+          Component.innerPage
+            ? ScrollDirection.vertical
+            : ScrollDirection.horizontal
+        }
+      >
+        <Component {...pageProps} key={router.route} />
       </Layout>
     </>
   );

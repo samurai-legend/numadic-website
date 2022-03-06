@@ -3,7 +3,8 @@ import { IsColliding } from "helpers/colliding";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useInViewRef } from "rooks";
 import tw from "twin.macro";
-import { GlobalLineContext } from "../layouts";
+import { GlobalLineContext } from "../layouts/horizontalScroll";
+
 import { ScrollContext } from "../layouts/smoothScroll";
 import { Typography } from "../typography";
 import Counter from "./counter";
@@ -59,7 +60,11 @@ const TransactionStats: React.FC<any> = (props: any) => {
       <Typography as="h2" isColor css={tw`font-bold`}>
         <Counter isAnimate={isAnimate} from={from} to={to} />
       </Typography>
-      <Typography as="span" type="overline" css={tw`uppercase tracking-[0.15em]`}>
+      <Typography
+        as="span"
+        type="overline"
+        css={tw`uppercase tracking-[0.15em]`}
+      >
         {text}
       </Typography>
     </motion.div>

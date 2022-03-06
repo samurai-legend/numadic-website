@@ -1,11 +1,13 @@
-import { NextPage } from "next";
+import { CustomPage } from "types/pages";
 
-const Contact: NextPage = () => {
+const Contact: CustomPage = () => {
   return (
     <>
       <h1>Contact page</h1>
     </>
   );
 };
+
+Contact.innerPage = true;
 
 export default Contact;

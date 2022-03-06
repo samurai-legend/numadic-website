@@ -18,10 +18,16 @@ import {
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 import { useMediaMatch } from "rooks";
-import { GlobalLineContext } from ".";
+import { GlobalLineContext } from "../layouts/horizontalScroll";
 
+export enum ScrollDirection {
+  vertical = "vertical",
+  horizontal = "horizontal",
+}
 interface SmoothScrollProps {
   children?: ReactElement;
+  direction?: ScrollDirection;
+  elRefs?: any;
 }
 
 const ScrollContainer = styled.div((props: any) => [
@@ -32,31 +38,42 @@ const GhostContainer = styled.div(() => [tw`w-full`]);
 
 export const ScrollContext = createContext<any>({});
 
-const SmoothScroll = ({ children }: SmoothScrollProps) => {
+const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
   const scrollRef = useRef<any | undefined>(null);
   const ghostRef = useRef<any | undefined>(null);
   const [scrollRange, setScrollRange] = useState<number>(0);
   const [viewportW, setViewportW] = useState<number>(0);
+  const { lineGroupRef } = useContext(GlobalLineContext);
   const IsMobile = useMediaMatch("(max-width: 1023px)");
+  const { scrollYProgress } = useViewportScroll();
 
   useEffect(() => {
-    scrollRef && IsMobile
-      ? setScrollRange(scrollRef.current.scrollHeight)
-      : setScrollRange(scrollRef.current.scrollWidth);
-  }, [scrollRef, IsMobile]);
+    switch (direction) {
+      case ScrollDirection.horizontal:
+        scrollRef && setScrollRange(scrollRef.current.scrollWidth);
+        break;
+      case ScrollDirection.vertical:
+        scrollRef && setScrollRange(scrollRef.current.scrollHeight);
+        break;
+    }
+  }, [scrollRef, IsMobile, direction]);
 
   const onResize = useCallback(
     (entries) => {
       for (let entry of entries) {
-        IsMobile
-          ? setScrollRange(scrollRef.current.scrollHeight)
-          : setScrollRange(scrollRef.current.scrollWidth);
-        IsMobile
-          ? setViewportW(window.innerHeight)
-          : setViewportW(entry.contentRect.width);
+        switch (direction) {
+          case ScrollDirection.horizontal:
+            setScrollRange(scrollRef?.current?.scrollWidth);
+            setViewportW(entry.contentRect.width);
+            break;
+          case ScrollDirection.vertical:
+            setScrollRange(scrollRef?.current?.scrollHeight);
+            setViewportW(window.innerHeight);
+            break;
+        }
       }
     },
-    [IsMobile]
+    [IsMobile, direction]
   );
 
   useEffect(() => {
@@ -67,32 +84,38 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     }
   }, [onResize]);
 
-  const { scrollYProgress } = useViewportScroll();
-
   const transform = useTransform(
     scrollYProgress,
     [0, 1],
     [0, -scrollRange + viewportW]
   );
-
-  const physics = { stiffness: 30, mass: 1, damping: 10 };
-
   const scrollStopValue = useMotionValue(0);
 
-  const spring = useSpring(scrollStopValue, physics);
+  const physics = { stiffness: 30, mass: 1, damping: 10 };
+  const physicsY = { stiffness: 20, mass: 0.5, damping: 5 };
 
-  const [springDirection, setSpringDirection] = useState<any>({ x: spring });
+  const springX = useSpring(scrollStopValue, physics);
+
+  const springY = useSpring(scrollStopValue, physicsY);
 
   const [refArr, setRefArr] = useState([]);
 
-  const { lineGroupRef } = useContext(GlobalLineContext);
-
   useEffect(() => {
-    setSpringDirection({ x: spring });
-    transform.onChange((x) => {
+    if (elRefs?.length > 0) {
+      setRefArr(elRefs);
+    }
+  }, [elRefs]);
+
+  const transforChangesX = useCallback(
+    (x) => {
       scrollStopValue.set(x);
 
-      if (!IsMobile) {
+      if (
+        !IsMobile &&
+        scrollRef.current &&
+        refArr.length > 0 &&
+        lineGroupRef.current
+      ) {
         refArr.map((ref: any, key: any) => {
           let checkwidth = scrollRef.current.offsetWidth * key;
           let checkMaxWidth = scrollRef.current.offsetWidth * (key + 1);
@@ -103,8 +126,22 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
           }
         });
       }
-    });
-  }, [IsMobile, refArr, scrollRef, lineGroupRef]);
+    },
+    [IsMobile, refArr, scrollRef, lineGroupRef]
+  );
+
+  const transforChangesY = useCallback((y) => {
+    scrollStopValue.set(y);
+  }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      transform.onChange(transforChangesX);
+      return () => {
+        transform.destroy();
+      };
+    }
+  }, [transforChangesX, transforChangesY, direction]);
 
   return (
     <ScrollContext.Provider
@@ -112,7 +149,6 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         scrollRange: scrollRange,
         viewportW: viewportW,
         IsMobile: IsMobile,
-        setRefArr: setRefArr,
       }}
     >
       {IsMobile ? (
@@ -126,18 +162,31 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         </>
       ) : (
         <>
-          <ScrollContainer
-            style={{ willChange: "transform" }}
-            css={tw`pt-[120px]`}
-          >
-            <motion.section
-              ref={scrollRef}
-              style={springDirection}
-              css={tw`relative h-[calc(100vh - 120px)] w-screen flex `}
+          {direction === ScrollDirection.horizontal ? (
+            <ScrollContainer
+              style={{ willChange: "transform" }}
+              css={tw`pt-[120px]`}
             >
-              {children}
-            </motion.section>
-          </ScrollContainer>
+              <motion.section
+                ref={scrollRef}
+                style={{ x: springX }}
+                css={tw`relative h-[calc(100vh - 120px)] w-screen flex `}
+              >
+                {children}
+              </motion.section>
+            </ScrollContainer>
+          ) : (
+            <ScrollContainer style={{ willChange: "transform" }}>
+              <motion.section
+                ref={scrollRef}
+                style={{ y: springY }}
+                css={tw`relative h-full w-screen flex `}
+              >
+                {children}
+              </motion.section>
+            </ScrollContainer>
+          )}
+
           <GhostContainer
             ref={ghostRef}
             style={{ height: scrollRange }}

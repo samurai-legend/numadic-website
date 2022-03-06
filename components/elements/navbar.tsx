@@ -78,7 +78,7 @@ const NavBar: FunctionComponent<any> = () => {
         </NavDropdownContainer>
       </NavItem>
       <NavItem>
-        <Link href="/" passHref>
+        <Link href="/about-us" passHref>
           <a>About Us</a>
         </Link>
       </NavItem>

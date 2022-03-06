@@ -2,7 +2,6 @@ import LandingBlock from "@/components/blocks/landingBlock";
 import SolutionsBlock from "@/components/blocks/solutionsBlock";
 import UseCasesBlock from "@/components/blocks/useCasesBlock";
 import MovementBlock from "@/components/blocks/movementBlock";
-import type { NextPage } from "next";
 import { GetStaticProps } from "next";
 import InvestorsBlock from "@/components/blocks/investorsBlock";
 import FooterBlock from "@/components/blocks/footerBlock";
@@ -14,6 +13,9 @@ import {
   useState,
 } from "react";
 import { ScrollContext } from "@/components/layouts/smoothScroll";
+import { CustomPage } from "types/pages";
+import HorizontalScroll from "@/components/layouts/horizontalScroll";
+
 const componentsArr = [
   <LandingBlock key={0} />,
   <SolutionsBlock key={1} />,
@@ -23,15 +25,9 @@ const componentsArr = [
   <FooterBlock key={5} />,
 ];
 
-const Home: NextPage = (props: any) => {
+const Home: CustomPage = (props: any) => {
   const arrLength = componentsArr.length;
   const [elRefs, setElRefs] = useState([]);
-
-  const { setRefArr } = useContext(ScrollContext);
-
-  useEffect(() => {
-    elRefs?.length > 0 && setRefArr(elRefs);
-  }, [elRefs]);
 
   useEffect(() => {
     setElRefs((elRefs) =>
@@ -42,14 +38,14 @@ const Home: NextPage = (props: any) => {
   }, [arrLength]);
 
   return (
-    <>
+    <HorizontalScroll elRefs={elRefs}>
       {componentsArr.map((el, key): any =>
         cloneElement(el, { key: key, ref: elRefs[key] })
       )}
-    </>
+    </HorizontalScroll>
   );
 };
-
+Home.innerPage = false;
 export default Home;
 
 export const getStaticProps: GetStaticProps = async (context) => {

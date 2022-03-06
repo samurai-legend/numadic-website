@@ -12,6 +12,7 @@ module.exports = {
       "body-3": ["0.875rem", "2.5rem"],
       caption: ["0.75rem", "2.5rem"],
       overline: ["0.875rem", "2.5rem"],
+      quote: ["4rem", "5rem"],
 
       "heading-1-md": ["3rem", "2.5rem"],
       "heading-2-md": ["2.2rem", "2.5rem"],
@@ -19,6 +20,7 @@ module.exports = {
       "body-1-md": ["1rem", "2.5rem"],
       "body-2-md": [".75rem", "2.5rem"],
       "body-3-md": ["0.675rem", "2.5rem"],
+      "quote-md": ["4rem", "6.875rem"],
 
       "heading-1-lg": ["4rem", "2.5rem"],
       "heading-2-lg": ["2.2rem", "2.5rem"],
@@ -26,6 +28,9 @@ module.exports = {
       "body-1-lg": ["1rem", "2.5rem"],
       "body-2-lg": [".75rem", "2.5rem"],
       "body-3-lg": ["0.675rem", "2.5rem"],
+      "caption-lg": ["0.688rem", "1.5rem"],
+      "overline-lg": ["0.625rem", "1.5rem"],
+      "quote-lg": ["4rem", "6.875rem"],
 
       "heading-1-sm": ["2.125rem", "2.5rem"],
       "heading-2-sm": ["1.438rem", "1.25rem"],
@@ -35,6 +40,7 @@ module.exports = {
       "body-3-sm": ["0.75rem", "1.25rem"],
       "caption-sm": ["0.688rem", "1.5rem"],
       "overline-sm": ["0.625rem", "1.5rem"],
+      "quote-sm": ["4rem", "6.875rem"],
     },
     extend: {
       colors: {

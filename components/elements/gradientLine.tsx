@@ -5,7 +5,13 @@ import {
   useTransform,
   useViewportScroll,
 } from "framer-motion";
-import { forwardRef, useContext, useEffect, useState } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import tw from "twin.macro";
 
 import { ScrollContext } from "../layouts/smoothScroll";
@@ -34,11 +40,18 @@ const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
 
   const [toggleDriection, setDirection] = useState(true);
 
+  const trackScroll = useCallback(() => {
+    setDirection(scrollYProgress.getVelocity() > 0);
+  }, [scrollYProgress, ref]);
+
   useEffect(() => {
-    scrollYProgress.onChange((t) => {
-      setDirection(scrollYProgress.getVelocity() > 0);
-    });
-  }, [scrollYProgress]);
+    if (ref.current) {
+      scrollYProgress.onChange(trackScroll);
+      return () => {
+        scrollYProgress.destroy();
+      };
+    }
+  }, [trackScroll]);
 
   return !IsMobile ? (
     <SvgElement

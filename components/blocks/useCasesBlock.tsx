@@ -9,7 +9,7 @@ import FuelIcon from "@/svg/usecases/fuel.svg";
 import ParkingIcon from "@/svg/usecases/parking.svg";
 import TicketsIcon from "@/svg/usecases/tickets.svg";
 import { forwardRef, useContext, useRef, useState } from "react";
-import { GlobalLineContext } from "../layouts";
+import { GlobalLineContext } from "../layouts/horizontalScroll";
 import { IsColliding } from "helpers/colliding";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";

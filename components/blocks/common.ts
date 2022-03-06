@@ -11,6 +11,12 @@ const ContentWrapper = styled.div(() => [
   tw`container mx-auto relative h-full`,
 ]);
 
+const InnerContentWrapper = styled.div((props: any) => [
+  tw`w-full flex flex-col justify-center items-center h-full text-center`,
+  props.hscreen && tw`h-screen`,
+  props.padding && [tw`py-32`],
+]);
+
 const NavContainer = styled(motion.ul)(() => [
   tw`flex gap-x-10 items-center 2xl:(gap-x-20)`,
 ]);
@@ -75,5 +81,6 @@ export {
   NavItem,
   NavDropdownContainer,
   MapWrapper,
-  SquareButton
+  SquareButton,
+  InnerContentWrapper,
 };

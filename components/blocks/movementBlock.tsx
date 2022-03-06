@@ -30,7 +30,7 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
           type="overline"
           css={tw`hidden lg:(visible block text-transparent)`}
         >
-          {"filler"}
+          {"-"}
         </Typography>
         <div css={tw`flex-[50%]`}>
           <div
