@@ -1,7 +1,12 @@
+import styled from "@emotion/styled";
 import tw from "twin.macro";
 import NumadsCard from "../elements/numadCard";
 import { Typography } from "../typography";
 import { ContentWrapper, InnerContentWrapper } from "./common";
+
+const NumadsTeamContainer = styled.div(() => [
+  tw`grid grid-flow-row grid-cols-4 w-full h-full gap-y-24 mt-32`,
+]);
 
 const Numads: React.FC<any> = (props: any) => {
   return (
@@ -26,9 +31,7 @@ const Numads: React.FC<any> = (props: any) => {
             </Typography>
           </div>
         </div>
-        <div
-          css={tw`grid grid-flow-row grid-cols-4 w-full h-full gap-y-24 mt-32`}
-        >
+        <NumadsTeamContainer>
           <NumadsCard
             src="/images/luke.png"
             ocupation="Founder, CEO"
@@ -64,7 +67,7 @@ const Numads: React.FC<any> = (props: any) => {
             ocupation="Founder, CEO"
             name="Luke"
           />
-        </div>
+        </NumadsTeamContainer>
       </InnerContentWrapper>
     </ContentWrapper>
   );

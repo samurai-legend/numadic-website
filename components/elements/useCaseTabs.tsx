@@ -8,6 +8,7 @@ import FuelIcon from "@/svg/usecases/fuel.svg";
 import ParkingIcon from "@/svg/usecases/parking.svg";
 import TicketsIcon from "@/svg/usecases/tickets.svg";
 import VerticalLine from "./VerticalLine";
+import { css } from "@emotion/react";
 
 const Data = [
   {
@@ -40,6 +41,21 @@ const ActiveDot = styled(motion.span)(() => [
   tw`absolute bottom-0 left-1/2 -translate-x-1/2 h-2 w-2 
   bg-gradient-to-br block from-blue-dark to-blue-light rounded-full`,
   tw`mt-4`,
+]);
+
+const MobileFactsContainer = styled.div(() => [
+  tw`w-full grid grid-flow-row-dense  grid-cols-2 my-10 gap-y-5 py-20 relative`,
+  css`
+    .grid-alternate {
+      grid-area: span 1 / span 2;
+      &:nth-child(2n + 1) {
+        justify-self: flex-start;
+      }
+      &:nth-child(2n) {
+        justify-self: flex-end;
+      }
+    }
+  `,
 ]);
 
 const UseCaseTabs: React.FC<any> = (props: any) => {
@@ -85,31 +101,29 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
         </motion.div>
       </AnimatePresence>
       {isMobile && (
-        <div
-          css={tw`w-full grid grid-flow-row grid-rows-3 grid-cols-2 my-10 gap-y-5 py-20 relative`}
-        >
+        <MobileFactsContainer>
           <PaymentStatsUC
             Icon={FuelIcon}
             amount="2,500"
-            css={tw`row-start-1`}
+            className="grid-alternate"
             direction="right"
           />
 
           <PaymentStatsUC
             Icon={ParkingIcon}
             amount="2,500"
-            css={tw`row-start-2 col-start-2`}
+            className="grid-alternate"
             direction="left"
           />
 
           <PaymentStatsUC
             Icon={TicketsIcon}
             amount="2,500"
-            css={tw`row-start-3`}
+            className="grid-alternate"
             direction="right"
           />
           <VerticalLine css={tw`h-full absolute justify-self-center z-[1]`} />
-        </div>
+        </MobileFactsContainer>
       )}
     </>
   );

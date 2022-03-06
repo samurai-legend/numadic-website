@@ -35,7 +35,7 @@ const NumadsCard: React.FC<any> = ({ src, name, ocupation }: any) => {
         <Typography as="p" isColor css={tw`font-bold leading-6!`} type="body-1">
           {name}
         </Typography>
-        <Typography as="p" isColor css={tw`font-normal`} type="body-3">
+        <Typography as="p" isColor css={tw`font-thin`} type="body-3">
           {ocupation}
         </Typography>
       </div>

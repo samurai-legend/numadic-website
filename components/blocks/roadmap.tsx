@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { TextEntryVariant } from "animations";
 import AnimatedCharacters from "animations/animatedCharacters";
-import { useTransform } from "framer-motion";
-import useElementScrollProgress from "hooks/elementScrollProgress";
-import { useEffect, useRef, useState } from "react";
+
+import { useRef } from "react";
 import tw from "twin.macro";
+import RoadMapTimeline from "../elements/roadMapTimeline";
 import VerticalLine from "../elements/VerticalLine";
 import { Typography } from "../typography";
 import { ContentWrapper, InnerContentWrapper } from "./common";
@@ -37,12 +37,13 @@ const Roadmap: React.FC<any> = (props: any) => {
             text="Movement is life."
           />
         </div>
-        <div css={tw`h-[1090px]`}>
+        <div css={tw`w-full h-full relative`}>
+          <RoadMapTimeline />
           <VerticalLine
             scroll
             scrollRef={ref}
             ref={arrowRef}
-            css={tw`h-full w-full mt-20`}
+            css={tw`h-full w-full mt-20 absolute top-0 left-1/2 -translate-x-1/2`}
           />
         </div>
       </InnerContentWrapper>
