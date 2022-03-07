@@ -9,6 +9,7 @@ const MessageBubble = styled(motion.div)((props: any) => [
   tw`before:(contents[""] absolute h-5 w-5 bg-gray-medium )`,
   css`
     &:before {
+      ${tw`z-[-1]`}
       border-radius: 0 0 8px 0;
     }
   `,
