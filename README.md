@@ -39,7 +39,7 @@ yarn build
 | Name                           | Required (yes/no) | Default value         | Description                                                  |     |
 | ------------------------------ | ----------------- | --------------------- | ------------------------------------------------------------ | --- |
 | API_URL                        | yes                | http://localhost:8082/graphql | API Graphql  |
-| STORAGE_BASE                   | yes               | http://localhost:8082 | server local host address |
+| STORAGE_BASE                   | yes               | http://localhost:8082 | API BASE URL to fetch images/media from CMS |
                              
 ## ⚙️ Deployment
 
