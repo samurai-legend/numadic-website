@@ -1,8 +1,11 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
-import { forwardRef, useEffect, useState } from "react";
+import { motion, useAnimationFrame } from "framer-motion";
+import { IsColliding } from "helpers/colliding";
+import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import tw from "twin.macro";
+import { GlobalLineContext } from "../layouts/horizontalScroll";
+import { ScrollContext } from "../layouts/smoothScroll";
 import { Typography } from "../typography";
 
 const CardContainer = styled(motion.div)(() => [
@@ -28,8 +31,23 @@ const CardContainer = styled(motion.div)(() => [
   `,
 ]);
 
-const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
-  const { IconComponent, title, description, isAnimate } = props;
+const SolutionCard: React.FC<any> = (props: any) => {
+  const { IconComponent, title, description, animate } = props;
+  const { lineGroupRef } = useContext(GlobalLineContext);
+
+  const ref = useRef(null);
+  const [isAnimate, setAnimate] = useState(false);
+
+  useAnimationFrame((t) => {
+    if (animate) {
+      if (lineGroupRef.current && ref.current) {
+        setAnimate(
+          IsColliding(lineGroupRef.current, ref.current, "horizontal")
+        );
+      }
+    }
+  });
+
   const variants = {
     animate: {
       opacity: 1,
@@ -42,7 +60,7 @@ const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
   const [animateObject, setAnimateObject] = useState({});
 
   useEffect(() => {
-    isAnimate != null
+    animate != null
       ? setAnimateObject({
           animate: isAnimate ? "animate" : "hidden",
         })
@@ -50,7 +68,7 @@ const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
           whileInView: "animate",
           viewport: { once: true },
         });
-  }, [isAnimate]);
+  }, [animate, isAnimate]);
 
   return (
     <CardContainer
@@ -67,7 +85,7 @@ const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
       <div
         css={tw`w-16 h-16 min-w-[3rem] pt-2 w-h-lg:(pt-2) lg:(w-20 h-20 min-w-[5rem] pt-0)`}
       >
-        <IconComponent />
+        {IconComponent}
       </div>
       <div>
         <Typography
@@ -86,6 +104,6 @@ const SolutionCard: React.FC<any> = forwardRef((props: any, ref: any) => {
       </div>
     </CardContainer>
   );
-});
-SolutionCard.displayName = "SolutionCard";
+};
+
 export default SolutionCard;

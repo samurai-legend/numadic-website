@@ -26,17 +26,6 @@ const useElementScrollProgress = (ref: any, offset: any = 0) => {
     }
   });
 
-  //   useEffect(() => {
-  //     if (ref?.current) {
-  //       scrollY.onChange((y) => {
-  //         trackScroll(y);
-  //       });
-  //       return () => {
-  //         scrollY.destroy();
-  //       };
-  //     }
-  //   }, [ref]);
-
   return { scrollProgress: progress };
 };
 

@@ -16,7 +16,7 @@ const LandingContainer = styled.div(() => [
 ]);
 
 const LandingBlock: FunctionComponent<any> = forwardRef(
-  (props: any, ref: any) => {
+  ({ data }: any, ref: any) => {
     return (
       <>
         <LandingContainer ref={ref} css={tw`relative`}>
@@ -31,7 +31,7 @@ const LandingBlock: FunctionComponent<any> = forwardRef(
             lg:(max-w-[700px] leading-[4.2rem]!) 
             xl:(max-w-[770px] leading-[4.4rem]!) 
             2xl:(max-w-[770px] leading-[5rem]!)`}
-            text="We build vehicle interface solutions"
+            text={data.title}
           />
 
           <AnimatedCharacters
@@ -47,9 +47,7 @@ const LandingBlock: FunctionComponent<any> = forwardRef(
               xl:(max-w-[720px] leading-[1.4rem]!)
               2xl:(max-w-[720px] leading-[1.7rem]!)`,
             ]}
-            text="Numadic offers solutions that empowers Banks, Automakers and Financial
-        Service Providers to automate vehicle payments & offer delightful
-        digital experiences through Mobile & Web Apps"
+            text={data.description}
           />
           <VerticalLine
             css={tw`h-60 md:h-80 absolute bottom-16 visible lg:hidden`}

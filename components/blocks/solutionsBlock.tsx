@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {
+  createRef,
   forwardRef,
   FunctionComponent,
   useContext,
@@ -23,6 +24,7 @@ import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
 import VerticalLine from "../elements/VerticalLine";
 import { GlobalLineContext } from "../layouts/horizontalScroll";
+import SvgInline from "../elements/svgInline";
 
 const LinesCurve = styled.div(({ direction, position }: any) => [
   tw`w-28 xl:w-32 2xl:w-44 absolute top-[50%] `,
@@ -48,54 +50,10 @@ const BottomContainer = styled.div(() => [
 ]);
 
 const SolutionsBlock: FunctionComponent<any> = forwardRef(
-  (props: any, ref: any) => {
-    const { lineGroupRef } = useContext(GlobalLineContext);
-    const { IsMobile, setPauseScroll } = useContext(ScrollContext);
+  ({ data }: any, ref: any) => {
+    const { heading, solutionCards } = data;
 
-    const [animVPayment, setAnimVPayment] = useState(false);
-    const [animVIndentification, setAnimVIndentification] = useState(false);
-    const [animVIntegration, setAnimVIntegration] = useState(false);
-    const animVPaymentRef = useRef(null);
-    const animVIndentificationRef = useRef(null);
-    const animVIntegrationRef = useRef(null);
-
-    const [animExitLines, setAnimExitLines] = useState(false);
-    const animExitLinesRef = useRef(null);
-
-    useAnimationFrame((t) => {
-      if (!IsMobile) {
-        if (lineGroupRef && animVPaymentRef) {
-          setAnimVPayment(
-            IsColliding(
-              lineGroupRef.current,
-              animVPaymentRef.current,
-              "horizontal"
-            )
-          );
-          setAnimVIndentification(
-            IsColliding(
-              lineGroupRef.current,
-              animVIndentificationRef.current,
-              "horizontal"
-            )
-          );
-          setAnimVIntegration(
-            IsColliding(
-              lineGroupRef.current,
-              animVIntegrationRef.current,
-              "horizontal"
-            )
-          );
-          // setAnimExitLines(
-          //   IsColliding(
-          //     lineGroupRef.current,
-          //     animExitLinesRef.current,
-          //     "horizontal"
-          //   )
-          // );
-        }
-      }
-    });
+    const { IsMobile } = useContext(ScrollContext);
 
     return (
       <SectionContainer ref={ref}>
@@ -109,7 +67,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               viewport={{ once: true }}
               variants={TextEntryVariant}
             >
-              solutions
+              {heading.sectionName}
             </Typography>
             <AnimatedCharacters
               as="h2"
@@ -118,35 +76,26 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               whileInView="visible"
               viewport={{ once: true }}
               css={tw`leading-[1.25rem] max-w-full text-center 2xl:(max-w-6xl) md:(max-w-3xl) lg:(text-left max-w-4xl)`}
-              text="Undisrupting the connectivity between banks, automakers, logistics &
-            infra companies"
+              text={heading.title}
             />
           </TopContainer>
           {IsMobile && (
             <div
               css={tw`w-full flex flex-col justify-center items-center gap-y-4 relative z-50 pt-20 pb-32 mt-5`}
             >
-              <SolutionCard
-                IconComponent={VehiclePaymentIcon}
-                title={"Vehicle payments"}
-                description={
-                  "Empower your customers to pay for anything with FASTags, from toll fees to fuel, all while being contactless."
-                }
-              />
-              <SolutionCard
-                IconComponent={VehicleIdentificationIcon}
-                title={"Vehicle identification"}
-                description={
-                  "Offer the delightful digital mobile and web user experience to your FASTag customers with our white-labeled Apps."
-                }
-              />
-              <SolutionCard
-                IconComponent={VehicleIntegrationIcon}
-                title={"Vehicle integration"}
-                description={
-                  "Developer-friendly API platform to build your own solutions as per your use cases."
-                }
-              />
+              {solutionCards.map((card: any, key: number) => (
+                <SolutionCard
+                  key={`solutioncard-${key}`}
+                  IconComponent={
+                    <SvgInline
+                      url={`${process.env.STORAGE_BASE}${card.icon.data.attributes.url}`}
+                    />
+                  }
+                  title={card.title}
+                  description={card.description}
+                />
+              ))}
+
               <VerticalLine
                 css={tw`h-full absolute bottom-2 visible lg:hidden z-[-1]`}
               />
@@ -160,33 +109,19 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               <div
                 css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-50 container m-auto`}
               >
-                <SolutionCard
-                  IconComponent={VehiclePaymentIcon}
-                  title={"Vehicle payments"}
-                  description={
-                    "Empower your customers to pay for anything with FASTags, from toll fees to fuel, all while being contactless."
-                  }
-                  isAnimate={animVPayment}
-                  ref={animVPaymentRef}
-                />
-                <SolutionCard
-                  IconComponent={VehicleIdentificationIcon}
-                  title={"Vehicle identification"}
-                  description={
-                    "Offer the delightful digital mobile and web user experience to your FASTag customers with our white-labeled Apps."
-                  }
-                  isAnimate={animVIndentification}
-                  ref={animVIndentificationRef}
-                />
-                <SolutionCard
-                  IconComponent={VehicleIntegrationIcon}
-                  title={"Vehicle integration"}
-                  description={
-                    "Developer-friendly API platform to build your own solutions as per your use cases."
-                  }
-                  isAnimate={animVIntegration}
-                  ref={animVIntegrationRef}
-                />
+                {solutionCards.map((card: any, key: number) => (
+                  <SolutionCard
+                    key={`solutioncard-${key}`}
+                    IconComponent={
+                      <SvgInline
+                        url={`${process.env.STORAGE_BASE}${card.icon.data.attributes.url}`}
+                      />
+                    }
+                    title={card.title}
+                    description={card.description}
+                    animate
+                  />
+                ))}
               </div>
             </BottomContainer>
           </>
