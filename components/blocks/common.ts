@@ -14,7 +14,7 @@ const ContentWrapper = styled.div(() => [
 const InnerContentWrapper = styled.div((props: any) => [
   tw`w-full flex flex-col justify-center items-center h-full text-center`,
   props.hscreen && tw`h-screen`,
-  props.padding && [tw`py-32`],
+  props.padding && [tw`py-16`, tw`lg:py-24`, tw`lg:py-32`],
 ]);
 
 const NavContainer = styled(motion.ul)(() => [

@@ -5,7 +5,9 @@ import tw from "twin.macro";
 import { Typography } from "../typography";
 
 const ImageContainer = styled.div(() => [
-  tw`relative w-full h-80`,
+  tw`relative w-full h-40`,
+  tw`md:h-60`,
+  tw`lg:h-80`,
   css`
     .image-filter {
       ${tw`transition-all duration-200 ease-in-out`}

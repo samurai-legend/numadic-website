@@ -11,7 +11,7 @@ import Blocks from "@/components/blocks/blockRenderer";
 
 const Home: CustomPage = ({ blocksSections, seo }: any) => {
   const [refs, setRefs] = useState([]);
-
+ 
   return (
     <HorizontalScroll elRefs={refs}>
       <Blocks setRefs={setRefs} blocks={blocksSections} />

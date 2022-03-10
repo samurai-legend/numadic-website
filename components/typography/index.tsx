@@ -69,6 +69,8 @@ export const Typography = motion(
             return [
               ...includeStyles,
               tw`text-quote-sm font-thin`,
+              tw`md:text-quote-md`,
+              tw`lg:text-quote-lg`,
               tw`xl:text-quote`,
             ];
           default:

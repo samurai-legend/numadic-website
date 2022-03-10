@@ -73,7 +73,7 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
         }
       }
     },
-    [IsMobile, direction]
+    [scrollRef, IsMobile, direction]
   );
 
   useEffect(() => {
@@ -141,7 +141,7 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
         transform.destroy();
       };
     }
-  }, [transforChangesX, transforChangesY, direction]);
+  }, [transforChangesX, transforChangesY]);
 
   return (
     <ScrollContext.Provider

@@ -23,7 +23,8 @@ const UseCaseCardContainer = styled(motion.div)(() => [
 
 const UseCaseCardImage = styled.div(() => [tw`inline-block w-max`]);
 
-const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
+const UseCasesBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
+  const { heading, useCaseTabs } = data;
   const { lineGroupRef } = useContext(GlobalLineContext);
   const { IsMobile } = useContext(ScrollContext);
 
@@ -59,16 +60,27 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
         <div
           css={tw`flex flex-[50%] flex-col w-full items-center text-center lg:(items-start text-left)`}
         >
-          <Typography
-            as="span"
-            type="overline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={TextEntryVariant}
-          >
-            use cases
-          </Typography>
+          {heading.sectionName ? (
+            <Typography
+              as="span"
+              type="overline"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={TextEntryVariant}
+            >
+              {heading.sectionName}
+            </Typography>
+          ) : (
+            <Typography
+              as="span"
+              type="overline"
+              css={tw`hidden lg:(visible block text-transparent)`}
+            >
+              {"-"}
+            </Typography>
+          )}
+
           <AnimatedCharacters
             as="h2"
             isColor
@@ -76,7 +88,7 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             whileInView="visible"
             viewport={{ once: true }}
             css={tw`leading-[1.25rem] max-w-full text-center 2xl:(max-w-6xl leading-[3.75rem]) lg:(text-left leading-[2.75rem])`}
-            text="Enable next-gen vehicle interface solutions"
+            text={heading.title}
           />
           <div
             css={tw`flex w-full flex-col items-start lg:(flex-row) relative`}
@@ -86,34 +98,10 @@ const UseCasesBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={EntryVariant}
-              css={tw`relative w-full lg:(w-1/2) mt-2 tall-sm:mt-3`}
+              css={tw`relative w-full mt-2 tall-sm:mt-3`}
             >
-              <UseCaseTabs isMobile={IsMobile} />
+              <UseCaseTabs isMobile={IsMobile} data={useCaseTabs} />
             </motion.div>
-            {!IsMobile && (
-              <div
-                css={tw`w-full lg:(w-1/2) grid grid-flow-col grid-cols-3 gap-x-5 lg:(gap-x-10) self-end`}
-              >
-                <PaymentStatsUC
-                  ref={paymentRef1}
-                  Icon={FuelIcon}
-                  amount="2,500"
-                  isAnimate={paymentAnim1}
-                />
-                <PaymentStatsUC
-                  ref={paymentRef2}
-                  Icon={ParkingIcon}
-                  amount="2,500"
-                  isAnimate={paymentAnim2}
-                />
-                <PaymentStatsUC
-                  ref={paymentRef3}
-                  Icon={TicketsIcon}
-                  amount="2,500"
-                  isAnimate={paymentAnim3}
-                />
-              </div>
-            )}
           </div>
         </div>
 

@@ -9,6 +9,7 @@ import ParkingIcon from "@/svg/usecases/parking.svg";
 import TicketsIcon from "@/svg/usecases/tickets.svg";
 import VerticalLine from "./VerticalLine";
 import { css } from "@emotion/react";
+import SvgInline from "./svgInline";
 
 const Data = [
   {
@@ -58,21 +59,20 @@ const MobileFactsContainer = styled.div(() => [
   `,
 ]);
 
-const UseCaseTabs: React.FC<any> = (props: any) => {
-  const { isMobile } = props;
-  const [selectedTab, setSelectedTab] = useState(Data[0]);
+const UseCaseTabs: React.FC<any> = ({ isMobile, data }: any) => {
+  const [selectedTab, setSelectedTab] = useState(data[0]);
 
   return (
     <>
       <TabsNavsContainer>
-        {Data.map((item) => (
-          <TabsNavItem key={item.label} onClick={() => setSelectedTab(item)}>
+        {data.map((item: any) => (
+          <TabsNavItem key={item.tabTitle} onClick={() => setSelectedTab(item)}>
             <Typography
               as="p"
               type="body-3"
               css={selectedTab === item && tw`font-extrabold text-white`}
             >
-              {item.label}
+              {item.tabTitle}
             </Typography>
             {item === selectedTab ? (
               <ActiveDot layoutId="selectedDot"></ActiveDot>
@@ -83,48 +83,65 @@ const UseCaseTabs: React.FC<any> = (props: any) => {
 
       <AnimatePresence exitBeforeEnter>
         <motion.div
-          key={selectedTab ? selectedTab.label : "empty"}
+          key={selectedTab ? selectedTab.tabTitle : "empty"}
           animate={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: 20 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.5 }}
+          css={tw`flex w-full flex-col lg:flex-row`}
         >
           {selectedTab && (
-            <Typography
-              as="h3"
-              isColor
-              css={tw`font-bold max-w-2xl mt-1 leading-6 xl:(mt-5 leading-10) mt-4 lg:(mt-0) w-h-lg:(mt-1 leading-9)`}
-            >
-              {selectedTab.content}
-            </Typography>
+            <div css={tw`flex-[50%]`}>
+              <Typography
+                as="h3"
+                isColor
+                css={tw`font-bold max-w-2xl mt-1 leading-6 xl:(mt-5 leading-10) mt-4 lg:(mt-0) w-h-lg:(mt-1 leading-9)`}
+              >
+                {selectedTab.tabContent}
+              </Typography>
+            </div>
+          )}
+          {!isMobile ? (
+            <div css={tw`flex-[50%]`}>
+              <div
+                css={tw`w-full grid grid-flow-col grid-cols-3 gap-x-5 lg:(gap-x-10) self-end`}
+              >
+                {selectedTab.facts?.map((item: any, index: number) => (
+                  <PaymentStatsUC
+                    key={index}
+                    Icon={
+                      <SvgInline
+                        url={`${process.env.STORAGE_BASE}${item.icon.data.attributes.url}`}
+                      />
+                    }
+                    amount={item.price}
+                    animate={true}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <MobileFactsContainer>
+              {selectedTab.facts?.map((item: any, index: number) => (
+                <PaymentStatsUC
+                  key={index}
+                  Icon={
+                    <SvgInline
+                      url={`${process.env.STORAGE_BASE}${item.icon.data.attributes.url}`}
+                    />
+                  }
+                  amount={item.price}
+                  className="grid-alternate"
+                  direction="right"
+                />
+              ))}
+              <VerticalLine
+                css={tw`h-full absolute justify-self-center z-[1]`}
+              />
+            </MobileFactsContainer>
           )}
         </motion.div>
       </AnimatePresence>
-      {isMobile && (
-        <MobileFactsContainer>
-          <PaymentStatsUC
-            Icon={FuelIcon}
-            amount="2,500"
-            className="grid-alternate"
-            direction="right"
-          />
-
-          <PaymentStatsUC
-            Icon={ParkingIcon}
-            amount="2,500"
-            className="grid-alternate"
-            direction="left"
-          />
-
-          <PaymentStatsUC
-            Icon={TicketsIcon}
-            amount="2,500"
-            className="grid-alternate"
-            direction="right"
-          />
-          <VerticalLine css={tw`h-full absolute justify-self-center z-[1]`} />
-        </MobileFactsContainer>
-      )}
     </>
   );
 };

@@ -7,10 +7,6 @@ import { useEffect, useState } from "react";
 
 const TimelineContainer = styled.div(() => [
   tw`w-full max-w-2xl mx-auto grid grid-flow-row-dense grid-cols-2 my-10 gap-y-5 py-20 relative`,
-  css`
-    .grid-alternate {
-    }
-  `,
 ]);
 
 const RoadMapTimeline: React.FC<any> = (props: any) => {

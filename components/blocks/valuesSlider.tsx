@@ -13,7 +13,7 @@ const ValueSlider: React.FC<any> = (props: any) => {
 
   return (
     <InnerContentWrapper padding>
-      <div css={tw`flex flex-col items-center`}>
+      <div css={tw`flex flex-col items-center container mx-auto`}>
         <Typography
           as="span"
           type="overline"
@@ -41,7 +41,17 @@ const ValueSlider: React.FC<any> = (props: any) => {
           onSwiper={setSwiperInstance}
           preloadImages
           lazy={false}
-          css={tw`overflow-visible`}
+          breakpoints={{
+            200: {
+              slidesPerView: 1,
+            },
+            500: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
         >
           <SwiperSlide>
             <ValueCard

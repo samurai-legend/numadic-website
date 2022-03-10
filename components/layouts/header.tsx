@@ -11,7 +11,7 @@ import { useMediaMatch } from "rooks";
 
 const HeaderContainer = styled.div(() => [tw`fixed w-screen z-[60]`]);
 const HeaderWtapper = styled.div(() => [
-  tw`container m-auto py-5 flex justify-between items-center bg-black-dark lg:(py-10 bg-transparent)`,
+  tw`container m-auto py-5 flex justify-between items-center bg-black-dark lg:(py-10)`,
 ]);
 const Header = () => {
   const IsMobile = useMediaMatch("(max-width: 1023px)");

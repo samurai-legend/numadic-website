@@ -6,23 +6,28 @@ import tw from "twin.macro";
 import { Typography } from "../typography";
 
 const ContentBubble = styled(motion.div)((props: any) => [
-  tw`bg-gray-medium w-[250px] px-5 py-5 rounded-xl text-left`,
+  tw`bg-gray-medium w-[120px] px-5 py-5 rounded-xl text-left`,
+  tw`md:(w-[200px])`,
+  tw`lg:(w-[250px])`,
   tw`relative translate-y-1/2 flex flex-col items-start`,
-  tw`before:(contents[""] absolute h-7 w-7 bg-gray-medium )`,
+  tw`before:(contents[""] absolute h-3 w-3 bg-gray-medium)`,
+  tw`md:before:(h-5 w-5)`,
+  tw`lg:before:(h-7 w-7)`,
   css`
     &:before {
       ${tw`z-[-1]`}
       border-radius: 0 0 8px 0;
     }
   `,
-  props.direction == "bottom" && [
-    tw`before:(top-[90%] left-1/2 -translate-x-1/2 rotate-45)`,
-  ],
   props.direction == "right" && [
-    tw`before:(left-[90%] top-1/2 -translate-y-1/2 -rotate-45)`,
+    tw`before:(right-[-6px] top-1/2 -translate-y-1/2 -rotate-45)`,
+    tw`md:before:(right-[-10px])`,
+    tw`lg:before:(right-[-10px])`,
   ],
   props.direction == "left" && [
-    tw`before:(right-[90%] top-1/2 -translate-y-1/2 rotate-[135deg])`,
+    tw`before:(left-[-6px] top-1/2 -translate-y-1/2 rotate-[135deg])`,
+    tw`md:before:(left-[-10px])`,
+    tw`lg:before:(left-[-10px])`,
   ],
 ]);
 

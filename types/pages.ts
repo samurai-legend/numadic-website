@@ -6,4 +6,5 @@ export type CustomPage<P = {}, IP = P> = NextPage<P, IP> & {
 
 export type MyAppProps<P = {}> = AppProps<P> & {
   Component: CustomPage<P>;
+  emotionCache: any;
 };
