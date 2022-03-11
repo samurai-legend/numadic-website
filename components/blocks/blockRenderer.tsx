@@ -8,6 +8,9 @@ const LandingBlock = dynamic(() => import("@/components/blocks/landingBlock"));
 const SolutionsBlock = dynamic(
   () => import("@/components/blocks/solutionsBlock")
 );
+const MovementBlock = dynamic(
+  () => import("@/components/blocks/movementBlock")
+);
 
 const Blocks: React.FC<any> = ({ blocks, setRefs }: any) => {
   const arrLength = blocks.length;
@@ -36,6 +39,9 @@ const Blocks: React.FC<any> = ({ blocks, setRefs }: any) => {
         ),
         ComponentSectionsUseCases: (
           <UseCasesBlock key={index} ref={elRefs[index]} data={block} />
+        ),
+        ComponentSectionsMovement: (
+          <MovementBlock key={index} ref={elRefs[index]} data={block} />
         ),
       }[block.__typename])
   );

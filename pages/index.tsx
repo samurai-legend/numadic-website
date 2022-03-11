@@ -1,7 +1,4 @@
-import MovementBlock from "@/components/blocks/movementBlock";
 import { GetStaticProps } from "next";
-import InvestorsBlock from "@/components/blocks/investorsBlock";
-import FooterBlock from "@/components/blocks/footerBlock";
 import { useState } from "react";
 import { CustomPage } from "types/pages";
 import HorizontalScroll from "@/components/layouts/horizontalScroll";
@@ -15,9 +12,6 @@ const Home: CustomPage = ({ blocksSections, seo }: any) => {
   return (
     <HorizontalScroll elRefs={refs}>
       <Blocks setRefs={setRefs} blocks={blocksSections} />
-      {/* {componentsArr.map((el, key): any =>
-        cloneElement(el, { key: key, ref: elRefs[key] })
-      )} */}
     </HorizontalScroll>
   );
 };

@@ -1,4 +1,11 @@
 import { gql } from "@apollo/client";
+import {
+  Collabration,
+  HeadingTitle,
+  Milestone,
+  SolutionCard,
+  UseCaseTabs,
+} from "./fragments";
 
 export const HomepageQuery = {
   query: gql`
@@ -14,52 +21,29 @@ export const HomepageQuery = {
               }
               ... on ComponentSectionsSolutions {
                 heading {
-                  title
-                  sectionName
+                  ...HeadingTitle
                 }
                 solutionCards {
-                  title
-                  description
-                  icon {
-                    data {
-                      attributes {
-                        url
-                        alternativeText
-                      }
-                    }
-                  }
+                  ...SolutionCard
                 }
               }
               ... on ComponentSectionsUseCases {
                 heading {
-                  sectionName
-                  title
+                  ...HeadingTitle
                 }
                 useCaseTabs {
-                  tabTitle
-                  tabContent
-                  facts {
-                    price
-                    icon {
-                      data {
-                        attributes {
-                          url
-                        }
-                      }
-                    }
-                  }
-                  card {
-                    cardTitle
-                    description
-                    image {
-                      data {
-                        attributes {
-                          url
-                          alternativeText
-                        }
-                      }
-                    }
-                  }
+                  ...UseCaseTabs
+                }
+              }
+              ... on ComponentSectionsMovement {
+                heading {
+                  ...HeadingTitle
+                }
+                milestones {
+                  ...Mileston
+                }
+                collaboration {
+                  ...Collabration
                 }
               }
             }
@@ -67,5 +51,10 @@ export const HomepageQuery = {
         }
       }
     }
+    ${HeadingTitle}
+    ${Milestone}
+    ${Collabration}
+    ${UseCaseTabs}
+    ${SolutionCard}
   `,
 };

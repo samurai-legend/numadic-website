@@ -47,7 +47,7 @@ const AboutUs: CustomPage = (props: any) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`max-w-[400px] leading-[1.8rem]! 
+              css={tw`max-w-[400px] font-bold leading-[1.8rem]! 
             md:(max-w-[700px] leading-[3.5rem]!) 
             lg:(max-w-[700px] leading-[4.2rem]!) 
             xl:(max-w-[770px] leading-[4.4rem]!) 
@@ -61,6 +61,7 @@ const AboutUs: CustomPage = (props: any) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              css={tw`font-normal`}
               text="Movement is typically chaotic and the industries that serve it, quite disrupted. 
             We exist to simplify, optimise, automate and undisrupt movement."
             />
