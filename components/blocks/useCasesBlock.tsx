@@ -1,16 +1,10 @@
 import tw from "twin.macro";
 import { ContentWrapper, SectionContainer } from "./common";
 import HpclLogo from "@/svg/brands/HPCL_Logo.svg";
-import { motion, useAnimationFrame } from "framer-motion";
+import { motion } from "framer-motion";
 import { EntryVariant, TextEntryVariant } from "animations";
 import UseCaseTabs from "../elements/useCaseTabs";
-import PaymentStatsUC from "../elements/paymentStatsUC";
-import FuelIcon from "@/svg/usecases/fuel.svg";
-import ParkingIcon from "@/svg/usecases/parking.svg";
-import TicketsIcon from "@/svg/usecases/tickets.svg";
-import { forwardRef, useContext, useRef, useState } from "react";
-import { GlobalLineContext } from "../layouts/horizontalScroll";
-import { IsColliding } from "helpers/colliding";
+import { forwardRef, useContext } from "react";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
@@ -25,32 +19,7 @@ const UseCaseCardImage = styled.div(() => [tw`inline-block w-max`]);
 
 const UseCasesBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
   const { heading, useCaseTabs } = data;
-  const { lineGroupRef } = useContext(GlobalLineContext);
   const { IsMobile } = useContext(ScrollContext);
-
-  const paymentRef1 = useRef<any>(null);
-  const paymentRef2 = useRef<any>(null);
-  const paymentRef3 = useRef<any>(null);
-
-  const [paymentAnim1, setPaymentAnim1] = useState(false);
-  const [paymentAnim2, setPaymentAnim2] = useState(false);
-  const [paymentAnim3, setPaymentAnim3] = useState(false);
-
-  useAnimationFrame((t) => {
-    if (!IsMobile) {
-      if (lineGroupRef && paymentRef1) {
-        setPaymentAnim1(
-          IsColliding(lineGroupRef.current, paymentRef1.current, "horizontal")
-        );
-        setPaymentAnim2(
-          IsColliding(lineGroupRef.current, paymentRef2.current, "horizontal")
-        );
-        setPaymentAnim3(
-          IsColliding(lineGroupRef.current, paymentRef3.current, "horizontal")
-        );
-      }
-    }
-  });
 
   return (
     <SectionContainer ref={ref}>

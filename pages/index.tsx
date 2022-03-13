@@ -7,7 +7,7 @@ import { HomepageQuery } from "graphql/homepage";
 import Blocks from "@/components/blocks/blockRenderer";
 import { SEO } from "@/components/layouts/seo";
 
-const Home: CustomPage<HomepageProps> = ({ blocksSections, seo }) => {
+const Home: CustomPage<HomepageProps> = ({ blocksSections }) => {
   const [refs, setRefs] = useState([]);
 
   return (
@@ -24,13 +24,13 @@ export const getStaticProps: GetStaticProps = async (
 ): Promise<GetStaticPropsResult<HomepageProps>> => {
   const { data } = await client.query(HomepageQuery);
   const { homepage } = data;
-  const blockSections = homepage?.data?.attributes.sections;
+  const sections = homepage?.data?.attributes.sections;
   const seo = homepage?.data?.attributes.seo;
   
   return {
     props: {
       seo: seo,
-      blocksSections: blockSections,
+      blocksSections: sections,
     },
     revalidate: 60,
   };

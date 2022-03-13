@@ -1,12 +1,7 @@
 import tw from "twin.macro";
 import { SectionContainer, ContentWrapper, MapWrapper } from "./common";
 
-import { forwardRef, useContext, useEffect, useRef, useState } from "react";
-import BoschLogo from "@/svg/brands/bosh.svg";
-import AdityaBirlaLogo from "@/svg/brands/aditya_birla.svg";
-import IciciBankLogo from "@/svg/brands/icicibank.svg";
-import KotakBankLogo from "@/svg/brands/kotakbank.svg";
-import MahindraLogo from "@/svg/brands/mahindra.svg";
+import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
 import { Typography } from "../typography";
@@ -27,7 +22,7 @@ const CollaborationImage = styled.div(() => [
 
 const MovementBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
   const { collaboration, heading, milestones } = data;
-  
+
   return (
     <SectionContainer ref={ref}>
       <MapWrapper>

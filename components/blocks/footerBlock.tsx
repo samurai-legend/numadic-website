@@ -13,11 +13,6 @@ import { Typography } from "../typography";
 import AnimatedCharacters from "animations/animatedCharacters";
 import { forwardRef } from "react";
 import styled from "@emotion/styled";
-
-import Instagram from "@/svg/instagram.svg";
-import LinkedIn from "@/svg/linkedin.svg";
-import Facebook from "@/svg/facebook.svg";
-import Twitter from "@/svg/twitter.svg";
 import { css } from "@emotion/react";
 import MapPattern from "../elements/mapPattern";
 import SvgInline from "../elements/svgInline";
@@ -70,7 +65,6 @@ const AddressWrapper = styled(motion.div)(() => [
 ]);
 
 const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
-  console.log(data);
 
   const { address, heading, otherLinks, socialMedia } = data;
 
@@ -183,7 +177,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
             >
               {socialMedia.length > 0 &&
                 socialMedia.map((item: any) => (
-                  <Link href={item.url}>
+                  <Link href={item.url} key={item.id}>
                     <SocialLinks>
                       <SvgInline url={item.image.data?.attributes.url} />
                     </SocialLinks>

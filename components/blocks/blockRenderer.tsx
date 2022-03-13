@@ -29,9 +29,9 @@ const Blocks: React.FC<any> = ({ blocks, setRefs }: any) => {
   }, [arrLength]);
 
   useEffect(() => {
-    elRefs.length > 0 && setRefs(elRefs);
+    elRefs.length > 0 && setRefs && setRefs(elRefs);
   }, [elRefs]);
-    
+
   return blocks.map(
     (block: { __typename: string | number }, index: any) =>
       ({

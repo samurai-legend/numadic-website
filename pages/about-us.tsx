@@ -1,3 +1,4 @@
+import Blocks from "@/components/blocks/blockRenderer";
 import {
   ContentWrapper,
   InnerContentWrapper,
@@ -18,7 +19,7 @@ import { GetStaticProps, GetStaticPropsResult } from "next";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
 
-const AboutUs: CustomPage = (props: any) => {
+const AboutUs: CustomPage = ({ blocksSections }: any) => {
   return (
     <SmoothScroll direction={ScrollDirection.vertical}>
       <div css={tw`flex flex-col w-full`}>
@@ -74,7 +75,7 @@ const AboutUs: CustomPage = (props: any) => {
         <Roadmap />
         <ValueSlider />
         <Numads />
-        <FooterBlock />
+        <Blocks blocks={blocksSections} />
       </div>
     </SmoothScroll>
   );
@@ -88,15 +89,18 @@ export const getStaticProps: GetStaticProps = async (
 ): Promise<GetStaticPropsResult<AboutUsProps>> => {
   const { data } = await client.query(AboutUsQuery);
   const { aboutUsPage } = data;
+  const sections = aboutUsPage?.data?.attributes.sections;
   const seo = aboutUsPage?.data?.attributes.seo;
 
   return {
     props: {
       seo: seo,
+      blocksSections: sections,
     },
   };
 };
 
 interface AboutUsProps {
   seo: SEO;
+  blocksSections: any;
 }
