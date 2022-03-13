@@ -1,8 +1,14 @@
 import { gql } from "@apollo/client";
 import {
+  Address,
   Collabration,
   HeadingTitle,
+  InvestorLogos,
   Milestone,
+  OpenPosition,
+  OtherLinks,
+  seo,
+  SocialMedia,
   SolutionCard,
   UseCaseTabs,
 } from "./fragments";
@@ -13,6 +19,9 @@ export const HomepageQuery = {
       homepage {
         data {
           attributes {
+            seo {
+              ...Seo
+            }
             sections {
               __typename
               ... on ComponentSectionsLanding {
@@ -46,6 +55,31 @@ export const HomepageQuery = {
                   ...Collabration
                 }
               }
+              ... on ComponentSectionsInvestors {
+                heading {
+                  ...HeadingTitle
+                }
+                openPositions {
+                  ...OpenPosition
+                }
+                investorLogos {
+                  ...InvestorsLogos
+                }
+              }
+              ... on ComponentSectionsFooter {
+                heading {
+                  ...HeadingTitle
+                }
+                address {
+                  ...Address
+                }
+                otherLinks {
+                  ...OtherLink
+                }
+                socialMedia {
+                  ...SocialMedia
+                }
+              }
             }
           }
         }
@@ -56,5 +90,11 @@ export const HomepageQuery = {
     ${Collabration}
     ${UseCaseTabs}
     ${SolutionCard}
+    ${OpenPosition}
+    ${InvestorLogos}
+    ${Address}
+    ${OtherLinks}
+    ${SocialMedia}
+    ${seo}
   `,
 };

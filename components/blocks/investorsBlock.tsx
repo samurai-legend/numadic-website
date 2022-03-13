@@ -7,10 +7,6 @@ import {
 } from "./common";
 
 import { forwardRef } from "react";
-import NineUnifcornLogo from "@/svg/brands/9unifcorn.svg";
-import CvwLogo from "@/svg/brands/cvw.svg";
-import DynamoLogo from "@/svg/brands/dynamo.svg";
-import SapStartupLogo from "@/svg/brands/sap_startup.svg";
 import { motion } from "framer-motion";
 import { TextEntryVariant } from "animations";
 import AnimatedCharacters from "animations/animatedCharacters";
@@ -20,6 +16,7 @@ import VerticalLine from "../elements/VerticalLine";
 import MapPattern from "../elements/mapPattern";
 import { Typography } from "../typography";
 import Link from "next/link";
+import SvgInline from "../elements/svgInline";
 
 const LogoContainer = styled.div(() => [
   tw`relative justify-self-center lg:(justify-self-start)`,
@@ -30,7 +27,9 @@ const LogoContainer = styled.div(() => [
   `,
 ]);
 
-const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
+const InvestorsBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
+  const { heading, investorLogos, openPositions } = data;
+
   return (
     <SectionContainer ref={ref}>
       <MapWrapper>
@@ -42,13 +41,23 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
       <ContentWrapper css={tw`flex flex-col justify-center`}>
         <div css={tw`flex-[50%]`}>
           {/* filler */}
-          <Typography
-            as="span"
-            type="overline"
-            css={tw`hidden lg:(visible block text-transparent)`}
-          >
-            {"-"}
-          </Typography>
+          {heading.sectionName ? (
+            <Typography
+              as="span"
+              type="overline"
+              css={tw`hidden lg:(visible block)`}
+            >
+              {heading.sectionName}
+            </Typography>
+          ) : (
+            <Typography
+              as="span"
+              type="overline"
+              css={tw`hidden lg:(visible block text-transparent)`}
+            >
+              {"-"}
+            </Typography>
+          )}
           <div
             css={tw`h-full grid grid-flow-row gap-4 text-center grid-cols-1 lg:(grid-cols-2 grid-flow-col text-left)`}
           >
@@ -62,7 +71,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               2xl:(max-w-lg) 
               lg:(max-w-md! text-left)
              `}
-              text="Fueled by terrific investors"
+              text={heading.title}
             />
             <motion.div
               initial="hidden"
@@ -71,18 +80,14 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               variants={TextEntryVariant}
               css={tw`grid grid-rows-2 grid-flow-col gap-y-10 gap-x-10 mt-5 lg:(gap-y-5 mt-0)`}
             >
-              <LogoContainer>
-                <DynamoLogo />
-              </LogoContainer>
-              <LogoContainer>
-                <CvwLogo />
-              </LogoContainer>
-              <LogoContainer>
-                <NineUnifcornLogo />
-              </LogoContainer>
-              <LogoContainer>
-                <SapStartupLogo />
-              </LogoContainer>
+              {investorLogos.length > 0 &&
+                investorLogos.map((item: any) => (
+                  <LogoContainer key={item.id}>
+                    {item.image.data && (
+                      <SvgInline url={item.image.data.attributes.url} />
+                    )}
+                  </LogoContainer>
+                ))}
             </motion.div>
           </div>
         </div>
@@ -100,7 +105,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 whileInView="visible"
                 viewport={{ once: true }}
                 css={tw`font-bold`}
-                text="And you..."
+                text={openPositions.title}
               />
               <AnimatedCharacters
                 as="p"
@@ -110,8 +115,7 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
                 whileInView="visible"
                 viewport={{ once: true }}
                 css={tw`block max-w-sm leading-3! lg:(leading-5!)`}
-                text="We’re always on the lookout for bright, humble people to join our
-              journey."
+                text={openPositions.description}
               />
             </div>
             <motion.div
@@ -121,8 +125,10 @@ const InvestorsBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               variants={TextEntryVariant}
               css={tw`justify-self-center self-center lg:(justify-self-start)`}
             >
-              <Link href="#">
-                <SquareButton>View open positions</SquareButton>
+              <Link href={openPositions.openPositionLink?.link}>
+                <SquareButton>
+                  {openPositions.openPositionLink?.label}
+                </SquareButton>
               </Link>
             </motion.div>
           </div>

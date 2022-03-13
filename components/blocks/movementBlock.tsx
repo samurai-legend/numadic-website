@@ -14,8 +14,20 @@ import AnimatedCharacters from "animations/animatedCharacters";
 import TransactionStats from "../elements/transactionStats";
 import VerticalLine from "../elements/VerticalLine";
 import MapPattern from "../elements/mapPattern";
+import Image from "next/image";
+import styled from "@emotion/styled";
 
-const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
+const CollaborationContainer = styled.div(() => [
+  tw`flex gap-x-20 gap-y-5 mt-10 flex-col items-center lg:(flex-row items-start)`,
+]);
+
+const CollaborationImage = styled.div(() => [
+  tw`relative w-24 h-16 lg:(w-28 h-20)`,
+]);
+
+const MovementBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
+  const { collaboration, heading, milestones } = data;
+  
   return (
     <SectionContainer ref={ref}>
       <MapWrapper>
@@ -25,13 +37,24 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
       </MapWrapper>
       <ContentWrapper css={tw`flex flex-col justify-between `}>
         {/* filler */}
-        <Typography
-          as="span"
-          type="overline"
-          css={tw`hidden lg:(visible block text-transparent)`}
-        >
-          {"-"}
-        </Typography>
+        {heading.sectionName ? (
+          <Typography
+            as="span"
+            type="overline"
+            css={tw`hidden lg:(visible block)`}
+          >
+            {heading.sectionName}
+          </Typography>
+        ) : (
+          <Typography
+            as="span"
+            type="overline"
+            css={tw`hidden lg:(visible block text-transparent)`}
+          >
+            {"-"}
+          </Typography>
+        )}
+
         <div css={tw`flex-[50%]`}>
           <div
             css={tw`flex flex-col items-center h-full text-center 
@@ -46,27 +69,19 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               css={tw`leading-[1.25rem] max-w-full text-center 
               2xl:(max-w-6xl) 
               lg:(text-left)`}
-              text="Undisrupting movement"
+              text={heading.title}
             />
             <div
               css={tw`flex w-full justify-between my-16 px-20 flex-col gap-y-5 lg:(flex-row)`}
             >
-              <TransactionStats
-                from={0}
-                to={14000}
-                text="AVG. DAILY TRANSACTION VALUE"
-              />
-
-              <TransactionStats
-                from={0}
-                to={97445}
-                text="AVG. DAILY TRANSACTION VALUE"
-              />
-              <TransactionStats
-                from={0}
-                to={14000}
-                text="AVG. DAILY TRANSACTION VALUE"
-              />
+              {milestones.map((item: any, key: number) => (
+                <TransactionStats
+                  key={`${item.__typename}-${key}`}
+                  from={0}
+                  to={parseInt(item.amount)}
+                  text={item.subtitle}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -79,18 +94,19 @@ const MovementBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             css={tw`flex flex-col justify-center items-center mt-10 mb-20 lg:(mb-0 mt-20)`}
           >
             <Typography as="p" isColor type="body-2">
-              Together with the industry leaders
+              {collaboration.title}
             </Typography>
-            <div
-              css={tw`flex gap-x-20 gap-y-10 mt-10 flex-col items-center lg:(flex-row items-start)`}
-            >
-              <BoschLogo />
-              <IciciBankLogo />
-              <AdityaBirlaLogo css={tw`mix-blend-luminosity`} />
-
-              <KotakBankLogo />
-              <MahindraLogo />
-            </div>
+            <CollaborationContainer>
+              {collaboration.images.data.map((item: any, key: number) => (
+                <CollaborationImage key={item.attributes.alternativeText}>
+                  <Image
+                    src={item.attributes.url}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </CollaborationImage>
+              ))}
+            </CollaborationContainer>
           </motion.div>
         </div>
         <VerticalLine

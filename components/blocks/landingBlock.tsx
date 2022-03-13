@@ -5,7 +5,7 @@ import AnimatedCharacters from "animations/animatedCharacters";
 import VerticalLine from "../elements/VerticalLine";
 
 const LandingContainer = styled.div(() => [
-  tw`h-screen flex-shrink-0 w-full text-center  flex flex-col justify-center items-center gap-y-5 relative 
+  tw`h-screen flex-shrink-0 w-full text-center flex flex-col justify-center items-center gap-y-5 relative 
   pb-40
   top-0 
   lg:-top-8

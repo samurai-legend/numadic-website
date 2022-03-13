@@ -1,55 +1,77 @@
 import Head from "next/head";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { NextSeo } from "next-seo";
 
-const Seo: FunctionComponent<SeoProps> = ({
-  title,
-  description,
-  keyword,
-  url,
-  image,
+const Seo: FunctionComponent<SEO> = ({
+  metaTitle,
+  metaImage,
+  metaDescription,
+  metaSocial,
+  metaRobots,
+  structuredData,
+  metaViewport,
+  canonicalURL,
+  keywords,
 }) => {
-  return (
-    <Head>
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
-      {/* <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon-32x32.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon-16x16.png"
-      /> */}
-      {/* <link rel="manifest" href="/site.webmanifest" /> */}
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-      <meta name="msapplication-TileColor" content="#da532c" />
 
-      <title>{`Numadic | ${title}`}</title>
-      <meta name="og:type" content="website" />
-      <meta name="description" content={description} />
-      <meta name="og:title" content={title} />
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keyword} />
-      <meta name="og:url" content={url} />
-      <meta name="og:description" content={description} />
-      <meta name="og:image" content={image} />
-    </Head>
+  return (
+    <NextSeo
+      titleTemplate="Numadic | %s"
+      title={metaTitle}
+      description={metaDescription}
+      canonical={canonicalURL}
+      openGraph={{
+        url: canonicalURL,
+        title: metaTitle,
+        description: metaDescription,
+        images: [
+          {
+            url: metaImage?.data?.attributes.url
+              ? metaImage?.data?.attributes.url
+              : "",
+          },
+        ],
+        site_name: "Numadic",
+      }}
+      twitter={{
+        handle: "@handle",
+        site: "@site",
+        cardType: "summary_large_image",
+      }}
+    />
   );
 };
 
 export default Seo;
 
-export interface SeoProps {
+export interface SEO {
+  metaTitle: string;
+  metaImage: Image;
+  metaDescription: string;
+  metaSocial: MetaSocial[];
+  metaRobots: string;
+  structuredData: string;
+  metaViewport: string;
+  canonicalURL: string;
+  keywords: string;
+}
+
+export interface Image {
+  data: Data | null;
+}
+
+export interface Data {
+  attributes: Attributes;
+}
+
+export interface Attributes {
+  url: string;
+  alternativeText: string;
+}
+
+export interface MetaSocial {
+  description: string;
+  socialNetwork: string;
   title: string;
-  description?: string;
-  keyword?: string;
-  url?: string;
-  image?: string;
+  image: Image;
 }

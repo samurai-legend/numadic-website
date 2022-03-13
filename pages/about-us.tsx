@@ -7,11 +7,14 @@ import Numads from "@/components/blocks/numads";
 import Roadmap from "@/components/blocks/roadmap";
 import ValueSlider from "@/components/blocks/valuesSlider";
 import VerticalLine from "@/components/elements/VerticalLine";
+import { SEO } from "@/components/layouts/seo";
 import SmoothScroll, {
   ScrollDirection,
 } from "@/components/layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
-import { GetStaticProps } from "next";
+import client from "apollo-client";
+import { AboutUsQuery } from "graphql/about-us";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
 
@@ -80,12 +83,20 @@ const AboutUs: CustomPage = (props: any) => {
 AboutUs.innerPage = true;
 
 export default AboutUs;
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (
+  context
+): Promise<GetStaticPropsResult<AboutUsProps>> => {
+  const { data } = await client.query(AboutUsQuery);
+  const { aboutUsPage } = data;
+  const seo = aboutUsPage?.data?.attributes.seo;
+
   return {
     props: {
-      seo: {
-        title: "About Us",
-      },
+      seo: seo,
     },
   };
 };
+
+interface AboutUsProps {
+  seo: SEO;
+}

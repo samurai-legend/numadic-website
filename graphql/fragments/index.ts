@@ -86,3 +86,86 @@ export const Collabration = gql`
   }
   ${ImageFile}
 `;
+
+export const seo = gql`
+  fragment Seo on ComponentSharedSeo {
+    metaTitle
+    metaImage {
+      data {
+        ...Image
+      }
+    }
+    metaDescription
+    metaSocial {
+      description
+      socialNetwork
+      title
+      image {
+        data {
+          ...Image
+        }
+      }
+    }
+    metaRobots
+    structuredData
+    metaViewport
+    canonicalURL
+    keywords
+  }
+  ${ImageFile}
+`;
+
+export const OpenPosition = gql`
+  fragment OpenPosition on ComponentElementsOpenPositions {
+    title
+    description
+    openPositionLink {
+      label
+      link
+    }
+  }
+`;
+
+export const InvestorLogos = gql`
+  fragment InvestorsLogos on ComponentElementsInvestorLogo {
+    id
+    image {
+      data {
+        ...Image
+      }
+    }
+  }
+  ${ImageFile}
+`;
+
+export const SocialMedia = gql`
+  fragment SocialMedia on ComponentElementsSocialMedia {
+    url
+    image {
+      data {
+        ...Image
+      }
+    }
+  }
+  ${ImageFile}
+`;
+
+export const OtherLinks = gql`
+  fragment OtherLink on ComponentElementsOtherLinks {
+    title
+    linkTitle
+    links {
+      id
+      label
+      url
+    }
+  }
+`;
+
+export const Address = gql`
+  fragment Address on ComponentElementsAddress {
+    location
+    address
+    id
+  }
+`;

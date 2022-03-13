@@ -20,6 +20,7 @@ import Facebook from "@/svg/facebook.svg";
 import Twitter from "@/svg/twitter.svg";
 import { css } from "@emotion/react";
 import MapPattern from "../elements/mapPattern";
+import SvgInline from "../elements/svgInline";
 
 const SocialMediaContainer = styled(motion.div)(() => [
   tw`flex gap-x-10 self-center justify-self-center py-5 lg:(justify-self-end)`,
@@ -68,7 +69,11 @@ const AddressWrapper = styled(motion.div)(() => [
   tw`lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start)`,
 ]);
 
-const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
+const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
+  console.log(data);
+
+  const { address, heading, otherLinks, socialMedia } = data;
+
   return (
     <SectionContainer ref={ref}>
       <MapWrapper>
@@ -79,13 +84,23 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
 
       <ContentWrapper css={tw`flex flex-col justify-between`}>
         {/* filler */}
-        <Typography
-          as="span"
-          type="overline"
-          css={tw`hidden lg:(visible block text-transparent)`}
-        >
-          {"-"}
-        </Typography>
+        {heading.sectionName ? (
+          <Typography
+            as="span"
+            type="overline"
+            css={tw`hidden lg:(visible block)`}
+          >
+            {heading.sectionName}
+          </Typography>
+        ) : (
+          <Typography
+            as="span"
+            type="overline"
+            css={tw`hidden lg:(visible block text-transparent)`}
+          >
+            {"-"}
+          </Typography>
+        )}
         <LocationContainer>
           <AnimatedCharacters
             as="h2"
@@ -96,7 +111,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             css={tw`leading-[1.25rem] max-w-full
              text-center 
              lg:(max-w-3xl text-left)`}
-            text="Locations"
+            text={heading.title}
           />
           <AddressWrapper
             initial="hidden"
@@ -104,28 +119,25 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
             viewport={{ once: true }}
             variants={TextEntryVariant}
           >
-            <div>
-              <Typography as="span" type="overline" css={tw`w-full lg:(w-max)`}>
-                India
-              </Typography>
-              <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
-                Greyscale HQ,
-                <br /> Dona Paula, <br />
-                Goa 403 004
-              </Typography>
-            </div>
-            <div>
-              <Typography as="span" type="overline" css={tw`w-full lg:(w-max)`}>
-                uk
-              </Typography>
-              <Typography as="p" isColor type="body-1" css={tw`max-w-[12rem]`}>
-                10 John Street,
-                <br /> London,
-                <br />
-                United Kingdom
-                <br /> WC1N 2EB
-              </Typography>
-            </div>
+            {address.length > 0 &&
+              address.map((item: any) => (
+                <div key={item.id}>
+                  <Typography
+                    as="span"
+                    type="overline"
+                    css={tw`w-full lg:(w-max)`}
+                  >
+                    {item.location}
+                  </Typography>
+                  <Typography
+                    as="p"
+                    isColor
+                    type="body-1"
+                    css={tw`max-w-[12rem]`}
+                    dangerouslySetInnerHTML={{ __html: item.address }}
+                  />
+                </div>
+              ))}
           </AddressWrapper>
         </LocationContainer>
         <FooterContainer>
@@ -139,7 +151,7 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               css={tw`leading-[1.25rem] max-w-full
              text-center
              lg:(max-w-3xl text-left)`}
-              text="Other links"
+              text={otherLinks.title}
             />
             <motion.div
               initial="hidden"
@@ -148,41 +160,19 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               variants={TextEntryVariant}
             >
               <Typography as="span" type="overline">
-                SOLUTIONS
+                {otherLinks.linkTitle}
               </Typography>
               <ul
                 css={tw`grid grid-rows-3 grid-flow-col mt-2 text-white text-body-3`}
               >
-                <NavItem>
-                  <Link href="#">
-                    <a>Vehicle payments</a>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link href="#">
-                    <a>Vehicle identification</a>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link href="#">
-                    <a> Vehicle integration</a>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link href="#">
-                    <a>About us</a>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link href="#">
-                    <a>Careers</a>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link href="#">
-                    <a>Contact</a>
-                  </Link>
-                </NavItem>
+                {otherLinks.links.length > 0 &&
+                  otherLinks.links.map((item: any) => (
+                    <NavItem key={item.id}>
+                      <Link href={item.url}>
+                        <a>{item.label}</a>
+                      </Link>
+                    </NavItem>
+                  ))}
               </ul>
             </motion.div>
             <SocialMediaContainer
@@ -191,26 +181,14 @@ const FooterBlock: React.FC<any> = forwardRef((props: any, ref: any) => {
               viewport={{ once: true }}
               variants={TextEntryVariant}
             >
-              <Link href="#">
-                <SocialLinks>
-                  <Twitter />
-                </SocialLinks>
-              </Link>
-              <Link href="#">
-                <SocialLinks>
-                  <LinkedIn />
-                </SocialLinks>
-              </Link>
-              <Link href="#">
-                <SocialLinks>
-                  <Instagram />
-                </SocialLinks>
-              </Link>
-              <Link href="#">
-                <SocialLinks>
-                  <Facebook />
-                </SocialLinks>
-              </Link>
+              {socialMedia.length > 0 &&
+                socialMedia.map((item: any) => (
+                  <Link href={item.url}>
+                    <SocialLinks>
+                      <SvgInline url={item.image.data?.attributes.url} />
+                    </SocialLinks>
+                  </Link>
+                ))}
             </SocialMediaContainer>
           </FooterContentWrapper>
           <MiscellaneousContainer

@@ -111,7 +111,7 @@ const UseCaseTabs: React.FC<any> = ({ isMobile, data }: any) => {
                     key={index}
                     Icon={
                       <SvgInline
-                        url={`${process.env.STORAGE_BASE}${item.icon.data.attributes.url}`}
+                        url={item.icon.data.attributes.url}
                       />
                     }
                     amount={item.price}
@@ -127,7 +127,7 @@ const UseCaseTabs: React.FC<any> = ({ isMobile, data }: any) => {
                   key={index}
                   Icon={
                     <SvgInline
-                      url={`${process.env.STORAGE_BASE}${item.icon.data.attributes.url}`}
+                      url={item.icon.data.attributes.url}
                     />
                   }
                   amount={item.price}

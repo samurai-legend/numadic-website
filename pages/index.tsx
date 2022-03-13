@@ -1,14 +1,15 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 import { useState } from "react";
 import { CustomPage } from "types/pages";
 import HorizontalScroll from "@/components/layouts/horizontalScroll";
 import client from "apollo-client";
 import { HomepageQuery } from "graphql/homepage";
 import Blocks from "@/components/blocks/blockRenderer";
+import { SEO } from "@/components/layouts/seo";
 
-const Home: CustomPage = ({ blocksSections, seo }: any) => {
+const Home: CustomPage<HomepageProps> = ({ blocksSections, seo }) => {
   const [refs, setRefs] = useState([]);
- 
+
   return (
     <HorizontalScroll elRefs={refs}>
       <Blocks setRefs={setRefs} blocks={blocksSections} />
@@ -18,18 +19,24 @@ const Home: CustomPage = ({ blocksSections, seo }: any) => {
 Home.innerPage = false;
 export default Home;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (
+  context
+): Promise<GetStaticPropsResult<HomepageProps>> => {
   const { data } = await client.query(HomepageQuery);
   const { homepage } = data;
   const blockSections = homepage?.data?.attributes.sections;
-
+  const seo = homepage?.data?.attributes.seo;
+  
   return {
     props: {
-      seo: {
-        title: "Homepage",
-      },
+      seo: seo,
       blocksSections: blockSections,
     },
     revalidate: 60,
   };
 };
+
+interface HomepageProps {
+  blocksSections: any;
+  seo: SEO;
+}

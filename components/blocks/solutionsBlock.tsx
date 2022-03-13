@@ -60,7 +60,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
                   key={`solutioncard-${key}`}
                   IconComponent={
                     <SvgInline
-                      url={`${process.env.STORAGE_BASE}${card.icon.data.attributes.url}`}
+                      url={card.icon.data.attributes.url}
                     />
                   }
                   title={card.title}
@@ -86,7 +86,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
                     key={`solutioncard-${key}`}
                     IconComponent={
                       <SvgInline
-                        url={`${process.env.STORAGE_BASE}${card.icon.data.attributes.url}`}
+                        url={card.icon.data.attributes.url}
                       />
                     }
                     title={card.title}

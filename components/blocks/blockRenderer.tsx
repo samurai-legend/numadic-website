@@ -1,6 +1,10 @@
 import dynamic from "next/dynamic";
 import { createRef, useEffect, useState } from "react";
 
+const FooterBlock = dynamic(() => import("@/components/blocks/footerBlock"));
+const InvestorsBlock = dynamic(
+  () => import("@/components/blocks/investorsBlock")
+);
 const UseCasesBlock = dynamic(
   () => import("@/components/blocks/useCasesBlock")
 );
@@ -27,7 +31,7 @@ const Blocks: React.FC<any> = ({ blocks, setRefs }: any) => {
   useEffect(() => {
     elRefs.length > 0 && setRefs(elRefs);
   }, [elRefs]);
-
+    
   return blocks.map(
     (block: { __typename: string | number }, index: any) =>
       ({
@@ -42,6 +46,12 @@ const Blocks: React.FC<any> = ({ blocks, setRefs }: any) => {
         ),
         ComponentSectionsMovement: (
           <MovementBlock key={index} ref={elRefs[index]} data={block} />
+        ),
+        ComponentSectionsInvestors: (
+          <InvestorsBlock key={index} ref={elRefs[index]} data={block} />
+        ),
+        ComponentSectionsFooter: (
+          <FooterBlock key={index} ref={elRefs[index]} data={block} />
         ),
       }[block.__typename])
   );
