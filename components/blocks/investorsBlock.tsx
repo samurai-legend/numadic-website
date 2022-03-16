@@ -78,7 +78,7 @@ const InvestorsBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={TextEntryVariant}
-              css={tw`grid grid-rows-2 grid-flow-col gap-y-10 gap-x-10 mt-5 lg:(gap-y-5 mt-0)`}
+              css={tw`grid grid-rows-2 grid-cols-2 grid-flow-col gap-y-10 gap-x-10 mt-5 lg:(gap-y-5 mt-0)`}
             >
               {investorLogos.length > 0 &&
                 investorLogos.map((item: any) => (
@@ -134,6 +134,7 @@ const InvestorsBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
           </div>
         </div>
         <VerticalLine
+          inView
           css={tw`h-52 md:h-80 relative visible lg:hidden justify-self-center z-0`}
         />
       </ContentWrapper>

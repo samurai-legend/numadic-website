@@ -6,6 +6,7 @@ import { MyAppProps } from "types/pages";
 import { ScrollDirection } from "@/components/layouts/smoothScroll";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "createEmotionCache";
+import { AnimatePresence } from "framer-motion";
 
 function handleExitComplete() {
   if (typeof window !== "undefined") {
@@ -32,7 +33,9 @@ function MyApp({
             : ScrollDirection.horizontal
         }
       >
-        <Component {...pageProps} key={router.route} />
+        <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
       </Layout>
     </CacheProvider>
   );

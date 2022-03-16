@@ -5,7 +5,7 @@ const TextEntryVariant = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 1,
+      duration: 2,
       type: "spring",
     },
   },
@@ -18,7 +18,7 @@ const EntryVariant = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 1,
+      duration: 2,
       type: "spring",
     },
   },

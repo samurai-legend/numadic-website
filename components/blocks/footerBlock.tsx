@@ -54,14 +54,13 @@ const FooterContentWrapper = styled.div(() => [
 
 const LocationContainer = styled.div(() => [
   tw`flex-[50%] grid grid-cols-1 text-center grid-flow-row `,
-  tw`lg:(grid-flow-col grid-cols-2 text-left)`,
+  tw`lg:(grid-flow-col grid-cols-4 text-left)`,
 ]);
 
 const AddressWrapper = styled(motion.div)(() => [
-  tw`grid grid-rows-2 grid-cols-none 
-  grid-flow-row justify-center text-center 
-  `,
-  tw`lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start)`,
+  tw`grid grid-rows-1 grid-cols-1
+  grid-flow-row justify-center text-center col-start-1 col-span-1`,
+  tw`lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start col-start-3 col-span-2)`,
 ]);
 
 const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
@@ -115,7 +114,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
           >
             {address.length > 0 &&
               address.map((item: any) => (
-                <div key={item.id}>
+                <div css={tw`flex flex-col items-center lg:(items-start)`} key={item.id}>
                   <Typography
                     as="span"
                     type="overline"
@@ -157,7 +156,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                 {otherLinks.linkTitle}
               </Typography>
               <ul
-                css={tw`grid grid-rows-3 grid-flow-col mt-2 text-white text-body-3`}
+                css={tw`grid grid-rows-3 grid-cols-2 grid-flow-col mt-2 text-white text-body-3`}
               >
                 {otherLinks.links.length > 0 &&
                   otherLinks.links.map((item: any) => (

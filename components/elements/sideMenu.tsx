@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import tw from "twin.macro";
 import { NavContainer, NavItem } from "../blocks/common";
@@ -39,7 +40,7 @@ const variantsCarrot = {
 const SideMenu: React.FC<any> = (props: any) => {
   const [dropOpen, setDropOpen] = useState(false);
   const toggleOpen = () => setDropOpen(!dropOpen);
-
+  const router = useRouter();
   return (
     <motion.div
       animate="open"
@@ -61,7 +62,7 @@ const SideMenu: React.FC<any> = (props: any) => {
             <a>Home</a>
           </Link>
         </NavItem>
-        <NavItem onClick={toggleOpen} >
+        <NavItem onClick={toggleOpen} active={router.asPath === '/solutions' ? 1 : 0}>
           <span css={tw`flex items-center gap-x-2 cursor-pointer`}>
             Solutions
             <Carrot variants={variantsCarrot} animate={dropOpen ? "open" : "initial"}/>
@@ -94,17 +95,17 @@ const SideMenu: React.FC<any> = (props: any) => {
             )}
           </AnimatePresence>
         </NavItem>
-        <NavItem>
-          <Link href="/" passHref>
+        <NavItem active={router.asPath === '/about-us' ? 1 : 0}>
+          <Link href="/about-us" passHref>
             <a>About Us</a>
           </Link>
         </NavItem>
-        <NavItem>
+        <NavItem active={router.asPath === '/career' ? 1 : 0}>
           <Link href="/" passHref>
             <a>Careers</a>
           </Link>
         </NavItem>
-        <NavItem>
+        <NavItem active={router.asPath === '/contact-us' ? 1 : 0}>
           <Link href="/" passHref>
             <a>Contact us</a>
           </Link>

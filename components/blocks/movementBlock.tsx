@@ -105,6 +105,7 @@ const MovementBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
           </motion.div>
         </div>
         <VerticalLine
+          inView
           css={tw`h-52 md:h-80 relative visible lg:hidden justify-self-center z-0`}
         />
       </ContentWrapper>

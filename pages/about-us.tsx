@@ -65,9 +65,9 @@ const AboutUs: CustomPage = ({ blocksSections }: any) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`font-normal`}
-              text="Movement is typically chaotic and the industries that serve it, quite disrupted. 
-            We exist to simplify, optimise, automate and undisrupt movement."
+              css={tw`font-thin max-w-6xl`}
+              text="Movement is typically chaotic and the industries that serve it, quite disrupted.
+                    We exist to simplify, optimise, automate and undisrupt movement."
             />
           </InnerContentWrapper>
         </ContentWrapper>

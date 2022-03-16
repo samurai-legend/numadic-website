@@ -20,7 +20,7 @@ const Numads: React.FC<any> = (props: any) => {
     <ContentWrapper>
       <InnerContentWrapper padding>
         <NumadContentWrapper>
-          <div css={tw`flex-[50%]`}>
+          <div css={tw`flex-[50%] flex flex-col w-full items-center lg:(items-start w-max)`}>
             <Typography as="p" isColor>
               We are
             </Typography>

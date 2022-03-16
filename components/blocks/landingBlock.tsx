@@ -50,6 +50,7 @@ const LandingBlock: FunctionComponent<any> = forwardRef(
             text={data.description}
           />
           <VerticalLine
+            inView
             css={tw`h-60 md:h-80 absolute bottom-16 visible lg:hidden`}
           />
         </LandingContainer>

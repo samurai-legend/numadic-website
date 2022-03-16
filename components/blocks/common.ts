@@ -39,7 +39,7 @@ const NavItem = styled(motion.li)(({ type, active }: any) => [
         tw`text-gray-light font-medium transition-all duration-150 ease-in`,
         tw`hover:text-white`,
         active &&
-          tw`text-white after:(contents[""] absolute top-full h-1 w-full left-0 rounded-md bg-gradient-to-r from-blue-dark to-blue-primary)`,
+          tw`text-white after:(contents[""] mt-1 md:mt-2 absolute top-full h-1 w-full left-0 rounded-md bg-gradient-to-r from-blue-dark to-blue-primary)`,
         css`
           .carrot {
             ${tw`relative top-[2px]`}

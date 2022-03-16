@@ -109,11 +109,7 @@ const UseCaseTabs: React.FC<any> = ({ isMobile, data }: any) => {
                 {selectedTab.facts?.map((item: any, index: number) => (
                   <PaymentStatsUC
                     key={index}
-                    Icon={
-                      <SvgInline
-                        url={item.icon.data.attributes.url}
-                      />
-                    }
+                    Icon={<SvgInline url={item.icon.data.attributes.url} />}
                     amount={item.price}
                     animate={true}
                   />
@@ -125,17 +121,14 @@ const UseCaseTabs: React.FC<any> = ({ isMobile, data }: any) => {
               {selectedTab.facts?.map((item: any, index: number) => (
                 <PaymentStatsUC
                   key={index}
-                  Icon={
-                    <SvgInline
-                      url={item.icon.data.attributes.url}
-                    />
-                  }
+                  Icon={<SvgInline url={item.icon.data.attributes.url} />}
                   amount={item.price}
                   className="grid-alternate"
                   direction="right"
                 />
               ))}
               <VerticalLine
+                inView
                 css={tw`h-full absolute justify-self-center z-[1]`}
               />
             </MobileFactsContainer>

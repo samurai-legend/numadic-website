@@ -59,9 +59,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
                 <SolutionCard
                   key={`solutioncard-${key}`}
                   IconComponent={
-                    <SvgInline
-                      url={card.icon.data.attributes.url}
-                    />
+                    <SvgInline url={card.icon.data.attributes.url} />
                   }
                   title={card.title}
                   description={card.description}
@@ -69,6 +67,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               ))}
 
               <VerticalLine
+                inView
                 css={tw`h-full absolute bottom-2 visible lg:hidden z-[-1]`}
               />
             </div>
@@ -85,9 +84,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
                   <SolutionCard
                     key={`solutioncard-${key}`}
                     IconComponent={
-                      <SvgInline
-                        url={card.icon.data.attributes.url}
-                      />
+                      <SvgInline url={card.icon.data.attributes.url} />
                     }
                     title={card.title}
                     description={card.description}
