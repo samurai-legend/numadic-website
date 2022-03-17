@@ -4,9 +4,6 @@ import { useState } from "react";
 import tw from "twin.macro";
 import { Typography } from "../typography";
 import PaymentStatsUC from "./paymentStatsUC";
-import FuelIcon from "@/svg/usecases/fuel.svg";
-import ParkingIcon from "@/svg/usecases/parking.svg";
-import TicketsIcon from "@/svg/usecases/tickets.svg";
 import VerticalLine from "./VerticalLine";
 import { css } from "@emotion/react";
 import SvgInline from "./svgInline";
@@ -124,7 +121,7 @@ const UseCaseTabs: React.FC<any> = ({ isMobile, data }: any) => {
                   Icon={<SvgInline url={item.icon.data.attributes.url} />}
                   amount={item.price}
                   className="grid-alternate"
-                  direction="right"
+                  direction={index % 2 == 0 ? "right" : "left"}
                 />
               ))}
               <VerticalLine

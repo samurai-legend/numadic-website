@@ -37,7 +37,7 @@ const variantsCarrot = {
   initial: { rotate: 0 },
 };
 
-const SideMenu: React.FC<any> = (props: any) => {
+const SideMenu: React.FC<any> = ({ toggleMenu }: any) => {
   const [dropOpen, setDropOpen] = useState(false);
   const toggleOpen = () => setDropOpen(!dropOpen);
   const router = useRouter();
@@ -59,13 +59,19 @@ const SideMenu: React.FC<any> = (props: any) => {
       >
         <NavItem>
           <Link href="/" passHref>
-            <a>Home</a>
+            <a onClick={toggleMenu}>Home</a>
           </Link>
         </NavItem>
-        <NavItem onClick={toggleOpen} active={router.asPath === '/solutions' ? 1 : 0}>
+        <NavItem
+          onClick={toggleOpen}
+          active={router.asPath === "/solutions" ? 1 : 0}
+        >
           <span css={tw`flex items-center gap-x-2 cursor-pointer`}>
             Solutions
-            <Carrot variants={variantsCarrot} animate={dropOpen ? "open" : "initial"}/>
+            <Carrot
+              variants={variantsCarrot}
+              animate={dropOpen ? "open" : "initial"}
+            />
           </span>
           <AnimatePresence exitBeforeEnter>
             {dropOpen && (
@@ -78,36 +84,36 @@ const SideMenu: React.FC<any> = (props: any) => {
               >
                 <NavItem>
                   <Link href="/" passHref>
-                    <a>Vehicle payments</a>
+                    <a onClick={toggleMenu}>Vehicle payments</a>
                   </Link>
                 </NavItem>
                 <NavItem>
                   <Link href="/" passHref>
-                    <a>Vehicle identification</a>
+                    <a onClick={toggleMenu}>Vehicle identification</a>
                   </Link>
                 </NavItem>
                 <NavItem>
                   <Link href="/" passHref>
-                    <a>Vehicle integration</a>
+                    <a onClick={toggleMenu}>Vehicle integration</a>
                   </Link>
                 </NavItem>
               </motion.ul>
             )}
           </AnimatePresence>
         </NavItem>
-        <NavItem active={router.asPath === '/about-us' ? 1 : 0}>
+        <NavItem active={router.asPath === "/about-us" ? 1 : 0}>
           <Link href="/about-us" passHref>
-            <a>About Us</a>
+            <a onClick={toggleMenu}>About Us</a>
           </Link>
         </NavItem>
-        <NavItem active={router.asPath === '/career' ? 1 : 0}>
+        <NavItem active={router.asPath === "/career" ? 1 : 0}>
           <Link href="/" passHref>
-            <a>Careers</a>
+            <a onClick={toggleMenu}>Careers</a>
           </Link>
         </NavItem>
-        <NavItem active={router.asPath === '/contact-us' ? 1 : 0}>
+        <NavItem active={router.asPath === "/contact-us" ? 1 : 0}>
           <Link href="/" passHref>
-            <a>Contact us</a>
+            <a onClick={toggleMenu}>Contact us</a>
           </Link>
         </NavItem>
       </NavContainer>

@@ -33,9 +33,7 @@ function MyApp({
             : ScrollDirection.horizontal
         }
       >
-        <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
+        <Component {...pageProps} />
       </Layout>
     </CacheProvider>
   );

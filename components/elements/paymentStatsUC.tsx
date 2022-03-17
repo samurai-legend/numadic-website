@@ -2,28 +2,44 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion, useAnimationFrame } from "framer-motion";
 import { IsColliding } from "helpers/colliding";
-import { forwardRef, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import tw from "twin.macro";
 import { GlobalLineContext } from "../layouts/horizontalScroll";
 
 const MessageBubble = styled(motion.div)((props: any) => [
   tw`h-24 w-full bg-gray-medium rounded-xl py-2 relative`,
-  tw`before:(contents[""] absolute h-5 w-5 bg-gray-medium )`,
+  tw`before:(contents[""] absolute h-6 w-6)`,
   css`
     &:before {
-      ${tw`z-[-1]`}
-      border-radius: 0 0 8px 0;
+      border: solid transparent;
+      border-color: rgba(136, 183, 213, 0);
+      border-width: 12px;
     }
   `,
 
   props.direction == "bottom" && [
-    tw`before:(top-[90%] left-1/2 -translate-x-1/2 rotate-45)`,
+    tw`before:(top-full left-1/2 -translate-x-1/2)`,
+    css`
+      &:before {
+        border-top-color: #393939;
+      }
+    `,
   ],
   props.direction == "right" && [
-    tw`before:(left-[90%] top-1/2 -translate-y-1/2 -rotate-45)`,
+    tw`before:(left-full top-1/2 -translate-y-1/2)`,
+    css`
+      &:before {
+        border-left-color: #393939;
+      }
+    `,
   ],
   props.direction == "left" && [
-    tw`before:(right-[90%] top-1/2 -translate-y-1/2 rotate-[135deg])`,
+    tw`before:(right-full top-1/2 -translate-y-1/2)`,
+    css`
+      &:before {
+        border-right-color: #393939;
+      }
+    `,
   ],
 ]);
 

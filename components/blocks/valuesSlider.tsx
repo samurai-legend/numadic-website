@@ -7,6 +7,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
 import ValueCard from "../elements/valueCard";
 import Heart from "@/svg/values/heart.svg";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
+const SliderContainer = styled.div(() => [
+  tw`relative w-full container mx-auto mt-16`,
+  css`
+    .swiper {
+      ${tw`overflow-visible`}
+    }
+  `,
+]);
 
 const ValueSlider: React.FC<any> = (props: any) => {
   const [swiperInstance, setSwiperInstance] = useState<any>(false);
@@ -34,7 +45,7 @@ const ValueSlider: React.FC<any> = (props: any) => {
           text="We got here because we believed in our virtues"
         />
       </div>
-      <div css={tw`relative w-full container mx-auto mt-16`}>
+      <SliderContainer>
         <Swiper
           slidesPerView={3}
           spaceBetween={25}
@@ -82,7 +93,7 @@ const ValueSlider: React.FC<any> = (props: any) => {
             />
           </SwiperSlide>
         </Swiper>
-      </div>
+      </SliderContainer>
     </InnerContentWrapper>
   );
 };

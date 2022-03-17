@@ -28,7 +28,7 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
     const { IsMobile } = useContext(ScrollContext);
 
     return (
-      <SectionContainer ref={ref}>
+      <SectionContainer ref={ref} id="solutions">
         <ContentWrapper css={tw`flex flex-col`}>
           <TopContainer>
             <Typography

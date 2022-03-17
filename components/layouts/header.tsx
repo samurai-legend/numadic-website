@@ -9,9 +9,9 @@ import Link from "next/link";
 import MobileNav from "../elements/mobileNav";
 import { useMediaMatch } from "rooks";
 
-const HeaderContainer = styled.div(() => [tw`fixed w-screen z-[60]`]);
+const HeaderContainer = styled.div(() => [tw`fixed w-screen z-[60] bg-black-dark`]);
 const HeaderWtapper = styled.div(() => [
-  tw`container m-auto py-5 flex justify-between items-center bg-black-dark lg:(py-10)`,
+  tw`container m-auto py-5 flex justify-between items-center lg:(py-10)`,
 ]);
 const Header = () => {
   const IsMobile = useMediaMatch("(max-width: 1023px)");

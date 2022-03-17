@@ -1,9 +1,6 @@
 import TimeGoal from "./TimeGoal";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
-import PaymentStatsUC from "./paymentStatsUC";
-import { useEffect, useState } from "react";
 
 const TimelineContainer = styled.div(() => [
   tw`w-full max-w-2xl mx-auto grid grid-flow-row-dense grid-cols-2 my-10 gap-y-5 py-20 relative`,

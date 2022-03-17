@@ -16,6 +16,10 @@ const MobileNav: React.FC<any> = (props: any) => {
       document.body.classList.remove("no-scroll");
     }
   }, [isOpen]);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <div css={tw`flex relative justify-end items-center gap-x-8`}>
       <NavContainer>
@@ -27,7 +31,7 @@ const MobileNav: React.FC<any> = (props: any) => {
       </NavContainer>
       <MenuButton
         isOpen={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleOpen}
         strokeWidth="4"
         lineProps={{ strokeLinecap: "round" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -38,7 +42,7 @@ const MobileNav: React.FC<any> = (props: any) => {
       />
       <ExternalPortal>
         <AnimatePresence exitBeforeEnter initial={false}>
-          {isOpen && <SideMenu isOpen={isOpen} />}
+          {isOpen && <SideMenu toggleMenu={toggleOpen} />}
         </AnimatePresence>
       </ExternalPortal>
     </div>

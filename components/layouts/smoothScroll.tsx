@@ -91,7 +91,7 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
   );
   const scrollStopValue = useMotionValue(0);
 
-  const physics = { stiffness: 30, mass: 1, damping: 10 };
+  const physics = { stiffness: 80, mass: 1, damping: 20 };
   const physicsY = { stiffness: 20, mass: 0.5, damping: 5 };
 
   const springX = useSpring(scrollStopValue, physics);

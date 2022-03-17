@@ -10,24 +10,32 @@ const ContentBubble = styled(motion.div)((props: any) => [
   tw`md:(w-[200px])`,
   tw`lg:(w-[250px])`,
   tw`relative translate-y-1/2 flex flex-col items-start`,
-  tw`before:(contents[""] absolute h-3 w-3 bg-gray-medium)`,
+  tw`before:(contents[""] absolute h-3 w-3)`,
   tw`md:before:(h-5 w-5)`,
   tw`lg:before:(h-7 w-7)`,
   css`
     &:before {
-      ${tw`z-[-1]`}
-      border-radius: 0 0 8px 0;
+      border: solid transparent;
+      border-color: rgba(136, 183, 213, 0);
+      border-width: 12px;
     }
   `,
+
   props.direction == "right" && [
-    tw`before:(right-[-6px] top-1/2 -translate-y-1/2 -rotate-45)`,
-    tw`md:before:(right-[-10px])`,
-    tw`lg:before:(right-[-10px])`,
+    tw`before:(left-full top-1/2 -translate-y-1/2)`,
+    css`
+      &:before {
+        border-left-color: #393939;
+      }
+    `,
   ],
   props.direction == "left" && [
-    tw`before:(left-[-6px] top-1/2 -translate-y-1/2 rotate-[135deg])`,
-    tw`md:before:(left-[-10px])`,
-    tw`lg:before:(left-[-10px])`,
+    tw`before:(right-full top-1/2 -translate-y-1/2)`,
+    css`
+      &:before {
+        border-right-color: #393939;
+      }
+    `,
   ],
 ]);
 

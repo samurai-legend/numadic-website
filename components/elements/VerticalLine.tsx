@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { motion, useSpring, useTransform } from "framer-motion";
 import useElementScrollProgress from "hooks/elementScrollProgress";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import tw from "twin.macro";
 
 const SvgElementMobile = styled(motion.svg)((props: any) => [
@@ -50,6 +50,26 @@ const VerticalLine: React.FC<any> = forwardRef(
           sectionRef.current.clientHeight - ref.current.clientHeight
         );
     }, [lineRef, sectionRef, ref]);
+
+    const onResize = useCallback(
+      (entries) => {
+        for (let entry of entries) {
+          lineRef?.current && setDashLength(lineRef.current.getTotalLength());
+          ref?.current && setSectionHeight(entry.target.clientHeight - ref.current.clientHeight);
+        }
+      },
+      [sectionRef,lineRef]
+    );
+
+    useEffect(() => {
+      if (sectionRef.current) {
+        const resizeObserver = new ResizeObserver((entries) =>
+          onResize(entries)
+        );
+        resizeObserver.observe(sectionRef.current);
+        return () => resizeObserver.disconnect();
+      }
+    }, [onResize]);
 
     const { scrollProgress } = useElementScrollProgress(scrollRef, 200);
 
