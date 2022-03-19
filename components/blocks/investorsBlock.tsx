@@ -1,6 +1,7 @@
 import tw from "twin.macro";
 import {
   ContentWrapper,
+  MapContainer,
   MapWrapper,
   SectionContainer,
   SquareButton,
@@ -33,9 +34,9 @@ const InvestorsBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
       <MapWrapper>
-        <div css={tw`container mx-auto`}>
+        <MapContainer>
           <MapPattern />
-        </div>
+        </MapContainer>
       </MapWrapper>
 
       <ContentWrapper css={tw`flex flex-col justify-center`}>

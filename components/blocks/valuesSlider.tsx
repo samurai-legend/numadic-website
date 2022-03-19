@@ -55,9 +55,11 @@ const ValueSlider: React.FC<any> = (props: any) => {
           breakpoints={{
             200: {
               slidesPerView: 1,
+              spaceBetween: 10,
             },
             500: {
               slidesPerView: 2,
+              spaceBetween: 15,
             },
             1024: {
               slidesPerView: 3,

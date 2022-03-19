@@ -56,6 +56,18 @@ const NavItem = styled(motion.li)(({ type, active }: any) => [
       ],
 ]);
 
+const NavLink = styled.a((props: any) => [
+  tw`relative`,
+  props.tag &&
+    css`
+      &::after {
+        content: "${props.tag}";
+        ${tw`absolute left-full ml-4 w-auto h-6 flex justify-center items-center
+         px-3 text-white capitalize bg-blue-primary top-1/2 -translate-y-1/2 text-center`}
+      }
+    `,
+]);
+
 const NavDropdownContainer = styled(motion.ul)(() => [
   tw`absolute top-full left-0 whitespace-nowrap flex flex-col pt-1`,
   css`
@@ -69,6 +81,8 @@ const MapWrapper = styled.div(() => [
   tw`absolute w-screen h-full flex justify-center items-center z-0 pointer-events-none`,
 ]);
 
+const MapContainer = styled.div(() => [tw`container mx-auto relative h-full`]);
+
 const SquareButton = styled.a(() => [
   tw`border-white block cursor-pointer border-2 appearance-none text-white font-normal
                text-body-2 px-8 py-1 hover:(bg-gray-700) transition-all duration-150 ease-in`,
@@ -79,8 +93,10 @@ export {
   ContentWrapper,
   NavContainer,
   NavItem,
+  NavLink,
   NavDropdownContainer,
   MapWrapper,
+  MapContainer,
   SquareButton,
   InnerContentWrapper,
 };

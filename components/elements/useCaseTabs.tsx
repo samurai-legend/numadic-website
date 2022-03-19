@@ -56,14 +56,24 @@ const MobileFactsContainer = styled.div(() => [
   `,
 ]);
 
-const UseCaseTabs: React.FC<any> = ({ isMobile, data }: any) => {
+const UseCaseTabs: React.FC<any> = ({
+  isMobile,
+  data,
+  setSelectedCard,
+}: any) => {
   const [selectedTab, setSelectedTab] = useState(data[0]);
 
   return (
     <>
       <TabsNavsContainer>
         {data.map((item: any) => (
-          <TabsNavItem key={item.tabTitle} onClick={() => setSelectedTab(item)}>
+          <TabsNavItem
+            key={item.tabTitle}
+            onClick={() => {
+              setSelectedTab(item);
+              setSelectedCard(item.card);
+            }}
+          >
             <Typography
               as="p"
               type="body-3"

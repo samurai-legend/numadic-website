@@ -7,9 +7,19 @@ module.exports = (phase, { defaultConfig }) => ({
   },
   reactStrictMode: false,
   images: {
-    domains: ['localhost',process.env.AWS_S3_DOMAIN],
-    loader: 'akamai',
-    path: '',
+    domains: ["localhost", process.env.AWS_S3_DOMAIN],
+    loader: "akamai",
+    path: "",
+  },
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      "/": { page: "/" },
+      "/about-us": { page: "/about-us" },
+      "/contact": { page: "/contact" }
+    };
   },
   webpack: (config, { isServer, webpack }) => {
     config.module.rules.push({

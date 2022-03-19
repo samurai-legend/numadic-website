@@ -1,8 +1,10 @@
 import tw from "twin.macro";
 import {
   ContentWrapper,
+  MapContainer,
   MapWrapper,
   NavItem,
+  NavLink,
   SectionContainer,
 } from "./common";
 
@@ -54,25 +56,24 @@ const FooterContentWrapper = styled.div(() => [
 
 const LocationContainer = styled.div(() => [
   tw`flex-[50%] grid grid-cols-1 text-center grid-flow-row `,
-  tw`lg:(grid-flow-col grid-cols-4 text-left)`,
+  tw`lg:(grid-flow-col grid-cols-3 text-left)`,
 ]);
 
 const AddressWrapper = styled(motion.div)(() => [
-  tw`grid grid-rows-1 grid-cols-1
+  tw`grid grid-rows-1 grid-cols-1 gap-y-5
   grid-flow-row justify-center text-center col-start-1 col-span-1`,
-  tw`lg:(grid-cols-2 grid-rows-none grid-flow-col text-left justify-start col-start-3 col-span-2)`,
+  tw`lg:(grid-cols-3 grid-rows-none grid-flow-col text-left justify-start col-start-2 col-span-2)`,
 ]);
 
 const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
-
   const { address, heading, otherLinks, socialMedia } = data;
 
   return (
     <SectionContainer ref={ref}>
       <MapWrapper>
-        <div css={tw`container mx-auto`}>
+        <MapContainer>
           <MapPattern />
-        </div>
+        </MapContainer>
       </MapWrapper>
 
       <ContentWrapper css={tw`flex flex-col justify-between`}>
@@ -114,7 +115,10 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
           >
             {address.length > 0 &&
               address.map((item: any) => (
-                <div css={tw`flex flex-col items-center lg:(items-start)`} key={item.id}>
+                <div
+                  css={tw`flex flex-col items-center lg:(items-start)`}
+                  key={item.id}
+                >
                   <Typography
                     as="span"
                     type="overline"
@@ -126,7 +130,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                     as="p"
                     isColor
                     type="body-1"
-                    css={tw`max-w-[12rem]`}
+                    css={tw`max-w-[16rem]`}
                     dangerouslySetInnerHTML={{ __html: item.address }}
                   />
                 </div>
@@ -162,7 +166,13 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                   otherLinks.links.map((item: any) => (
                     <NavItem key={item.id}>
                       <Link href={item.url}>
-                        <a>{item.label}</a>
+                        <NavLink
+                          tag={
+                            item.tag.data ? item.tag.data.attributes.name : 0
+                          }
+                        >
+                          {item.label}
+                        </NavLink>
                       </Link>
                     </NavItem>
                   ))}

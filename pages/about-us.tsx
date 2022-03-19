@@ -4,6 +4,7 @@ import {
   InnerContentWrapper,
 } from "@/components/blocks/common";
 import FooterBlock from "@/components/blocks/footerBlock";
+import JoinUsBlock from "@/components/blocks/joinUsbBlock";
 import Numads from "@/components/blocks/numads";
 import Roadmap from "@/components/blocks/roadmap";
 import ValueSlider from "@/components/blocks/valuesSlider";
@@ -75,6 +76,8 @@ const AboutUs: CustomPage = ({ blocksSections }: any) => {
         <Roadmap />
         <ValueSlider />
         <Numads />
+        <JoinUsBlock />
+
         <Blocks blocks={blocksSections} />
       </div>
     </SmoothScroll>

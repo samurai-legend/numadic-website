@@ -158,6 +158,13 @@ export const OtherLinks = gql`
       id
       label
       url
+      tag {
+        data {
+          attributes {
+            name
+          }
+        }
+      }
     }
   }
 `;

@@ -4,22 +4,28 @@ import HpclLogo from "@/svg/brands/HPCL_Logo.svg";
 import { motion } from "framer-motion";
 import { EntryVariant, TextEntryVariant } from "animations";
 import UseCaseTabs from "../elements/useCaseTabs";
-import { forwardRef, useContext } from "react";
+import { forwardRef, useContext, useState } from "react";
 import { Typography } from "../typography";
 import { ScrollContext } from "../layouts/smoothScroll";
 import AnimatedCharacters from "animations/animatedCharacters";
 import styled from "@emotion/styled";
+import Image from "next/image";
 
 const UseCaseCardContainer = styled(motion.div)(() => [
-  tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center
+  tw`bg-[#333333] px-4 py-2 max-w-sm flex items-center relative
            mb-0 gap-x-5 lg:(px-5 py-4 max-w-md mt-20) xl:(max-w-lg)`,
 ]);
 
-const UseCaseCardImage = styled.div(() => [tw`inline-block w-max`]);
+const UseCaseCardImage = styled.div(() => [tw`inline-block relative w-24 h-20`]);
 
 const UseCasesBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
   const { heading, useCaseTabs } = data;
   const { IsMobile } = useContext(ScrollContext);
+  const [cardDetails, setCardDetails] = useState(useCaseTabs[0].card);
+
+  const selectedCard = (card: any) => {
+    setCardDetails(card);
+  };
 
   return (
     <SectionContainer ref={ref}>
@@ -69,35 +75,45 @@ const UseCasesBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
               variants={EntryVariant}
               css={tw`relative w-full mt-2 tall-sm:mt-3`}
             >
-              <UseCaseTabs isMobile={IsMobile} data={useCaseTabs} />
+              <UseCaseTabs
+                isMobile={IsMobile}
+                data={useCaseTabs}
+                setSelectedCard={selectedCard}
+              />
             </motion.div>
           </div>
         </div>
 
         <div css={tw`flex-[50%]`}>
-          <UseCaseCardContainer
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={TextEntryVariant}
-          >
-            <UseCaseCardImage>
-              <HpclLogo />
-            </UseCaseCardImage>
-            <div>
-              <Typography as="span" type="overline">
-                Case study
-              </Typography>
-              <Typography
-                as="p"
-                type="body-2"
-                isColor
-                css={tw`leading-6 xl:leading-7`}
-              >
-                How Numadic helped HPCL accept payments for fuel through FASTag
-              </Typography>
-            </div>
-          </UseCaseCardContainer>
+          {cardDetails && (
+            <UseCaseCardContainer
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={TextEntryVariant}
+            >
+              <UseCaseCardImage>
+                <Image
+                  src={cardDetails.image.data.attributes.url}
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </UseCaseCardImage>
+              <div>
+                <Typography as="span" type="overline">
+                  {cardDetails.cardTitle}
+                </Typography>
+                <Typography
+                  as="p"
+                  type="body-2"
+                  isColor
+                  css={tw`leading-6 xl:leading-7`}
+                >
+                  {cardDetails.description}
+                </Typography>
+              </div>
+            </UseCaseCardContainer>
+          )}
         </div>
       </ContentWrapper>
     </SectionContainer>

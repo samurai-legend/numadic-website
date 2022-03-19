@@ -1,5 +1,5 @@
 import tw from "twin.macro";
-import { SectionContainer, ContentWrapper, MapWrapper } from "./common";
+import { SectionContainer, ContentWrapper, MapWrapper, MapContainer } from "./common";
 
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
@@ -26,9 +26,9 @@ const MovementBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
   return (
     <SectionContainer ref={ref}>
       <MapWrapper>
-        <div css={tw`container mx-auto`}>
+        <MapContainer>
           <MapPattern />
-        </div>
+        </MapContainer>
       </MapWrapper>
       <ContentWrapper css={tw`flex flex-col justify-between `}>
         {/* filler */}
