@@ -47,13 +47,13 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`leading-[1.25rem] max-w-full text-center 2xl:(max-w-6xl) md:(max-w-3xl) lg:(text-left max-w-4xl)`}
+              css={tw`leading-[1.25rem] max-w-full text-center 2xl:(max-w-6xl) md:(max-w-2xl) lg:(text-left max-w-2xl) xl:(max-w-4xl)`}
               text={heading.title}
             />
           </TopContainer>
           {IsMobile && (
             <div
-              css={tw`w-full flex flex-col justify-center items-center gap-y-4 relative z-50 pt-20 pb-32 mt-5`}
+              css={tw`w-full flex flex-col justify-center items-center gap-y-4 relative z-40 pt-20 pb-32 mt-5`}
             >
               {solutionCards.map((card: any, key: number) => (
                 <SolutionCard
@@ -76,9 +76,9 @@ const SolutionsBlock: FunctionComponent<any> = forwardRef(
 
         {!IsMobile && (
           <>
-            <BottomContainer css={tw`z-50`}>
+            <BottomContainer css={tw`z-40`}>
               <div
-                css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-50 container m-auto`}
+                css={tw`w-full flex justify-center items-center flex-row  gap-x-4 relative z-40 container m-auto`}
               >
                 {solutionCards.map((card: any, key: number) => (
                   <SolutionCard

@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
 import ValueCard from "../elements/valueCard";
 import Heart from "@/svg/values/heart.svg";
+import Circle from "@/svg/values/circle.svg";
+import SlantLine from "@/svg/values/slant-lines.svg";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
@@ -15,6 +17,9 @@ const SliderContainer = styled.div(() => [
   css`
     .swiper {
       ${tw`overflow-visible`}
+      .swiper-slide{
+        ${tw`h-auto`}
+      }
     }
   `,
 ]);
@@ -75,24 +80,20 @@ const ValueSlider: React.FC<any> = (props: any) => {
           </SwiperSlide>
           <SwiperSlide>
             <ValueCard
-              Icon={Heart}
-              title="humble"
-              description="We've been humbled and we find peace in being humble."
+              Icon={Circle}
+              title="Still"
+              description="We are still at our core."
             />
           </SwiperSlide>
           <SwiperSlide>
             <ValueCard
-              Icon={Heart}
-              title="humble"
-              description="We've been humbled and we find peace in being humble."
+              Icon={SlantLine}
+              title="Fast"
+              description="We are fast on the front lines."
             />
           </SwiperSlide>
           <SwiperSlide>
-            <ValueCard
-              Icon={Heart}
-              title="humble"
-              description="We've been humbled and we find peace in being humble."
-            />
+            <ValueCard Icon={Heart} title="Candour" description="Candour ..." />
           </SwiperSlide>
         </Swiper>
       </SliderContainer>

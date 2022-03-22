@@ -17,7 +17,7 @@ const CollaborationContainer = styled.div(() => [
 ]);
 
 const CollaborationImage = styled.div(() => [
-  tw`relative w-24 h-16 lg:(w-28 h-20)`,
+  tw`relative w-24 h-16 lg:(w-28 h-16)`,
 ]);
 
 const MovementBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
@@ -67,7 +67,7 @@ const MovementBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
               text={heading.title}
             />
             <div
-              css={tw`flex w-full justify-between my-16 px-20 flex-col gap-y-5 lg:(flex-row)`}
+              css={tw`flex w-full justify-between my-16 px-20 flex-col gap-y-8 lg:(flex-row)`}
             >
               {milestones.map((item: any, key: number) => (
                 <TransactionStats

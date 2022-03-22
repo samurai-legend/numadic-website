@@ -20,7 +20,7 @@ import Link from "next/link";
 import SvgInline from "../elements/svgInline";
 
 const LogoContainer = styled.div(() => [
-  tw`relative justify-self-center lg:(justify-self-start)`,
+  tw`relative justify-self-start`,
   css`
     svg {
       ${tw`w-full h-8 md:(h-10) lg:(w-auto h-12) xl:(w-auto h-14) 2xl:(w-auto h-16)`}

@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-
 import tw from "twin.macro";
 
 export const Typography = motion(
@@ -30,13 +29,17 @@ export const Typography = motion(
         return [
           ...includeStyles,
           tw`text-heading-2-sm font-normal`,
-          tw`2xl:(max-w-6xl)`,
+          tw`md:text-heading-2-md`,
+          tw`lg:text-heading-2-lg`,
           tw`xl:text-heading-2`,
+          tw`2xl:(max-w-6xl)`,
         ];
       case "h3":
         return [
           ...includeStyles,
           tw`text-heading-3-sm font-normal`,
+          tw`md:text-heading-3-md`,
+          tw`lg:text-heading-3-lg`,
           tw`xl:text-heading-3`,
         ];
       case "h4":

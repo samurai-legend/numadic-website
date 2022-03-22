@@ -37,11 +37,11 @@ const SocialLinks = styled(motion.a)(() => [
 ]);
 
 const MiscellaneousContainer = styled(motion.div)(() => [
-  tw`grid grid-cols-1 grid-flow-row py-2 border-t-[0.5px] border-[#333333] lg:(grid-cols-3 grid-flow-col)`,
+  tw`flex py-2 border-t-[0.5px] border-[#333333] flex-col items-center lg:(justify-between flex-row)`,
 ]);
 
 const TermAndCondition = styled.ul(() => [
-  tw`flex justify-self-center lg:(justify-self-end) gap-x-5`,
+  tw`flex gap-x-5 w-auto xl:(w-96) justify-end`,
 ]);
 
 const FooterContainer = styled.div(() => [
@@ -60,9 +60,9 @@ const LocationContainer = styled.div(() => [
 ]);
 
 const AddressWrapper = styled(motion.div)(() => [
-  tw`grid grid-rows-1 grid-cols-1 gap-y-5
+  tw`grid grid-rows-1 grid-cols-1 gap-y-8
   grid-flow-row justify-center text-center col-start-1 col-span-1`,
-  tw`lg:(grid-cols-3 grid-rows-none grid-flow-col text-left justify-start col-start-2 col-span-2)`,
+  tw`lg:(grid-cols-4 grid-rows-none grid-flow-col text-left justify-start col-start-2 col-span-2)`,
 ]);
 
 const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
@@ -114,10 +114,10 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
             variants={TextEntryVariant}
           >
             {address.length > 0 &&
-              address.map((item: any) => (
+              address.map((item: any, key: number) => (
                 <div
                   css={tw`flex flex-col items-center lg:(items-start)`}
-                  key={item.id}
+                  key={`address-${key}`}
                 >
                   <Typography
                     as="span"
@@ -130,7 +130,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                     as="p"
                     isColor
                     type="body-1"
-                    css={tw`max-w-[16rem]`}
+                    css={tw`max-w-[12rem]`}
                     dangerouslySetInnerHTML={{ __html: item.address }}
                   />
                 </div>
@@ -163,8 +163,8 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                 css={tw`grid grid-rows-3 grid-cols-2 grid-flow-col mt-2 text-white text-body-3`}
               >
                 {otherLinks.links.length > 0 &&
-                  otherLinks.links.map((item: any) => (
-                    <NavItem key={item.id}>
+                  otherLinks.links.map((item: any, key: number) => (
+                    <NavItem key={`other-links-${key}`}>
                       <Link href={item.url}>
                         <NavLink
                           tag={
@@ -185,8 +185,8 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
               variants={TextEntryVariant}
             >
               {socialMedia.length > 0 &&
-                socialMedia.map((item: any) => (
-                  <Link href={item.url} key={item.id}>
+                socialMedia.map((item: any, key: number) => (
+                  <Link href={item.url} key={`social-media-${key}`}>
                     <SocialLinks>
                       <SvgInline url={item.image.data?.attributes.url} />
                     </SocialLinks>
@@ -203,7 +203,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
             <Typography
               as="span"
               type="caption"
-              css={tw`text-gray-light justify-self-center lg:(justify-self-start)`}
+              css={tw`text-gray-light w-auto xl:(w-96)`}
             >
               © Numadic IoT Pvt. Ltd.
             </Typography>
@@ -211,15 +211,12 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
             <Typography
               as="span"
               type="caption"
-              css={tw`text-gray-light justify-self-center lg:(justify-self-center)
-            `}
+              css={tw`text-gray-light w-auto xl:(w-96) text-center`}
             >
               Warm regards from Goa, India
             </Typography>
 
-            <TermAndCondition
-              css={tw`flex justify-self-center lg:(justify-self-end) gap-x-5`}
-            >
+            <TermAndCondition>
               <NavItem>
                 <Link href="#">
                   <a>

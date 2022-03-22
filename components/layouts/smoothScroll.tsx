@@ -91,7 +91,7 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
   );
   const scrollStopValue = useMotionValue(0);
 
-  const physics = { stiffness: 80, mass: 1, damping: 20 };
+  const physics = { stiffness: 70, mass: 0.4, damping: 20 };
   const physicsY = { stiffness: 20, mass: 0.5, damping: 5 };
 
   const springX = useSpring(scrollStopValue, physics);
@@ -106,9 +106,16 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
     }
   }, [elRefs]);
 
+  const [toggleDriection, setDirection] = useState(true);
+
+  const trackScroll = useCallback(() => {
+    setDirection(scrollYProgress.getVelocity() > 0);
+  }, [scrollYProgress]);
+
   const transforChangesX = useCallback(
     (x) => {
       scrollStopValue.set(x);
+      trackScroll();
 
       if (
         !IsMobile &&
@@ -120,28 +127,31 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
           let checkwidth = scrollRef.current.offsetWidth * key;
           let checkMaxWidth = scrollRef.current.offsetWidth * (key + 1);
           let lineWidth = lineGroupRef?.current?.getBoundingClientRect().width;
-
-          if (-x >= checkwidth && lineWidth <= checkMaxWidth) {
+          // if (-x >= checkwidth && lineWidth <= checkMaxWidth) {
+          //   scrollStopValue.set(-checkwidth);
+          // }
+          if (
+            lineWidth >= checkwidth &&
+            -x <= checkMaxWidth &&
+            toggleDriection
+          ) {
             scrollStopValue.set(-checkwidth);
           }
         });
       }
     },
-    [IsMobile, refArr, scrollRef, lineGroupRef]
+    [IsMobile, refArr, scrollRef, lineGroupRef, toggleDriection]
   );
-
-  const transforChangesY = useCallback((y) => {
-    scrollStopValue.set(y);
-  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
       transform.onChange(transforChangesX);
+
       return () => {
         transform.destroy();
       };
     }
-  }, [transforChangesX, transforChangesY]);
+  }, [transforChangesX]);
 
   return (
     <ScrollContext.Provider

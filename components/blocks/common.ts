@@ -57,7 +57,7 @@ const NavItem = styled(motion.li)(({ type, active }: any) => [
 ]);
 
 const NavLink = styled.a((props: any) => [
-  tw`relative`,
+  tw`relative cursor-pointer`,
   props.tag &&
     css`
       &::after {

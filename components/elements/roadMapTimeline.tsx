@@ -16,23 +16,58 @@ const RoadMapTimeline: React.FC<any> = (props: any) => {
       />
       <TimeGoal
         direction="left"
-        year="2015"
+        year="2016"
         goaldescription="Nu Track - our GPS based tracking & billing platform launches."
       />
       <TimeGoal
         direction="right"
-        year="2015"
-        goaldescription="Numadic forms in London, UK."
+        year="2017"
+        goaldescription="Launched the Nubot - our in-house designed GPS tracking hardware to compliment Nu Track."
       />
       <TimeGoal
         direction="left"
-        year="2015"
-        goaldescription="Numadic forms in London, UK."
+        year="2017"
+        goaldescription="Started work on the FASTag platform."
       />
       <TimeGoal
         direction="right"
-        year="2015"
-        goaldescription="Numadic forms in London, UK."
+        year="2018"
+        goaldescription="Launched NuToll, our FASTag app platform."
+      />
+      <TimeGoal
+        direction="left"
+        year="2019"
+        goaldescription="Started work on the FASTag platform."
+      />
+      <TimeGoal
+        direction="right"
+        year="2019"
+        goaldescription="Launched NuToll, our FASTag app platform."
+      />
+      <TimeGoal
+        direction="left"
+        year="2020"
+        goaldescription="Started work on the FASTag platform."
+      />
+      <TimeGoal
+        direction="right"
+        year="2020"
+        goaldescription="Launched NuToll, our FASTag app platform. "
+      />
+      <TimeGoal
+        direction="left"
+        year="2021"
+        goaldescription="Started work on the FASTag platform."
+      />
+      <TimeGoal
+        direction="right"
+        year="2021"
+        goaldescription="Launched NuToll, our FASTag app platform."
+      />
+      <TimeGoal
+        direction="left"
+        year="2022"
+        goaldescription="Started work on the FASTag platform."
       />
     </TimelineContainer>
   );

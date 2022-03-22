@@ -24,7 +24,7 @@ const Numads: React.FC<any> = (props: any) => {
             <Typography as="p" isColor>
               We are
             </Typography>
-            <Typography as="h2" css={tw`font-bold`} isColor>
+            <Typography as="h2" css={tw`font-bold text-heading-1`} isColor>
               Numads.
             </Typography>
           </div>

@@ -42,7 +42,7 @@ const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
 
   const trackScroll = useCallback(() => {
     setDirection(scrollYProgress.getVelocity() > 0);
-  }, [scrollYProgress, ref]);
+  }, [scrollYProgress]);
 
   useEffect(() => {
     if (ref.current) {
@@ -51,7 +51,7 @@ const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
         scrollYProgress.destroy();
       };
     }
-  }, [trackScroll]);
+  }, [trackScroll,ref]);
 
   return !IsMobile ? (
     <SvgElement

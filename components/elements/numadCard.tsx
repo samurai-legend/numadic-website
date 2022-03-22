@@ -11,9 +11,9 @@ const ImageContainer = styled.div(() => [
   css`
     .image-filter {
       ${tw`transition-all duration-200 ease-in-out`}
-      filter: brightness(0%) opacity(15%);
+      filter:  grayscale(100%);
       &:hover {
-        filter: brightness(100%) opacity(100%);
+        filter: grayscale(0%);
       }
     }
   `,

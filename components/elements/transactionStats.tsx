@@ -54,7 +54,7 @@ const TransactionStats: React.FC<any> = (props: any) => {
       initial="hidden"
       variants={variants}
       {...animateObject}
-      css={tw`flex items-center justify-center flex-col`}
+      css={tw`flex items-center justify-center flex-col gap-y-2`}
       ref={secRef}
     >
       <Typography as="h2" isColor css={tw`font-bold`}>

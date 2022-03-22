@@ -21,6 +21,7 @@ const StarBackgroundBlock: React.FC<StartProps> = ({ direction }) => {
   const containerRef = useRef<any | undefined>(null);
   const containerHeight = useMotionValue(0);
   const containerWidth = useMotionValue(0);
+  console.log("Rendered Star");
 
   const onResize = useCallback((entries) => {
     for (let entry of entries) {
@@ -119,7 +120,7 @@ const StarBackgroundBlock: React.FC<StartProps> = ({ direction }) => {
       default:
         setVariant(horizontalVariant);
     }
-  }, [direction]);
+  }, [containerRef, direction]);
 
   return (
     <BackgroundContainer initial="hidden" animate="visible" ref={containerRef}>

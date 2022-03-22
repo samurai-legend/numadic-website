@@ -5,8 +5,8 @@ const TextEntryVariant = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 2,
-      type: "spring",
+      duration: 1,
+      type: "linear",
     },
   },
 };
@@ -18,8 +18,8 @@ const EntryVariant = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 2,
-      type: "spring",
+      duration: 1,
+      type: "linear",
     },
   },
 };

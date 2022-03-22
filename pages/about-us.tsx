@@ -28,20 +28,27 @@ const AboutUs: CustomPage = ({ blocksSections }: any) => {
           <InnerContentWrapper
             css={tw`gap-y-10 h-[calc(100vh - 121px)] mt-[121px]`}
           >
-            <AnimatedCharacters
-              as="h1"
-              isColor
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              css={tw`max-w-[400px] leading-[1.8rem]! 
+            <div css={tw`flex flex-col gap-y-10`}>
+              <AnimatedCharacters
+                as="h1"
+                isColor
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                css={tw`max-w-[400px] leading-[1.8rem]! 
             md:(max-w-[700px] leading-[3.5rem]!) 
             lg:(max-w-[700px] leading-[4.2rem]!) 
             xl:(max-w-[770px] leading-[4.4rem]!) 
             2xl:(max-w-[770px] leading-[5rem]!)`}
-              text="We undisrupt movement."
-            />
-            <VerticalLine css={tw`h-60 md:h-80 bottom-16`} inView />
+                text="We undisrupt movement."
+              />
+              <div css={tw`w-full h-full relative`}>
+                <VerticalLine
+                  css={tw`absolute h-60 md:h-96 top-0`}
+                  inView
+                />
+              </div>
+            </div>
           </InnerContentWrapper>
         </ContentWrapper>
         <ContentWrapper>

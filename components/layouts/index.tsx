@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import StarBackgroundBlock from "../blocks/startBackgroundBlock";
+import StarBackgroundBlock from "../blocks/starBackgroundBlock";
 
 import Header from "./header";
 import Seo, { SEO } from "./seo";
