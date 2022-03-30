@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async (
   const { homepage } = data;
   const sections = homepage?.data?.attributes.sections;
   const seo = homepage?.data?.attributes.seo;
-  
+
   return {
     props: {
       seo: seo,

@@ -39,6 +39,7 @@ const JoinUsBlock = (props: any) => {
                   src="/images/placeholder.png"
                   layout="fill"
                   objectFit="contain"
+                  alt="placeholder image"
                 />
               </div>
             </div>
@@ -66,7 +67,7 @@ const JoinUsBlock = (props: any) => {
                 text-center lg:(text-left max-w-[16rem]) xl:(max-w-md)`}
                 text="We’ve got some seats on our rocketship."
               />
-              <Link href="/career">
+              <Link href="/career" passHref>
                 <SquareButton css={tw`w-max`}>View open positions</SquareButton>
               </Link>
             </div>

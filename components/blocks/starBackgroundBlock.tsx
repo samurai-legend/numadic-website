@@ -18,43 +18,6 @@ interface StartProps {
 }
 
 const StarBackgroundBlock: React.FC<StartProps> = ({ direction }) => {
-  const containerRef = useRef<any | undefined>(null);
-  const containerHeight = useMotionValue(0);
-  const containerWidth = useMotionValue(0);
-  console.log("Rendered Star");
-
-  const onResize = useCallback((entries) => {
-    for (let entry of entries) {
-      containerHeight.set(entry.contentRect.height);
-      containerWidth.set(entry.contentRect.width);
-    }
-  }, []);
-
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => onResize(entries));
-    resizeObserver.observe(containerRef.current);
-    return () => resizeObserver.disconnect();
-  }, [onResize]);
-
-  useEffect(() => {
-    containerHeight.set(containerRef?.current.offsetHeight);
-    containerWidth.set(containerRef?.current.offsetWidth);
-  }, [containerRef]);
-
-  const getStars = () => {
-    let data = [];
-    for (let i = 0; i < 10; i++) {
-      data.push(i);
-    }
-    return data;
-  };
-
-  const [stars, setStars] = useState<number[] | undefined>(undefined);
-
-  useEffect(() => {
-    setStars(getStars());
-  }, []);
-
   const verticalVariants = {
     hidden: () => {
       return {
@@ -107,29 +70,73 @@ const StarBackgroundBlock: React.FC<StartProps> = ({ direction }) => {
     },
   };
 
-  const [animVariants, setVariant] = useState<any>(horizontalVariant);
+  const containerRef = useRef<any | undefined>(null);
+  const containerHeight = useMotionValue(0);
+  const containerWidth = useMotionValue(0);
+
+  const [animateDirection, setDirection] = useState<any>(direction);
+
+  const IsMobile = useMediaMatch("(max-width: 1023px)");
 
   useEffect(() => {
-    switch (direction) {
-      case ScrollDirection.horizontal:
-        setVariant(horizontalVariant);
-        break;
-      case ScrollDirection.vertical:
-        setVariant(verticalVariants);
-        break;
-      default:
-        setVariant(horizontalVariant);
+    if (IsMobile) {
+      setDirection(ScrollDirection.vertical);
+    } else {
+      setDirection(direction);
     }
-  }, [containerRef, direction]);
+  }, [IsMobile]);
 
-  return (
+  const onResize = useCallback((entries) => {
+    for (let entry of entries) {
+      containerHeight.set(entry.contentRect.height);
+      containerWidth.set(entry.contentRect.width);
+    }
+  }, []);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver((entries) => onResize(entries));
+    resizeObserver.observe(containerRef.current);
+    return () => resizeObserver.disconnect();
+  }, [onResize]);
+
+  useEffect(() => {
+    containerHeight.set(containerRef?.current.offsetHeight);
+    containerWidth.set(containerRef?.current.offsetWidth);
+  }, [containerRef]);
+
+  const getStars = () => {
+    let data = [];
+    for (let i = 0; i < 10; i++) {
+      data.push(i);
+    }
+    return data;
+  };
+
+  const [stars, setStars] = useState<number[] | undefined>(undefined);
+
+  useEffect(() => {
+    setStars(getStars());
+  }, []);
+
+  return animateDirection === ScrollDirection.vertical ? (
     <BackgroundContainer initial="hidden" animate="visible" ref={containerRef}>
       {stars?.map((val, key) => (
         <Star
           key={key}
-          variants={animVariants}
+          variants={verticalVariants}
           custom={val}
-          direction={direction}
+          direction={animateDirection}
+        ></Star>
+      ))}
+    </BackgroundContainer>
+  ) : (
+    <BackgroundContainer initial="hidden" animate="visible" ref={containerRef}>
+      {stars?.map((val, key) => (
+        <Star
+          key={key}
+          variants={horizontalVariant}
+          custom={val}
+          direction={animateDirection}
         ></Star>
       ))}
     </BackgroundContainer>

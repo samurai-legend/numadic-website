@@ -55,10 +55,13 @@ const VerticalLine: React.FC<any> = forwardRef(
       (entries) => {
         for (let entry of entries) {
           lineRef?.current && setDashLength(lineRef.current.getTotalLength());
-          ref?.current && setSectionHeight(entry.target.clientHeight - ref.current.clientHeight);
+          ref?.current &&
+            setSectionHeight(
+              entry.target.clientHeight - ref.current.clientHeight
+            );
         }
       },
-      [sectionRef,lineRef]
+      [sectionRef, lineRef, ref]
     );
 
     useEffect(() => {

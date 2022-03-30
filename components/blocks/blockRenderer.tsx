@@ -16,7 +16,7 @@ const MovementBlock = dynamic(
   () => import("@/components/blocks/movementBlock")
 );
 
-const Blocks: React.FC<any> = ({ blocks, setRefs }: any) => {
+const Blocks: React.FC<any> = ({ blocks, setRefs, addHeight }: any) => {
   const arrLength = blocks.length;
   const [elRefs, setElRefs] = useState([]);
 
@@ -51,7 +51,12 @@ const Blocks: React.FC<any> = ({ blocks, setRefs }: any) => {
           <InvestorsBlock key={index} ref={elRefs[index]} data={block} />
         ),
         ComponentSectionsFooter: (
-          <FooterBlock key={index} ref={elRefs[index]} data={block} />
+          <FooterBlock
+            key={index}
+            ref={elRefs[index]}
+            data={block}
+            addHeight={addHeight && addHeight}
+          />
         ),
       }[block.__typename])
   );

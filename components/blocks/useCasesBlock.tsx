@@ -97,6 +97,8 @@ const UseCasesBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                   src={cardDetails.image.data.attributes.url}
                   layout="fill"
                   objectFit="contain"
+                  alt={cardDetails.image.data.attributes.alternativeText}
+
                 />
               </UseCaseCardImage>
               <div>

@@ -30,6 +30,7 @@ const NumadsCard: React.FC<any> = ({ src, name, ocupation }: any) => {
           layout="fill"
           objectFit="contain"
           className="image-filter"
+          alt="image-filter"
         />
       </ImageContainer>
 

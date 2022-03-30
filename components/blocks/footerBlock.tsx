@@ -65,11 +65,11 @@ const AddressWrapper = styled(motion.div)(() => [
   tw`lg:(grid-cols-4 grid-rows-none grid-flow-col text-left justify-start col-start-2 col-span-2)`,
 ]);
 
-const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
+const FooterBlock: React.FC<any> = forwardRef(({ data, addHeight}: any, ref: any) => {
   const { address, heading, otherLinks, socialMedia } = data;
 
   return (
-    <SectionContainer ref={ref}>
+    <SectionContainer ref={ref} css={addHeight && tw`lg:min-h-[60vh]`}>
       <MapWrapper>
         <MapContainer>
           <MapPattern />
@@ -129,8 +129,8 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                   <Typography
                     as="p"
                     isColor
-                    type="body-1"
-                    css={tw`max-w-[12rem]`}
+                    type="body-3"
+                    css={tw`max-w-[10rem] leading-5! lg:leading-7!`}
                     dangerouslySetInnerHTML={{ __html: item.address }}
                   />
                 </div>
@@ -165,7 +165,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                 {otherLinks.links.length > 0 &&
                   otherLinks.links.map((item: any, key: number) => (
                     <NavItem key={`other-links-${key}`}>
-                      <Link href={item.url}>
+                      <Link href={item.url} passHref>
                         <NavLink
                           tag={
                             item.tag.data ? item.tag.data.attributes.name : 0
@@ -186,7 +186,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
             >
               {socialMedia.length > 0 &&
                 socialMedia.map((item: any, key: number) => (
-                  <Link href={item.url} key={`social-media-${key}`}>
+                  <Link href={item.url} key={`social-media-${key}`} passHref>
                     <SocialLinks>
                       <SvgInline url={item.image.data?.attributes.url} />
                     </SocialLinks>
@@ -218,7 +218,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
 
             <TermAndCondition>
               <NavItem>
-                <Link href="#">
+                <Link href="#" passHref>
                   <a>
                     <Typography
                       as="span"
@@ -231,7 +231,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="#">
+                <Link href="#" passHref>
                   <a>
                     <Typography
                       as="span"
@@ -244,7 +244,7 @@ const FooterBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="#">
+                <Link href="#" passHref>
                   <a>
                     <Typography
                       as="span"

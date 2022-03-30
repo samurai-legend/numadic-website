@@ -85,8 +85,8 @@ const NavBar: FunctionComponent<any> = () => {
           <a>About Us</a>
         </Link>
       </NavItem>
-      <NavItem active={router.asPath === '/career' ? 1 : 0}>
-        <Link href="/" passHref>
+      <NavItem active={router.asPath === '/careers' ? 1 : 0}>
+        <Link href="/careers" passHref>
           <a>Careers</a>
         </Link>
       </NavItem>

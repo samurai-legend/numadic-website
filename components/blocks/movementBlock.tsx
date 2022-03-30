@@ -1,5 +1,10 @@
 import tw from "twin.macro";
-import { SectionContainer, ContentWrapper, MapWrapper, MapContainer } from "./common";
+import {
+  SectionContainer,
+  ContentWrapper,
+  MapWrapper,
+  MapContainer,
+} from "./common";
 
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
@@ -93,11 +98,12 @@ const MovementBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
             </Typography>
             <CollaborationContainer>
               {collaboration.images.data.map((item: any, key: number) => (
-                <CollaborationImage key={item.attributes.alternativeText}>
+                <CollaborationImage key={`collab-image-${key}`}>
                   <Image
                     src={item.attributes.url}
                     layout="fill"
                     objectFit="contain"
+                    alt={item.attributes.alternativeText}
                   />
                 </CollaborationImage>
               ))}

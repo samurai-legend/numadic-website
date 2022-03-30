@@ -1,4 +1,3 @@
-import Layout from "@/components/layouts";
 import { useRouter } from "next/router";
 import { GlobalStyles } from "twin.macro";
 import "@/styles/common.scss";
@@ -6,7 +5,11 @@ import { MyAppProps } from "types/pages";
 import { ScrollDirection } from "@/components/layouts/smoothScroll";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "createEmotionCache";
-import { AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
+const Layout = dynamic(() => import("@/components/layouts"));
+const StarBackgroundBlock = dynamic(
+  () => import("@/components/blocks/starBackgroundBlock")
+);
 
 function handleExitComplete() {
   if (typeof window !== "undefined") {
@@ -21,7 +24,6 @@ function MyApp({
   pageProps,
   emotionCache = clientSideEmotionCache,
 }: MyAppProps) {
-  const router = useRouter();
   return (
     <CacheProvider value={emotionCache}>
       <GlobalStyles />

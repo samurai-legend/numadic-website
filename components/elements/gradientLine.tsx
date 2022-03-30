@@ -51,7 +51,7 @@ const GradientLine: React.FC<any> = forwardRef((props: any, ref: any) => {
         scrollYProgress.destroy();
       };
     }
-  }, [trackScroll,ref]);
+  }, [trackScroll, ref, scrollYProgress]);
 
   return !IsMobile ? (
     <SvgElement

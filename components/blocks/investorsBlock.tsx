@@ -126,7 +126,7 @@ const InvestorsBlock: React.FC<any> = forwardRef(({ data }: any, ref: any) => {
               variants={TextEntryVariant}
               css={tw`justify-self-center self-center lg:(justify-self-start)`}
             >
-              <Link href={openPositions.openPositionLink?.link}>
+              <Link href={openPositions.openPositionLink?.link} passHref>
                 <SquareButton>
                   {openPositions.openPositionLink?.label}
                 </SquareButton>

@@ -13,6 +13,8 @@ import { SEO } from "@/components/layouts/seo";
 import SmoothScroll, {
   ScrollDirection,
 } from "@/components/layouts/smoothScroll";
+import { Typography } from "@/components/typography";
+import { TextEntryVariant } from "animations";
 import AnimatedCharacters from "animations/animatedCharacters";
 import client from "apollo-client";
 import { AboutUsQuery } from "graphql/about-us";
@@ -25,9 +27,7 @@ const AboutUs: CustomPage = ({ blocksSections }: any) => {
     <SmoothScroll direction={ScrollDirection.vertical}>
       <div css={tw`flex flex-col w-full`}>
         <ContentWrapper>
-          <InnerContentWrapper
-            css={tw`gap-y-10 h-[calc(100vh - 121px)] mt-[121px]`}
-          >
+          <InnerContentWrapper css={tw`gap-y-10 h-[110vh]`}>
             <div css={tw`flex flex-col gap-y-10`}>
               <AnimatedCharacters
                 as="h1"
@@ -42,11 +42,8 @@ const AboutUs: CustomPage = ({ blocksSections }: any) => {
             2xl:(max-w-[770px] leading-[5rem]!)`}
                 text="We undisrupt movement."
               />
-              <div css={tw`w-full h-full relative`}>
-                <VerticalLine
-                  css={tw`absolute h-60 md:h-96 top-0`}
-                  inView
-                />
+              <div css={tw`relative`}>
+                <VerticalLine css={tw`absolute h-96 top-0`} inView />
               </div>
             </div>
           </InnerContentWrapper>
@@ -66,17 +63,21 @@ const AboutUs: CustomPage = ({ blocksSections }: any) => {
             2xl:(max-w-[770px] leading-[5rem]!)`}
               text="Undisrupt."
             />
-            <AnimatedCharacters
+            <Typography
               as="p"
               isColor
               type="quote"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              css={tw`font-thin max-w-6xl`}
-              text="Movement is typically chaotic and the industries that serve it, quite disrupted.
-                    We exist to simplify, optimise, automate and undisrupt movement."
-            />
+              variants={TextEntryVariant}
+              css={tw`font-light max-w-6xl`}
+            >
+              Movement is typically chaotic and the industries that serve it,
+              quite disrupted.
+              <br /> We exist to simplify, optimise, automate and undisrupt
+              movement.
+            </Typography>
           </InnerContentWrapper>
         </ContentWrapper>
 
@@ -85,7 +86,7 @@ const AboutUs: CustomPage = ({ blocksSections }: any) => {
         <Numads />
         <JoinUsBlock />
 
-        <Blocks blocks={blocksSections} />
+        <Blocks blocks={blocksSections} addHeight />
       </div>
     </SmoothScroll>
   );

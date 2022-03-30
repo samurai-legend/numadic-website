@@ -56,7 +56,7 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
         scrollRef && setScrollRange(scrollRef.current.scrollHeight);
         break;
     }
-  }, [scrollRef, IsMobile, direction]);
+  }, [scrollRef, direction]);
 
   const onResize = useCallback(
     (entries) => {
@@ -140,7 +140,15 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
         });
       }
     },
-    [IsMobile, refArr, scrollRef, lineGroupRef, toggleDriection]
+    [
+      IsMobile,
+      refArr,
+      scrollRef,
+      lineGroupRef,
+      toggleDriection,
+      scrollStopValue,
+      trackScroll,
+    ]
   );
 
   useEffect(() => {
@@ -162,14 +170,12 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
       }}
     >
       {IsMobile ? (
-        <>
-          <motion.section
-            ref={scrollRef}
-            css={tw`relative h-full w-screen flex bg-black-dark`}
-          >
-            {children}
-          </motion.section>
-        </>
+        <motion.section
+          ref={scrollRef}
+          css={tw`relative h-full w-screen flex flex-col bg-black-dark`}
+        >
+          {children}
+        </motion.section>
       ) : (
         <>
           {direction === ScrollDirection.horizontal ? (
