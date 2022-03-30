@@ -11,16 +11,6 @@ module.exports = (phase, { defaultConfig }) => ({
     loader: "akamai",
     path: "",
   },
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    return {
-      "/": { page: "/" },
-      "/about-us": { page: "/about-us" },
-      "/contact": { page: "/contact" }
-    };
-  },
   webpack: (config, { isServer, webpack }) => {
     config.module.rules.push({
       test: /\.svg$/,

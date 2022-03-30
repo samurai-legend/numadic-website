@@ -50,6 +50,7 @@ const Careers: CustomPage = (props: any) => {
                   layout="fill"
                   objectFit="cover"
                   className="res-image"
+                  alt="image"
                 />
               </ResponsiveImage>
               <ResponsiveImage>
@@ -58,6 +59,7 @@ const Careers: CustomPage = (props: any) => {
                   layout="fill"
                   objectFit="cover"
                   className="res-image"
+                  alt="image"
                 />
               </ResponsiveImage>
               <ResponsiveImage>
@@ -66,6 +68,7 @@ const Careers: CustomPage = (props: any) => {
                   layout="fill"
                   objectFit="cover"
                   className="res-image"
+                  alt="image"
                 />
               </ResponsiveImage>
             </div>
