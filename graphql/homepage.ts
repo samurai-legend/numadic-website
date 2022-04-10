@@ -1,19 +1,15 @@
 import { gql } from "@apollo/client";
+import { SeoFragmentDoc } from "./fragments/elements";
 import {
-  Address,
-  Collabration,
-  HeadingTitle,
-  InvestorLogos,
-  Milestone,
-  OpenPosition,
-  OtherLinks,
-  seo,
-  SocialMedia,
-  SolutionCard,
-  UseCaseTabs,
-} from "./fragments";
+  FooterSectionFragmentDoc,
+  InvestorsSectionFragmentDoc,
+  LandingSectionFragmentDoc,
+  MovementSectionFragmentDoc,
+  SolutionsSectionFragmentDoc,
+  UseCasesSectionFragmentDoc,
+} from "./fragments/sections";
 
-export const HomepageQuery = {
+export const HomepageDocument = {
   query: gql`
     query Homepage {
       homepage {
@@ -24,77 +20,23 @@ export const HomepageQuery = {
             }
             sections {
               __typename
-              ... on ComponentSectionsLanding {
-                title
-                description
-              }
-              ... on ComponentSectionsSolutions {
-                heading {
-                  ...HeadingTitle
-                }
-                solutionCards {
-                  ...SolutionCard
-                }
-              }
-              ... on ComponentSectionsUseCases {
-                heading {
-                  ...HeadingTitle
-                }
-                useCaseTabs {
-                  ...UseCaseTabs
-                }
-              }
-              ... on ComponentSectionsMovement {
-                heading {
-                  ...HeadingTitle
-                }
-                milestones {
-                  ...Mileston
-                }
-                collaboration {
-                  ...Collabration
-                }
-              }
-              ... on ComponentSectionsInvestors {
-                heading {
-                  ...HeadingTitle
-                }
-                openPositions {
-                  ...OpenPosition
-                }
-                investorLogos {
-                  ...InvestorsLogos
-                }
-              }
-              ... on ComponentSectionsFooter {
-                heading {
-                  ...HeadingTitle
-                }
-                address {
-                  ...Address
-                }
-                otherLinks {
-                  ...OtherLink
-                }
-                socialMedia {
-                  ...SocialMedia
-                }
-              }
+              ...LandingSection
+              ...SolutionsSection
+              ...UseCasesSection
+              ...MovementSection
+              ...InvestorsSection
+              ...FooterSection
             }
           }
         }
       }
     }
-    ${HeadingTitle}
-    ${Milestone}
-    ${Collabration}
-    ${UseCaseTabs}
-    ${SolutionCard}
-    ${OpenPosition}
-    ${InvestorLogos}
-    ${Address}
-    ${OtherLinks}
-    ${SocialMedia}
-    ${seo}
+    ${SeoFragmentDoc}
+    ${LandingSectionFragmentDoc}
+    ${SolutionsSectionFragmentDoc}
+    ${UseCasesSectionFragmentDoc}
+    ${MovementSectionFragmentDoc}
+    ${InvestorsSectionFragmentDoc}
+    ${FooterSectionFragmentDoc}
   `,
 };

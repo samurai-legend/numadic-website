@@ -48,6 +48,12 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
   const { scrollYProgress } = useViewportScroll();
 
   useEffect(() => {
+    if (elRefs && elRefs.length > 0) {  
+      setScrollRange(scrollRef.current.scrollWidth);
+    }
+  }, [elRefs,viewportW,scrollRange]);
+
+  useEffect(() => {    
     switch (direction) {
       case ScrollDirection.horizontal:
         scrollRef && setScrollRange(scrollRef.current.scrollWidth);
@@ -186,7 +192,7 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
               <motion.section
                 ref={scrollRef}
                 style={{ x: springX }}
-                css={tw`relative h-[calc(100vh - 120px)] w-screen flex `}
+                css={tw`relative h-[calc(100vh - 120px)] w-screen flex`}
               >
                 {children}
               </motion.section>
@@ -196,7 +202,7 @@ const SmoothScroll = ({ children, direction, elRefs }: SmoothScrollProps) => {
               <motion.section
                 ref={scrollRef}
                 style={{ y: springY }}
-                css={tw`relative h-full w-screen flex `}
+                css={tw`relative h-full w-screen flex`}
               >
                 {children}
               </motion.section>

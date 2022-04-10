@@ -6,6 +6,7 @@ import { ScrollDirection } from "@/components/layouts/smoothScroll";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "createEmotionCache";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 const Layout = dynamic(() => import("@/components/layouts"));
 const StarBackgroundBlock = dynamic(
   () => import("@/components/blocks/starBackgroundBlock")

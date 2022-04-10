@@ -1,5 +1,14 @@
 import { gql } from "@apollo/client";
-import { Address, HeadingTitle, OtherLinks, seo, SocialMedia } from "./fragments";
+import { SeoFragmentDoc } from "./fragments/elements";
+import {
+  FooterSectionFragmentDoc,
+  JoinUsSectionFragmentDoc,
+  LandingInnerSectionFragmentDoc,
+  NumadsSectionFragmentDoc,
+  QuoteSectionFragmentDoc,
+  RoadmapSectionFragmentDoc,
+  ValuesSectionFragmentDoc,
+} from "./fragments/sections";
 
 export const AboutUsQuery = {
   query: gql`
@@ -11,29 +20,26 @@ export const AboutUsQuery = {
               ...Seo
             }
             sections {
-              ... on ComponentSectionsFooter {
-                heading {
-                  ...HeadingTitle
-                }
-                address {
-                  ...Address
-                }
-                otherLinks {
-                  ...OtherLink
-                }
-                socialMedia {
-                  ...SocialMedia
-                }
-              }
+              __typename
+              ...LandingInnerSection
+              ...QuoteSection
+              ...RoadmapSection
+              ...ValuesSection
+              ...NumadsSection
+              ...JoinUsSection
+              ...FooterSection
             }
           }
         }
       }
     }
-    ${HeadingTitle}
-    ${OtherLinks}
-    ${Address}
-    ${SocialMedia}
-    ${seo}
+    ${SeoFragmentDoc}
+    ${LandingInnerSectionFragmentDoc}
+    ${QuoteSectionFragmentDoc}
+    ${RoadmapSectionFragmentDoc}
+    ${ValuesSectionFragmentDoc}
+    ${NumadsSectionFragmentDoc}
+    ${JoinUsSectionFragmentDoc}
+    ${FooterSectionFragmentDoc}
   `,
 };

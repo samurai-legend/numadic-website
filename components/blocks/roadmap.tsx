@@ -9,7 +9,7 @@ import VerticalLine from "../elements/VerticalLine";
 import { Typography } from "../typography";
 import { ContentWrapper, InnerContentWrapper } from "./common";
 
-const Roadmap: React.FC<any> = (props: any) => {
+const RoadmapBlock: React.FC<any> = (props: any) => {
   const ref = useRef<any>(null);
   const arrowRef = useRef<any>(null);
 
@@ -51,4 +51,4 @@ const Roadmap: React.FC<any> = (props: any) => {
   );
 };
 
-export default Roadmap;
+export default RoadmapBlock;

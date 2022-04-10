@@ -5,14 +5,14 @@ import tw from "twin.macro";
 import SmoothScroll, { ScrollDirection } from "./smoothScroll";
 
 const ContainerWrapper = styled.div(() => [
-  tw`w-max h-full relative flex flex-col lg:flex-row`,
+  tw`w-max h-full relative flex
+    flex-col lg:flex-row`,
 ]);
 
 export const GlobalLineContext = createContext<any>({});
 
 const HorizontalScroll = ({ children, elRefs }: any) => {
   const lineGroupRef = useRef(null);
-
   return (
     <GlobalLineContext.Provider value={{ lineGroupRef: lineGroupRef }}>
       <SmoothScroll direction={ScrollDirection.horizontal} elRefs={elRefs}>
